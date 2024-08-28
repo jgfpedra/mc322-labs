@@ -9,6 +9,7 @@ public class Passenger extends Person {
 	}
 	@Override
 	public void performRole() {
+		System.out.println(this.name + " chama um taxi");
 	}
 	public String getDestination() {
 		return destination;
