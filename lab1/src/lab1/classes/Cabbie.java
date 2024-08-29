@@ -1,3 +1,11 @@
+/*
+ * Nome:
+ * RA:
+ * Nome: Joao Guilherme Ferreira Pedra
+ * RA: 248349
+ * 
+ */
+
 package lab1.classes;
 
 public class Cabbie extends Person{
@@ -24,6 +32,10 @@ public class Cabbie extends Person{
 	}
 	@Override
 	public String toString() {
-		return "Cabbie [money=" + money + "]";
+		try {
+			return "Cabbie [money=" + money + "]";
+		} catch(Exception e) {
+			return e.toString();
+		}
 	}
 }

@@ -1,18 +1,31 @@
+/*
+ * Nome:
+ * RA:
+ * Nome: Joao Guilherme Ferreira Pedra
+ * RA: 248349
+ * 
+ */
+
 package lab1.classes;
 
 import java.util.Random;
 
 public class Taxi {
+	private int id;
 	private String destination;
 	private boolean isHailed;
 	private Cabbie taxista;
 	private Passenger passageiro;
 	private int horas, total;
 	
-	public Taxi(Cabbie taxista) {
+	public Taxi(int id, Cabbie taxista) {
+		this.id = id;
 		this.destination = "";
 		this.isHailed = false;
 		this.taxista = taxista;
+	}
+	public int getId() {
+		return this.id;
 	}
 	public String getDestination() {
 		return destination;
@@ -28,7 +41,9 @@ public class Taxi {
 	}
 	public void setPassageiro(Passenger passageiro) {
 		this.passageiro = passageiro;
-		this.isHailed = true;
+	}
+	public void setIsHailed(boolean isHailed) {
+		this.isHailed = isHailed;
 	}
 	public void setDestination(String destination) {
 		Random rand = new Random();
@@ -45,14 +60,21 @@ public class Taxi {
 	}
 	public boolean chegouDestino() {
 		if(this.horas == 5) {
+			System.out.println("a");
 			this.isHailed = false;
-			taxista.setMoney(this.total + taxista.getMoney());
+			this.horas = 0;
+			this.taxista.setMoney(this.total + this.taxista.getMoney());
 			return true;
+		} else {
+			return false;
 		}
-		return false;
 	}
 	@Override
 	public String toString() {
-		return "Taxi [destination=" + destination + ", isHailed=" + isHailed + "]";
+		try {
+			return "Taxi [destination=" + destination + ", isHailed=" + isHailed + "]";
+		} catch(Exception e) {
+			return e.toString();
+		}
 	}
 }
