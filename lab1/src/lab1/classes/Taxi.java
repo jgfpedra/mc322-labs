@@ -72,7 +72,8 @@ public class Taxi {
 	@Override
 	public String toString() {
 		try {
-			return "Taxi [destination=" + destination + ", isHailed=" + isHailed + "]";
+			return "Taxi [id=" + id + ", destination=" + destination + ", isHailed=" + isHailed + ", taxista=" + taxista
+							+ ", passageiro=" + passageiro + ", horas=" + horas + ", total=" + total + "]";
 		} catch(Exception e) {
 			return e.toString();
 		}

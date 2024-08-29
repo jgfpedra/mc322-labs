@@ -139,6 +139,7 @@ public class Main {
 									taxis.get(posicao).getTaxista().performRole();
 									
 									taxis.get(posicao).setPassageiro(passageiros.get(posPassageiro));
+									taxis.get(posicao).setDestination(passageiros.get(posPassageiro).getDestination());
 									taxis.get(posicao).setIsHailed(true);
 									
 									System.out.println(passageiros.get(posPassageiro).getName() + " entra no taxi");
@@ -192,6 +193,7 @@ public class Main {
 										System.out.println(taxis.get(posicao).getPassageiro().getName() + " paga o taxista (sem gorjeta)");
 										System.out.println(taxis.get(posicao).getPassageiro().getName() + " sai do taxi " + posicao);
 										taxis.get(posicao).setPassageiro(null);
+										break;
 									} else {
 										System.out.println("Horario do destino de " + taxis.get(posicao).getPassageiro().getName() + " passou em 1 hora.");
 										System.out.println("Restam " + (5 - taxis.get(posicao).getHoras()) + "h para chegar ao destino");
@@ -201,6 +203,7 @@ public class Main {
 									}
 								} else {
 									System.out.println("Chame um taxi");
+									break;
 								}
 							}
 						} else {
@@ -217,12 +220,12 @@ public class Main {
 		System.out.println("-----------------------------------");
 		System.out.println("Final do programa: ");
 		for(posicao = 0; posicao < taxis.size(); posicao++) {
-			taxis.get(posicao).getTaxista().toString();
+			System.out.println(taxis.get(posicao).getTaxista().toString());
 		}
 		for(posicao = 0; posicao < passageiros.size(); posicao++) {
-			passageiros.get(posicao).toString();
+			System.out.println(passageiros.get(posicao).toString());
 		}
-		taxis.toString();
+		System.out.println(taxis.toString());
 		scan.close();
 	}
 

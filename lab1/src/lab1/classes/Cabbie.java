@@ -33,7 +33,7 @@ public class Cabbie extends Person{
 	@Override
 	public String toString() {
 		try {
-			return "Cabbie [money=" + money + "]";
+			return "Cabbie [name=" + this.name + ", money=" + this.money +"]";
 		} catch(Exception e) {
 			return e.toString();
 		}
