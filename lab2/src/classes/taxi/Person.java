@@ -24,4 +24,6 @@ public abstract class Person{
             this.phone = newValue;
         }
     }
+
+    // TODO: talvez colocar toString
 }

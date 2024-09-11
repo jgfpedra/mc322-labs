@@ -6,4 +6,5 @@ public class Payment {
 	private float amount;
 	private String paymentMethod;
     //Adicionar os métodos da classe Payment
+	
 }

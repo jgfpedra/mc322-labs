@@ -9,15 +9,24 @@ package main.java;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import classes.taxi.Cabbie;
+import classes.taxi.Passenger;
 import classes.taxi.Payment;
 import classes.taxi.Vehicle;
+import classes.taxi.utils.CabbieInfoGenerator;
+import classes.taxi.utils.PassengerInfoGenerator;
 
 public class Main {
     public static void main(String[] args) {
         int escolha = 0;
         Scanner scan = new Scanner(System.in);
+        PassengerInfoGenerator passRand = new PassengerInfoGenerator();
+        CabbieInfoGenerator cabbRand = new CabbieInfoGenerator();
+
+        //Arrays
         ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
-        ArrayList<Vehicle> passangers = new ArrayList<Vehicle>();
+        ArrayList<Passenger> passangers = new ArrayList<Passenger>();
+        ArrayList<Cabbie> cabbies = new ArrayList<Cabbie>();
         ArrayList<Vehicle> taxis = new ArrayList<Vehicle>();
         ArrayList<Payment> payments = new ArrayList<Payment>();
 
@@ -61,7 +70,7 @@ public class Main {
                     /*      --> criacao de um passageiro com infos necessarias
                     *       --> atualizacao de algum campo
                     */
-                    System.out.println("1 - Criar um passageiro");
+                    System.out.println("1 - Criar um passageiro ou motorista");
                     System.out.println("2 - Atualizar campo de passageiro");
                     try {
                         System.out.print("Selecione uma opcao: ");
@@ -72,8 +81,51 @@ public class Main {
                     }
                     switch(escolha){
                         case 1:
+                        // Criacao de passageiro ou motorista
+                        //TODO: fazer print da opcao entre passageiro ou motorista
+                        try {
+                            System.out.print("Selecione uma opcao: ");
+                            escolha = scan.nextInt();
+                        } catch (Exception exc) {
+                            System.out.println("Inicie o programa novamente");
+                            break;
+                        }
+                        switch(escolha){
+                            case 1:
+                                // Passageiro
+                                Passenger passenger = new Passenger(passRand.getPassengerId(), passRand.getName(), passRand.getEmail(), passRand.getEmail());
+                                passangers.add(passenger);
+                                //TODO: fazer prints
+                            break;
+                            case 2:
+                                // Motorista
+                                Cabbie cabbie = new Cabbie(cabbRand.getCabbieId(), cabbRand.getName(), cabbRand.getEmail(), cabbRand.getPhone(), cabbRand.getRate(), cabbRand.getLicenseNumber());
+                                cabbies.add(cabbie);
+                                //TODO: fazer prints
+                            break;
+                        }
                         break;
                         case 2:
+                        // Atualizacao de campo do passageiro
+                        // TODO: verificar qual id pegar
+                        // TODO: fazer escolha se eh passageiro ou motorista
+                        try {
+                            System.out.print("Selecione uma opcao: ");
+                            escolha = scan.nextInt();
+                        } catch (Exception exc) {
+                            System.out.println("Inicie o programa novamente");
+                            break;
+                        }
+                        switch(escolha){
+                            case 1:
+                                // Passageiro
+                                //TODO: fazer update e prints
+                            break;
+                            case 2:
+                                // Motorista
+                                //TODO: fazer update e prints
+                            break;
+                        }
                         break;
                     }
                 break;
@@ -90,10 +142,15 @@ public class Main {
                         System.out.println("Inicie o programa novamente");
                         break;
                     }
+                    //TODO: verificar como pegar um id
                     switch(escolha){
                         case 1:
+                            Vehicle vehicle = new Vehicle(cabbies.get());
+                            vehicles.add(vehicle);
                         break;
                         case 2:
+                            // TODO: colocar os campos que serao atualizados
+                            vehicles.get(1).update(null, null);
                         break;
                     }
                 break;
