@@ -1,3 +1,5 @@
+package classes.taxi;
+
 public class Ride {
     //Adicionar os atributos da classe Ride
 	private String rideId;

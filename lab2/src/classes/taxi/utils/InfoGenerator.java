@@ -1,4 +1,4 @@
-package utils;
+package classes.taxi.utils;
 
 public interface InfoGenerator{
 

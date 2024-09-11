@@ -1,3 +1,4 @@
+package classes.taxi;
 public class Payment {
     //Adicionar os atributos da classe Payment
 	private String paymentId;

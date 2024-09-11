@@ -1,20 +1,15 @@
+package main.java;
+
 /*
  * Nome: Gabriel Henrique Pereira Lopes da Silva
  * RA: 200342
  * Nome: Joao Guilherme Ferreira Pedra
  * RA: 248349
- * 
  */
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
-
-import lab1.classes.*;
-
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        /*
         String name, destino;
         int escolha = 0, posPassageiro = 0, posTaxi = 0, posicao = 0, isLivre = 0;
         Scanner scan = new Scanner(System.in);
@@ -240,6 +235,6 @@ public class Main {
         }
         System.out.println(taxis.toString());
         scan.close();
+        */
     }
-
 }

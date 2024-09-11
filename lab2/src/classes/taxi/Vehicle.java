@@ -1,4 +1,4 @@
-import utils.VehicleInfoGenerator;
+package classes.taxi;
 
 public class Vehicle {
     //Adicionar os atributos da classe Vehicle

@@ -1,5 +1,5 @@
-package utils;
-import java.util.*;
+package classes.taxi.utils;
+import java.util.Random;
 
 
 public class VehicleInfoGenerator implements InfoGenerator{

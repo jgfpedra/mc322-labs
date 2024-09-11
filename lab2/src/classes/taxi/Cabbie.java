@@ -1,4 +1,4 @@
-import utils.CabbieInfoGenerator;
+package classes.taxi;
 
 public class Cabbie extends Person{
     //Adicionar os atributos da classe Cabbie

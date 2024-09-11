@@ -1,4 +1,4 @@
-import utils.PassengerInfoGenerator;
+package classes.taxi;
 
 public class Passenger extends Person{
     //Adicionar os atributos da classe Passenger

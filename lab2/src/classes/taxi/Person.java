@@ -1,4 +1,4 @@
-
+package classes.taxi;
 public abstract class Person{
     //Adicionar os atributos da classe Person
     public String name;
