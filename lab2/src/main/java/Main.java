@@ -18,11 +18,15 @@ import classes.taxi.utils.PassengerInfoGenerator;
 
 public class Main {
     public static void main(String[] args) {
-        int escolha = 0;
+        //Auxiliares
+        int escolha = 0, paymentId = 0;
+        String paymentMethod;
         Scanner scan = new Scanner(System.in);
+
+        //Geradores
         PassengerInfoGenerator passRand = new PassengerInfoGenerator();
         CabbieInfoGenerator cabbRand = new CabbieInfoGenerator();
-
+        
         //Arrays
         ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
         ArrayList<Passenger> passangers = new ArrayList<Passenger>();
@@ -196,6 +200,9 @@ public class Main {
                 case 5:
                     /*      --> Selecao de metodo de pagamento
                     */
+                    // TODO: como pegar o rideId;
+                    paymentMethod = scan.next();
+                    Payment payment = new Payment(paymentId, 1, 1, paymentMethod);
                 break;
                 case 6:
                     /*      --> finalizar corrida
