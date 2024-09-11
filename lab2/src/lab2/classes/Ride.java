@@ -10,6 +10,7 @@ public class Ride {
 	private float fare;
     //Adicionar os métodos da classe Ride
 	public void requestRide() {
+		
 	}
 	public void updateRideStatus() {
 		

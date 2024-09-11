@@ -7,8 +7,21 @@ public abstract class Person{
 
 
     // Métodos a serem implementados da classe Person
-    public abstract void register();
-    public abstract void update(String field, String newValue);
-    
+    public void register(String name, String email, String phone){
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+    }
 
+    public void update(String field, String newValue){
+        if(field == "1"){
+            this.name = newValue;
+        }
+        else if (field == "2") {
+            this.email = newValue;
+        }
+        else if (field == "3") {
+            this.phone = newValue;
+        }
+    }
 }
