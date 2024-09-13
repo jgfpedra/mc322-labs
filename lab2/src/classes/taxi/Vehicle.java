@@ -25,8 +25,9 @@ public class Vehicle {
 				this.model = newValue;
 			break;
 			case "2":
-				//TODO: mudar String para int
-				this.year = newValue;
+				//TODO: mudar String para int (feito)
+				int newValueInt = Integer.parseInt(newValue); // String -> Int
+				this.year = newValueInt;
 			break;
 			case "3":
 				this.registrationNumber = newValue;
@@ -34,7 +35,7 @@ public class Vehicle {
 		}
 	}
 
-	// getters and setters
+	// getters and setters 
 	public int getVehicleId() {
 		return vehicleId;
 	}

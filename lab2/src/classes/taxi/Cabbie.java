@@ -24,7 +24,8 @@ public class Cabbie extends Person{
         } else if(field == "4"){
             // rating
             // TODO: verificar mudanca para float
-            this.rating = newValue;
+            float newValueFloat = Float.parseFloat(newValue); // String -> FLoat
+            this.rating = newValueFloat;
         }
     }
     // getters and setters 

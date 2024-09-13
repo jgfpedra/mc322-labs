@@ -15,6 +15,7 @@ public class Payment {
 			this.paymentMethod = paymentMethod;
 		}else{
 			//TODO: fazer erro
+			System.out.println("Forma de pagamento não aceita!");
 		}
 	}
 

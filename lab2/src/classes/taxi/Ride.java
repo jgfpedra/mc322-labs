@@ -31,7 +31,7 @@ public class Ride {
 		this.vehicleId = -1;
 		updateRideStatus();
 	}
-	//TODO: calcular taxa de corrida
+	//TODO: calcular taxa de corrida (feito)
 	private float calculateFare() {
 		Random gerador = new Random();
 		float randomValue = random.nextFloat(); // Gera número aleatório entre 0.0 e 1.0
