@@ -33,6 +33,52 @@ public class Vehicle {
 			break;
 		}
 	}
-    // getters and setters 
-    // toString
+
+	// getters and setters
+	public int getVehicleId() {
+		return vehicleId;
+	}
+
+	public void setVehicleId(int vehicleId) {
+		this.vehicleId = vehicleId;
+	}
+
+	public String getRegistrationNumber() {
+		return registrationNumber;
+	}
+
+	public void setRegistrationNumber(String registrationNumber) {
+		this.registrationNumber = registrationNumber;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getCabbieId() {
+		return cabbieId;
+	}
+
+	public void setCabbieId(int cabbieId) {
+		this.cabbieId = cabbieId;
+	}
+
+	// tostring
+	@Override
+	public String toString() {
+		return "Vehicle [vehicleId=" + vehicleId + ", registrationNumber=" + registrationNumber + ", model=" + model
+				+ ", year=" + year + ", cabbieId=" + cabbieId + "]";
+	}
 }
