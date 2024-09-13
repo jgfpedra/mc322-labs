@@ -72,7 +72,6 @@ public class Main {
                     /*      --> criacao de um passageiro com infos necessarias
                     *       --> atualizacao de algum campo
                     */
-                    
                     System.out.println("---------------------------------------");
                     System.out.println("1 - Criar um passageiro ou motorista");
                     System.out.println("2 - Atualizar campo de passageiro");
