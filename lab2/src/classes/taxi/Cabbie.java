@@ -28,5 +28,29 @@ public class Cabbie extends Person{
         }
     }
     // getters and setters 
+    public int getCabbieId() {
+        return cabbieId;
+    }
+    public void setCabbieId(int cabbieId) {
+        this.cabbieId = cabbieId;
+    }
+    public float getRating() {
+        return rating;
+    }
+    public void setRating(float rating) {
+        this.rating = rating;
+    }
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
+    }
+
     // toString
+    @Override
+    public String toString() {
+        return "Cabbie [name=" + name + ", cabbieId=" + cabbieId + ", email=" + email + ", rating=" + rating
+                + ", phone=" + phone + ", licenseNumber=" + licenseNumber + "]";
+    }
 }

@@ -17,6 +17,44 @@ public class Payment {
 			//TODO: fazer erro
 		}
 	}
+
     // getters and setters 
-    // toString
+	public int getPaymentId() {
+		return paymentId;
+	}
+
+	public void setPaymentId(int paymentId) {
+		this.paymentId = paymentId;
+	}
+
+	public int getRideId() {
+		return rideId;
+	}
+
+	public void setRideId(int rideId) {
+		this.rideId = rideId;
+	}
+
+	public float getAmount() {
+		return amount;
+	}
+
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+
+	public String getPaymentMethod() {
+		return paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
+	}
+
+	// tostring
+	@Override
+	public String toString() {
+		return "Payment [paymentId=" + paymentId + ", rideId=" + rideId + ", amount=" + amount + ", paymentMethod="
+				+ paymentMethod + "]";
+	}
 }

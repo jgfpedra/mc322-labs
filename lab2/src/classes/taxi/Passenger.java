@@ -18,5 +18,16 @@ public class Passenger extends Person{
             super.update(field, newValue);
     }
     // getters and setters 
-    // toString
+    public int getUserId() {
+        return userId;
+    }
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    // tostring
+    @Override
+    public String toString() {
+        return "Passenger [name=" + name + ", userId=" + userId + ", email=" + email + ", phone=" + phone + "]";
+    }
 }
