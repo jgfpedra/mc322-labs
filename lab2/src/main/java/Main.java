@@ -12,6 +12,7 @@ import java.util.Scanner;
 import classes.taxi.Cabbie;
 import classes.taxi.Passenger;
 import classes.taxi.Payment;
+import classes.taxi.Ride;
 import classes.taxi.Vehicle;
 import classes.taxi.utils.CabbieInfoGenerator;
 import classes.taxi.utils.PassengerInfoGenerator;
@@ -22,6 +23,7 @@ public class Main {
         int escolha = 0, paymentId = 0;
         String paymentMethod;
         Scanner scan = new Scanner(System.in);
+        Ride ride = new Ride();
 
         //Geradores
         PassengerInfoGenerator passRand = new PassengerInfoGenerator();
@@ -62,20 +64,19 @@ public class Main {
             System.out.println("5 - Selecao de pagamento");
             System.out.println("6 - Finalizar corrida");
             System.out.println("---------------------------------------");
-            try {
-                System.out.print("Selecione uma opcao: ");
-                escolha = scan.nextInt();
-            } catch (Exception exc) {
-                System.out.println("Inicie o programa novamente");
-                break;
-            }
+            System.out.print("Selecione uma opcao: ");
+            escolha = scan.nextInt();
+        
             switch (escolha) {
                 case 1:
                     /*      --> criacao de um passageiro com infos necessarias
                     *       --> atualizacao de algum campo
                     */
+                    
+                    System.out.println("---------------------------------------");
                     System.out.println("1 - Criar um passageiro ou motorista");
                     System.out.println("2 - Atualizar campo de passageiro");
+                    System.out.println("---------------------------------------");
                     try {
                         System.out.print("Selecione uma opcao: ");
                         escolha = scan.nextInt();
@@ -87,25 +88,25 @@ public class Main {
                         case 1:
                         // Criacao de passageiro ou motorista
                         //TODO: fazer print da opcao entre passageiro ou motorista
-                        try {
-                            System.out.print("Selecione uma opcao: ");
-                            escolha = scan.nextInt();
-                        } catch (Exception exc) {
-                            System.out.println("Inicie o programa novamente");
-                            break;
-                        }
+                        
+                        System.out.println("---------------------------------------");
+                        System.out.println("1 - Passageiro");
+                        System.out.println("2 - Motorista");
+                        System.out.println("---------------------------------------");
+                        System.out.print("Selecione uma opcao: ");
+                        escolha = scan.nextInt();
                         switch(escolha){
                             case 1:
                                 // Passageiro
                                 Passenger passenger = new Passenger(passRand.getPassengerId(), passRand.getName(), passRand.getEmail(), passRand.getEmail());
                                 passangers.add(passenger);
-                                //TODO: fazer prints
+                                System.out.println("Criado o motorista: " + passenger.toString());
                             break;
                             case 2:
                                 // Motorista
                                 Cabbie cabbie = new Cabbie(cabbRand.getCabbieId(), cabbRand.getName(), cabbRand.getEmail(), cabbRand.getPhone(), cabbRand.getRate(), cabbRand.getLicenseNumber());
                                 cabbies.add(cabbie);
-                                //TODO: fazer prints
+                                System.out.println("Criado o motorista: " + cabbie.toString());
                             break;
                         }
                         break;
