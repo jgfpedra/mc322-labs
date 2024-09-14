@@ -20,8 +20,8 @@ import classes.taxi.utils.PassengerInfoGenerator;
 public class Main {
     public static void main(String[] args) {
         //Auxiliares
-        int escolha = 0, paymentId = 0;
-        String paymentMethod;
+        int escolha = 0, paymentId = 0, pos, passengerId, cabbieId, vehicleId;
+        String paymentMethod, escolhaCadastro, campoCadastro;
         Scanner scan = new Scanner(System.in);
         Ride ride = new Ride();
 
@@ -66,7 +66,7 @@ public class Main {
             System.out.println("---------------------------------------");
             System.out.print("Selecione uma opcao: ");
             escolha = scan.nextInt();
-        
+            System.out.println();
             switch (escolha) {
                 case 1:
                     /*      --> criacao de um passageiro com infos necessarias
@@ -85,9 +85,8 @@ public class Main {
                     }
                     switch(escolha){
                         case 1:
+                        // TODO: fazer logica para nao pegar mesmo ID de pass/motorista na criacao
                         // Criacao de passageiro ou motorista
-                        //TODO: fazer print da opcao entre passageiro ou motorista
-                        
                         System.out.println("---------------------------------------");
                         System.out.println("1 - Passageiro");
                         System.out.println("2 - Motorista");
@@ -110,24 +109,79 @@ public class Main {
                         }
                         break;
                         case 2:
-                        // Atualizacao de campo do passageiro
-                        // TODO: verificar qual id pegar
-                        // TODO: fazer escolha se eh passageiro ou motorista
-                        try {
-                            System.out.print("Selecione uma opcao: ");
-                            escolha = scan.nextInt();
-                        } catch (Exception exc) {
-                            System.out.println("Inicie o programa novamente");
-                            break;
-                        }
+                        // Atualizacao de campo do passageiro ou motorista
+                        System.out.println("---------------------------------------");
+                        System.out.println("1 - Passageiro");
+                        System.out.println("2 - Motorista");
+                        System.out.println("---------------------------------------");
+                        System.out.print("Selecione uma opcao: ");
+                        escolha = scan.nextInt();
+                        System.out.println();
                         switch(escolha){
                             case 1:
                                 // Passageiro
-                                //TODO: fazer update e prints
+                                if(passangers != null){
+                                    System.out.println("---------------------------------------");
+                                    System.out.println("Escolha o ID do passageiro: ");
+                                    for(pos = 0; pos < passangers.size(); pos++){
+                                        System.out.println("ID " + pos + ": " + passangers.get(pos).getUserId());
+                                    }
+                                    passengerId = scan.nextInt();
+                                    if(passangers.get(passengerId) != null){
+                                        System.out.println("---------------------------------------");
+                                        System.out.println("Campos para atualizar");
+                                        System.out.println("1 - Nome");
+                                        System.out.println("2 - E-mail");
+                                        System.out.println("3 - Telefone");
+                                        System.out.println("---------------------------------------");
+                                        System.out.print("Selecione uma opcao: ");
+                                        escolhaCadastro = scan.next();
+                                        System.out.println();
+                                        System.out.println("---------------------------------------");
+                                        System.out.println("Digite o novo valor do campo:");
+                                        campoCadastro = scan.next();
+
+                                        passangers.get(passengerId).update(escolhaCadastro, campoCadastro);
+                                    } else {
+                                        System.out.println("ID nao corresponde a nenhum passageiro");
+                                        System.out.println();
+                                    }
+                                } else {
+                                    System.out.println("Adicione um passageiro");
+                                    System.out.println();
+                                }
                             break;
                             case 2:
                                 // Motorista
-                                //TODO: fazer update e prints
+                                if(cabbies != null){
+                                    System.out.println("---------------------------------------");
+                                    System.out.println("Escolha o ID do passageiro: ");
+                                    for(pos = 0; pos < cabbies.size(); pos++){
+                                        System.out.println("ID " + pos + ": " + cabbies.get(pos).getCabbieId());
+                                    }
+                                    cabbieId = scan.nextInt();
+                                    if(cabbies.get(cabbieId) != null){
+                                        System.out.println("---------------------------------------");
+                                        System.out.println("Campos para atualizar");
+                                        System.out.println("1 - Nome");
+                                        System.out.println("2 - E-mail");
+                                        System.out.println("3 - Telefone");
+                                        System.out.println("---------------------------------------");
+                                        System.out.print("Selecione uma opcao: ");
+                                        escolhaCadastro = scan.next();
+                                        System.out.println();
+                                        System.out.println("---------------------------------------");
+                                        System.out.println("Digite o novo valor do campo:");
+                                        campoCadastro = scan.next();
+                                        cabbies.get(cabbieId).update(escolhaCadastro, campoCadastro);
+                                    } else {
+                                        System.out.println("ID nao corresponde a nenhum motorista");
+                                        System.out.println();
+                                    }
+                                } else {
+                                    System.out.println("Adicione um motorista");
+                                    System.out.println();
+                                }
                             break;
                         }
                         break;
@@ -137,24 +191,72 @@ public class Main {
                     /*      --> criacao de um veiculo com infos necessarias
                     *       --> atualizacao de algum campo
                     */
+                    System.out.println("---------------------------------------");
                     System.out.println("1 - Criar um veiculo");
                     System.out.println("2 - Atualizar campo de veiculo");
-                    try {
-                        System.out.print("Selecione uma opcao: ");
-                        escolha = scan.nextInt();
-                    } catch (Exception exc) {
-                        System.out.println("Inicie o programa novamente");
-                        break;
-                    }
-                    //TODO: verificar como pegar um id
+                    System.out.println("---------------------------------------");
+                    System.out.print("Selecione uma opcao: ");
+                    escolha = scan.nextInt();
+                    System.out.println();
                     switch(escolha){
                         case 1:
-                            Vehicle vehicle = new Vehicle(cabbies.get());
-                            vehicles.add(vehicle);
+                            if(cabbies != null){
+                                System.out.println("---------------------------------------");
+                                System.out.print("Selecione o Motorista que ira dirigir o veiculo: ");
+                                for(pos = 0; pos < cabbies.size(); pos++){
+                                    System.out.println("ID " + pos + ": " + cabbies.get(pos).getCabbieId());
+                                }
+                                System.out.println("---------------------------------------");
+                                System.out.print("Selecione uma opcao: ");
+                                cabbieId = scan.nextInt();
+                                Vehicle vehicle = new Vehicle(cabbieId);
+                                vehicles.add(vehicle);
+                                System.out.println();
+                            } else {
+                                System.out.println("Adicione um motorista");
+                                System.out.println();
+                            }
                         break;
                         case 2:
-                            // TODO: colocar os campos que serao atualizados
-                            vehicles.get(1).update(null, null);
+                            if(vehicles != null){
+                                System.out.println("---------------------------------------");
+                                System.out.print("Selecione o ID do Veiculo: ");
+                                for(pos = 0; pos < vehicles.size(); pos++)
+                                    System.out.println("ID " + pos + ": " + vehicles.get(pos).getVehicleId());
+                                System.out.println("---------------------------------------");
+                                System.out.print("Selecione uma opcao: ");
+                                vehicleId = scan.nextInt();
+                                if(vehicles.get(vehicleId) != null){
+                                    System.out.println("---------------------------------------");
+                                    System.out.println("Campos para atualizar");
+                                    System.out.println("1 - Modelo");
+                                    System.out.println("2 - Ano");
+                                    System.out.println("3 - Numero de registro");
+                                    System.out.println("4 - ID motorista relacionado");
+                                    System.out.println("---------------------------------------");
+                                    System.out.print("Selecione uma opcao: ");
+                                    escolhaCadastro = scan.next();
+                                    if(escolhaCadastro == "4"){
+                                        System.out.println("---------------------------------------");
+                                        System.out.print("Selecione o Motorista que ira dirigir o veiculo: ");
+                                        for(pos = 0; pos < cabbies.size(); pos++){
+                                            // TODO: fazer logica para nao pegar mesmo ID de motorista
+                                            System.out.println("ID " + pos + ": " + cabbies.get(pos).getCabbieId());
+                                        }
+                                        System.out.println("---------------------------------------");
+                                        System.out.println();
+                                    }
+                                    System.out.println("Digite o novo valor do campo:");
+                                    campoCadastro = scan.next();
+                                    vehicles.get(1).update(escolhaCadastro, campoCadastro);
+                                } else {
+                                    System.out.println("ID nao corresponde a nenhum veiculo");
+                                    System.out.println();
+                                }
+                        } else {
+                            System.out.println("Adicione um veiculo");
+                            System.out.println();
+                        }
                         break;
                     }
                 break;
@@ -164,13 +266,8 @@ public class Main {
                     */
                     System.out.println("1 - Criar um taxista");
                     System.out.println("2 - Atualizar campo do taxista");
-                    try {
-                        System.out.print("Selecione uma opcao: ");
-                        escolha = scan.nextInt();
-                    } catch (Exception exc) {
-                        System.out.println("Inicie o programa novamente");
-                        break;
-                    }
+                    System.out.print("Selecione uma opcao: ");
+                    escolha = scan.nextInt();
                     switch(escolha){
                         case 1:
                         break;
@@ -206,6 +303,7 @@ public class Main {
                 break;
                 case 6:
                     /*      --> finalizar corrida
+                            --> Adicionar rating ao cabbie
                     */
                 break;
             }

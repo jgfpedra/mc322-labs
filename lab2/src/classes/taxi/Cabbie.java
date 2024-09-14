@@ -13,27 +13,26 @@ public class Cabbie extends Person{
         this.licenseNumber = licenseNumber;
         this.register(name, email, phone);
     }
+
     @Override
     public void register(String name, String email, String phone) {
         super.register(name, email, phone);
     }
+
     @Override
     public void update(String field, String newValue){
         if(field == "1" || field == "2" || field == "3"){
             super.update(field, newValue);
         } else if(field == "4"){
-            // rating
-            // TODO: verificar mudanca para float
+            // Atualiza rating
             float newValueFloat = Float.parseFloat(newValue); // String -> FLoat
             this.rating = newValueFloat;
         }
     }
-    // getters and setters 
+
+    // Getters and Setters
     public int getCabbieId() {
         return cabbieId;
-    }
-    public void setCabbieId(int cabbieId) {
-        this.cabbieId = cabbieId;
     }
     public float getRating() {
         return rating;
@@ -43,9 +42,6 @@ public class Cabbie extends Person{
     }
     public String getLicenseNumber() {
         return licenseNumber;
-    }
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
     }
 
     // toString

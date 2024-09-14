@@ -17,15 +17,11 @@ public class Passenger extends Person{
         if(field == "1" || field == "2" || field == "3")
             super.update(field, newValue);
     }
-    // getters and setters 
+    // Getters and Setters
     public int getUserId() {
         return userId;
     }
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    // tostring
+    // toString
     @Override
     public String toString() {
         return "Passenger [name=" + name + ", userId=" + userId + ", email=" + email + ", phone=" + phone + "]";

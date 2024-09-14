@@ -14,12 +14,15 @@ public abstract class Person{
     }
 
     public void update(String field, String newValue){
+        // 1 - Atualiza nome
         if(field == "1"){
             this.name = newValue;
         }
+        // 2 - Atualiza email
         else if (field == "2") {
             this.email = newValue;
         }
+        // 3 - Atualiza telefone
         else if (field == "3") {
             this.phone = newValue;
         }
