@@ -19,7 +19,7 @@ import classes.taxi.utils.CabbieInfoGenerator;
 import classes.taxi.utils.PassengerInfoGenerator;
 
 public class Main {
-    /*
+    /**
     * Metodo Main que contem o programa de taxi.
     * <p>
     * Esse metodo serve como o ponto de entrada para a criacao de um sistema de taxi.
@@ -39,7 +39,7 @@ public class Main {
         //Auxiliares
         int escolha = 0, paymentId = 0, pos, passengerId, cabbieId, vehicleId = 0, rideId = 0;
         String paymentMethod, escolhaCadastro, campoCadastro, partida, destino;
-        boolean validPaymentMethod = false, validCabbie;
+        boolean validPaymentMethod = false, validCabbie, validId = false;
 
         // Objetos Auxiliares
         Scanner scan = new Scanner(System.in);
@@ -82,13 +82,19 @@ public class Main {
                     switch(escolha){
                         case 1:
                             // Criacao de um objeto passageiro e sua adicao no ArrayList
-                            // TODO: melhorar logica
                             // Logica para gerar outro ID caso pegue o mesmo de outro ja criado.
                             passengerId = passRand.getPassengerId();
                             if(passengers != null){
-                                for(Passenger passengerIterator : passengers){
-                                    if(passengerIterator.getUserId() == passengerId){
+                                while(validId == false){
+                                    validId = true;
+                                    for(Passenger passengerIterator : passengers){
+                                        if(passengerIterator.getUserId() == passengerId){
+                                            validId = false;
+                                        }
+                                    }
+                                    if(validId == false){
                                         passRand.generateRandomInfo();
+                                        passengerId = passRand.getPassengerId();
                                     }
                                 }
                             }
@@ -160,13 +166,19 @@ public class Main {
                     switch(escolha){
                         case 1:
                             // Criacao de um objeto cabbie e adicao ao ArrayList cabbies
-                            // TODO: melhorar logica
                             // Logica para gerar outro ID caso pegue o mesmo de outro ja criado.
                             cabbieId = cabbRand.getCabbieId();
                             if(cabbies != null){
-                                for(Cabbie cabbie : cabbies){
-                                    if(cabbie.getCabbieId() == cabbieId){
+                                while(validId == false){
+                                    validId = true;
+                                    for(Cabbie cabbieIterator : cabbies){
+                                        if(cabbieIterator.getCabbieId() == cabbieId){
+                                            validId = false;
+                                        }
+                                    }
+                                    if(validId == false){
                                         cabbRand.generateRandomInfo();
+                                        cabbieId = cabbRand.getCabbieId();
                                     }
                                 }
                             }
@@ -359,7 +371,7 @@ public class Main {
                                             ride.requestRide(rideId, passengerId, cabbieId, vehicleId, partida, destino);
                                             System.out.println();
                                             System.out.println("---------------------------------------");
-                                            System.out.println("Corrida chamada por pessoa passageira " + passengerId + " de " + partida + " para " + destino);
+                                            System.out.println("Corrida chamada por pessoa passageira " + passengerId + " de " + ride.getPickupLocation() + " para " + ride.getDropLocation());
                                             System.out.println("Corrida atendida por pessoa motorista " + cabbieId);
                                             System.out.println("---------------------------------------");
                                             System.out.println();
@@ -398,7 +410,7 @@ public class Main {
                     }
                 break;
                 case 5:
-                    // Definicao de um metodo de pagamento
+                    // Definicao de um metodo de pagamento a partir da insercao de novos atributos para o objeto pagamento
                     while(!validPaymentMethod){
                         System.out.println("---------------------------------------");
                         System.out.println("Defina a forma de pagamento: ");
