@@ -7,6 +7,7 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -52,9 +53,9 @@ public class Main {
         CabbieInfoGenerator cabbRand = new CabbieInfoGenerator();
         
         //ArrayLists
-        ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-        ArrayList<Cabbie> cabbies = new ArrayList<Cabbie>();
-        ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+        List<Passenger> passengers = new ArrayList<Passenger>();
+        List<Cabbie> cabbies = new ArrayList<Cabbie>();
+        List<Vehicle> vehicles = new ArrayList<Vehicle>();
         
         while (escolha != 7) {
             System.out.println("------------------MENU-----------------");
@@ -84,7 +85,7 @@ public class Main {
                             // Criacao de um objeto passageiro e sua adicao no ArrayList
                             // Logica para gerar outro ID caso pegue o mesmo de outro ja criado.
                             passengerId = passRand.getPassengerId();
-                            if(passengers != null){
+                            if(!passengers.isEmpty()){
                                 while(validId == false){
                                     validId = true;
                                     for(Passenger passengerIterator : passengers){
@@ -107,7 +108,7 @@ public class Main {
                             break;
                         case 2:
                             // Atualizacao do campo de um passageiro do ArrayList passengers
-                            if(passengers != null){
+                            if(!passengers.isEmpty()){
                                 pos = 0;
                                 System.out.println("---------------------------------------");
                                 System.out.println("Escolha o ID do passageiro: ");
@@ -168,7 +169,7 @@ public class Main {
                             // Criacao de um objeto cabbie e adicao ao ArrayList cabbies
                             // Logica para gerar outro ID caso pegue o mesmo de outro ja criado.
                             cabbieId = cabbRand.getCabbieId();
-                            if(cabbies != null){
+                            if(!cabbies.isEmpty()){
                                 while(validId == false){
                                     validId = true;
                                     for(Cabbie cabbieIterator : cabbies){
@@ -191,7 +192,7 @@ public class Main {
                             break;
                         case 2:
                             // Atualizacao do campo de um motorista do ArrayList cabbies
-                            if(cabbies != null){
+                            if(!cabbies.isEmpty()){
                                 pos = 0;
                                 System.out.println("---------------------------------------");
                                 System.out.println("Escolha o ID do motorista: ");
@@ -249,7 +250,7 @@ public class Main {
                     switch(escolha){
                         case 1:
                             // Criacao de um objeto vehicle e adicao ao ArrayList vehicles
-                            if(cabbies != null){
+                            if(!cabbies.isEmpty()){
                                 System.out.println("---------------------------------------");
                                 System.out.print("Selecione o Motorista que ira dirigir o veiculo: ");
                                 System.out.println();
@@ -275,7 +276,7 @@ public class Main {
                         break;
                         case 2:
                             // Atualizacao do campo de um veiculo do ArrayList vehicles
-                            if(vehicles != null){
+                            if(!vehicles.isEmpty()){
                                 pos = 0;
                                 System.out.println("---------------------------------------");
                                 System.out.print("Selecione o ID do Veiculo: ");
@@ -344,18 +345,19 @@ public class Main {
                     System.out.println("---------------------------------------");
                     System.out.print("Selecione uma opcao: ");
                     escolha = scan.nextInt();
+                    scan.nextLine(); // Consome o buffer de nova linha
                     System.out.println();
                     switch(escolha){
                         // Requisicao de uma corrida com instanciacao dos atributos do objeto ride
                         case 1:
                             if(ride.getStatus() == "Livre"){
-                                if(passengers != null){
+                                if(!passengers.isEmpty()){
                                     pos = rand.nextInt(passengers.size());
                                     passengerId = pos;
-                                    if(cabbies != null){
+                                    if(!cabbies.isEmpty()){
                                         pos = rand.nextInt(cabbies.size());
                                         cabbieId = pos;
-                                        if(vehicles != null){
+                                        if(!vehicles.isEmpty()){
                                             for(Vehicle vehicle : vehicles){
                                                 if(vehicle.getCabbieId() == cabbieId){
                                                     vehicleId = vehicle.getVehicleId();
@@ -363,10 +365,12 @@ public class Main {
                                             }
                                             System.out.println("---------------------------------------");
                                             System.out.println("Defina o local de partida: ");
-                                            partida = scan.next();
+                                            partida = scan.nextLine();
+                                            System.out.println("---------------------------------------");
+                                            System.out.println();
                                             System.out.println("---------------------------------------");
                                             System.out.println("Defina o local de destino: ");
-                                            destino = scan.next();
+                                            destino = scan.nextLine();
                                             System.out.println("---------------------------------------");
                                             ride.requestRide(rideId, passengerId, cabbieId, vehicleId, partida, destino);
                                             System.out.println();
@@ -402,46 +406,68 @@ public class Main {
                         break;
                         case 2:
                             // Mostra o valor da corrida, ja definido no caso anterior
-                            System.out.println("---------------------------------------");
-                            System.out.println("Valor da corrida definido: R$ " + ride.getFare());
-                            System.out.println("---------------------------------------");
-                            System.out.println();
+                            if(ride.getStatus() == "Ocupado"){
+                                System.out.println("---------------------------------------");
+                                System.out.println("Valor da corrida definido: R$ " + ride.getFare());
+                                System.out.println("---------------------------------------");
+                                System.out.println();
+                            } else {
+                                System.out.println("---------------------------------------");
+                                System.out.println("Nenhuma corrida no momento.");
+                                System.out.println("---------------------------------------");
+                                System.out.println();
+                            }
                             break;
                     }
                 break;
                 case 5:
                     // Definicao de um metodo de pagamento a partir da insercao de novos atributos para o objeto pagamento
-                    while(!validPaymentMethod){
-                        System.out.println("---------------------------------------");
-                        System.out.println("Defina a forma de pagamento: ");
-                        paymentMethod = scan.next();
-                        System.out.println();
-                        System.out.println("---------------------------------------");
-                        System.out.println("Forma de pagamento: " + paymentMethod);
-                        System.out.println("---------------------------------------");
-                        System.out.println();
-                        try{
-                            validPaymentMethod = payment.definePagamento(paymentId, rideId, ride.getFare(), paymentMethod);
+                    if(ride.getStatus() == "Ocupado"){
+                        while(!validPaymentMethod){
+                            scan.nextLine();
                             System.out.println("---------------------------------------");
-                            System.out.println("Forma de pagamento aceita!");
+                            System.out.println("Defina a forma de pagamento: ");
+                            paymentMethod = scan.nextLine();
+                            System.out.println();
+                            System.out.println("---------------------------------------");
+                            System.out.println("Forma de pagamento: " + paymentMethod);
                             System.out.println("---------------------------------------");
                             System.out.println();
-                        } catch (IllegalArgumentException e){
-                            // Caso usuario digite outro tipo de pagamento, recebe um retorno de erro
-                            System.out.println("---------------------------------------");
-                            System.out.println(e.getMessage());
-                            System.out.println("---------------------------------------");
-                            System.out.println();
+                            try{
+                                validPaymentMethod = payment.definePagamento(paymentId, rideId, ride.getFare(), paymentMethod);
+                                System.out.println("---------------------------------------");
+                                System.out.println("Forma de pagamento aceita!");
+                                System.out.println("---------------------------------------");
+                                System.out.println();
+                            } catch (IllegalArgumentException e){
+                                // Caso usuario digite outro tipo de pagamento, recebe um retorno de erro
+                                System.out.println("---------------------------------------");
+                                System.out.println(e.getMessage());
+                                System.out.println("---------------------------------------");
+                                System.out.println();
+                            }
                         }
+                    } else {
+                        System.out.println("---------------------------------------");
+                        System.out.println("Nenhuma corrida no momento.");
+                        System.out.println("---------------------------------------");
+                        System.out.println();
                     }
                 break;
                 case 6:
                     // Caso para finalizar a corrida atual
-                    ride.completeRide();
-                    System.out.println("---------------------------------------");
-                    System.out.println("Corrida finalizada.");
-                    System.out.println("---------------------------------------");
-                    System.out.println();
+                    if(ride.getStatus() == "Ocupado"){
+                        ride.completeRide();
+                        System.out.println("---------------------------------------");
+                        System.out.println("Corrida finalizada.");
+                        System.out.println("---------------------------------------");
+                        System.out.println();
+                    } else {
+                        System.out.println("---------------------------------------");
+                        System.out.println("Nenhuma corrida no momento.");
+                        System.out.println("---------------------------------------");
+                        System.out.println();
+                    }
                 break;
             }
         }

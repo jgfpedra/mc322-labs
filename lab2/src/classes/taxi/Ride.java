@@ -18,8 +18,13 @@ public class Ride {
 	private String dropLocation;
 	private String status;
 	private float fare;
-
-    /**
+     /**
+     * Constructs a new Ride with an initial status of "Livre" (available).
+     */
+     public Ride(){
+          this.status = "Livre";
+     }
+     /**
      * Requests a new ride and initializes its details.
      * <p>
      * This method sets the ride ID, user ID, cabbie ID, vehicle ID, pickup and drop locations, and
