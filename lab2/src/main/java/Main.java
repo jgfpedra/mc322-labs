@@ -19,11 +19,29 @@ import classes.taxi.utils.CabbieInfoGenerator;
 import classes.taxi.utils.PassengerInfoGenerator;
 
 public class Main {
+    /*
+    * Metodo Main que contem o programa de taxi.
+    * <p>
+    * Esse metodo serve como o ponto de entrada para a criacao de um sistema de taxi.
+    * Nele temos a descricao de algumas opcoes {@link switch}, em que:
+    *   - Caso 1, temos a criacao do objeto passageiro ou a modificacao de alguma atributo de um passageiro ja criado.
+    *   - Caso 2, temos a criacao do objeto motorista ou a modificacao de alguma atributo de um motorista ja criado.
+    *   - Caso 3, temos a criacao do objeto veiculo ou a modificacao de alguma atributo de um veiculo ja criado.
+    *   - Caso 4, temos a definicao dos atributos da corrida.
+    *   - Caso 5, temos a definicao do metodo de pagamento para a corrida.
+    *   - Caso 6, temos a finalizacao da corrida - o programa atual so compromete uma corrida por vez.
+    *   - Caso 7, temos a finalizacao do programa.
+    * </p>
+    *
+    * @throws IllegalArgumentException se, no caso 5, for selecionado um metodo de pagamento diferente do esperado.
+    */
     public static void main(String[] args) {
         //Auxiliares
         int escolha = 0, paymentId = 0, pos, passengerId, cabbieId, vehicleId = 0, rideId = 0;
         String paymentMethod, escolhaCadastro, campoCadastro, partida, destino;
-        boolean validPaymentMethod = false;
+        boolean validPaymentMethod = false, validCabbie;
+
+        // Objetos Auxiliares
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
         Ride ride = new Ride();
@@ -37,7 +55,7 @@ public class Main {
         ArrayList<Passenger> passengers = new ArrayList<Passenger>();
         ArrayList<Cabbie> cabbies = new ArrayList<Cabbie>();
         ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
-        // TODO: colocar documentacao
+        
         while (escolha != 7) {
             System.out.println("------------------MENU-----------------");
             System.out.println("Escolha entre uma das opcoes");
@@ -63,8 +81,7 @@ public class Main {
                     System.out.println();
                     switch(escolha){
                         case 1:
-                            // Criacao de passageiro
-                            // Passageiro
+                            // Criacao de um objeto passageiro e sua adicao no ArrayList
                             // TODO: melhorar logica
                             // Logica para gerar outro ID caso pegue o mesmo de outro ja criado.
                             passengerId = passRand.getPassengerId();
@@ -83,10 +100,12 @@ public class Main {
                             System.out.println();
                             break;
                         case 2:
+                            // Atualizacao do campo de um passageiro do ArrayList passengers
                             if(passengers != null){
                                 pos = 0;
                                 System.out.println("---------------------------------------");
                                 System.out.println("Escolha o ID do passageiro: ");
+                                System.out.println();
                                 for(Passenger passengerIterator : passengers){
                                     System.out.println(pos + ": ID pessoa passageiro - " + passengerIterator.getUserId());
                                     pos++;
@@ -130,8 +149,7 @@ public class Main {
                             break;
                     }
                     break;
-                    case 2:
-                    // Taxista
+                case 2:
                     System.out.println("---------------------------------------");
                     System.out.println("1 - Criar um taxista");
                     System.out.println("2 - Atualizar campo de taxista");
@@ -141,6 +159,7 @@ public class Main {
                     System.out.println();
                     switch(escolha){
                         case 1:
+                            // Criacao de um objeto cabbie e adicao ao ArrayList cabbies
                             // TODO: melhorar logica
                             // Logica para gerar outro ID caso pegue o mesmo de outro ja criado.
                             cabbieId = cabbRand.getCabbieId();
@@ -159,10 +178,12 @@ public class Main {
                             System.out.println();
                             break;
                         case 2:
+                            // Atualizacao do campo de um motorista do ArrayList cabbies
                             if(cabbies != null){
                                 pos = 0;
                                 System.out.println("---------------------------------------");
                                 System.out.println("Escolha o ID do motorista: ");
+                                System.out.println();
                                 for(Cabbie cabbieIterator : cabbies){
                                     System.out.println(pos + " ID pessoa motorista - " + cabbieIterator.getCabbieId());
                                 }
@@ -215,9 +236,11 @@ public class Main {
                     System.out.println();
                     switch(escolha){
                         case 1:
+                            // Criacao de um objeto vehicle e adicao ao ArrayList vehicles
                             if(cabbies != null){
                                 System.out.println("---------------------------------------");
                                 System.out.print("Selecione o Motorista que ira dirigir o veiculo: ");
+                                System.out.println();
                                 for(Cabbie cabbie : cabbies){
                                     System.out.println("ID motorista: " + cabbie.getCabbieId() + "");
                                 }
@@ -239,12 +262,14 @@ public class Main {
                             }
                         break;
                         case 2:
+                            // Atualizacao do campo de um veiculo do ArrayList vehicles
                             if(vehicles != null){
                                 pos = 0;
                                 System.out.println("---------------------------------------");
                                 System.out.print("Selecione o ID do Veiculo: ");
+                                System.out.println();
                                 for(Vehicle vehicleIterator : vehicles)
-                                    System.out.println(pos + "ID do veiculo - "  + vehicleIterator.getVehicleId());
+                                    System.out.println(pos + ": ID do veiculo - "  + vehicleIterator.getVehicleId());
                                 System.out.println("---------------------------------------");
                                 System.out.print("Escolha uma posicao de ID: ");
                                 pos = scan.nextInt();
@@ -259,12 +284,20 @@ public class Main {
                                     System.out.println("---------------------------------------");
                                     System.out.print("Selecione uma opcao: ");
                                     escolhaCadastro = scan.next();
-                                    // TODO: fazer logica para nao pegar mesmo ID de motorista
+                                    System.out.println();
                                     if(escolhaCadastro == "4"){
                                         System.out.println("---------------------------------------");
-                                        System.out.print("Selecione a posicao do Motorista que ira dirigir o veiculo: ");
-                                        for(pos = 0; pos < cabbies.size(); pos++){
-                                            System.out.println("ID " + pos + ": " + cabbies.get(pos).getCabbieId());
+                                        System.out.print("Selecione o ID do novo Motorista que ira dirigir o veiculo");
+                                        for(Cabbie cabbieIterator : cabbies){
+                                            validCabbie = true;
+                                            for(Vehicle vehicleIterator : vehicles){
+                                                if(cabbieIterator.getCabbieId() == vehicleIterator.getCabbieId()){
+                                                    validCabbie = false;
+                                                }
+                                            }
+                                            if(validCabbie == true){
+                                                System.out.println("ID pessoa motorista livre: " + cabbieIterator.getCabbieId());
+                                            }
                                         }
                                         System.out.println("---------------------------------------");
                                         System.out.println();
@@ -301,6 +334,7 @@ public class Main {
                     escolha = scan.nextInt();
                     System.out.println();
                     switch(escolha){
+                        // Requisicao de uma corrida com instanciacao dos atributos do objeto ride
                         case 1:
                             if(ride.getStatus() == "Livre"){
                                 if(passengers != null){
@@ -355,6 +389,7 @@ public class Main {
                             }
                         break;
                         case 2:
+                            // Mostra o valor da corrida, ja definido no caso anterior
                             System.out.println("---------------------------------------");
                             System.out.println("Valor da corrida definido: R$ " + ride.getFare());
                             System.out.println("---------------------------------------");
@@ -363,6 +398,7 @@ public class Main {
                     }
                 break;
                 case 5:
+                    // Definicao de um metodo de pagamento
                     while(!validPaymentMethod){
                         System.out.println("---------------------------------------");
                         System.out.println("Defina a forma de pagamento: ");
@@ -379,6 +415,7 @@ public class Main {
                             System.out.println("---------------------------------------");
                             System.out.println();
                         } catch (IllegalArgumentException e){
+                            // Caso usuario digite outro tipo de pagamento, recebe um retorno de erro
                             System.out.println("---------------------------------------");
                             System.out.println(e.getMessage());
                             System.out.println("---------------------------------------");
@@ -387,6 +424,7 @@ public class Main {
                     }
                 break;
                 case 6:
+                    // Caso para finalizar a corrida atual
                     ride.completeRide();
                     System.out.println("---------------------------------------");
                     System.out.println("Corrida finalizada.");
@@ -395,6 +433,7 @@ public class Main {
                 break;
             }
         }
+        // Relatorio com dados nos ArrayLists e objetos do sistema
         System.out.println("---------------------------------------");
         System.out.println("Relatorio final dos dados: ");
         System.out.println("---------------------------------------");
