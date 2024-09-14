@@ -3,6 +3,7 @@ package classes.taxi;
 public class Passenger extends Person{
     //Adicionar os atributos da classe Passenger
 	private int userId;
+    
     //Adicionar os métodos da classe Passenger
     public Passenger(int userId, String name, String email, String phone) {
         this.userId = userId;

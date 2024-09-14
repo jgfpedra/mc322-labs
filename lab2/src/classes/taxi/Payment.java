@@ -7,51 +7,40 @@ public class Payment {
 	private String paymentMethod;
     //Adicionar os métodos da classe Payment
 
-	public Payment(int paymentId, int rideId, float amount, String paymentMethod){
-		if(paymentMethod == "Credit Card" || paymentMethod == "Debit Card" || paymentMethod == "Cash"){
+	public boolean definePagamento(int paymentId, int rideId, float amount, String paymentMethod){
+		if(paymentMethod.equals("Credit Card") || paymentMethod.equals("Debit Card") || paymentMethod.equals("Cash")){
 			this.paymentId = paymentId;
 			this.rideId = rideId;
 			this.amount = amount;
 			this.paymentMethod = paymentMethod;
+			return true;
 		}else{
-			//TODO: fazer erro
-			System.out.println("Forma de pagamento não aceita!");
+			throw new IllegalArgumentException("Forma de pagamento nao reconhecida!");
 		}
 	}
 
-    // getters and setters 
+    // getters and setters
 	public int getPaymentId() {
 		return paymentId;
 	}
-
-	public void setPaymentId(int paymentId) {
-		this.paymentId = paymentId;
-	}
-
 	public int getRideId() {
 		return rideId;
 	}
-
 	public void setRideId(int rideId) {
 		this.rideId = rideId;
 	}
-
 	public float getAmount() {
 		return amount;
 	}
-
 	public void setAmount(float amount) {
 		this.amount = amount;
 	}
-
 	public String getPaymentMethod() {
 		return paymentMethod;
 	}
-
 	public void setPaymentMethod(String paymentMethod) {
 		this.paymentMethod = paymentMethod;
 	}
-
 	// tostring
 	@Override
 	public String toString() {
