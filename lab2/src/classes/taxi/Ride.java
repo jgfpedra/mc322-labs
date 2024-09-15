@@ -38,7 +38,7 @@ public class Ride {
      * @param pickupLocation The location where the ride is to be picked up.
      * @param dropLocation The location where the ride is to be dropped off.
      */
-	public void requestRide(int rideId, int userId, int cabbieId, int vehicleId, String pickupLocation, String dropLocation) {	
+	public void requestRide(int rideId, int userId, int cabbieId, int vehicleId, String pickupLocation, String dropLocation) {
 		this.rideId = rideId;
 		this.userId = userId;
 		this.cabbieId = cabbieId;
@@ -82,7 +82,7 @@ public class Ride {
 	private float calculateFare() {
 		Random gerador = new Random();
 		float randomValue = gerador.nextFloat(); // Gera número aleatório entre 0.0 e 1.0
-        float truncatedValue = (float) (Math.floor(randomValue * 100) / 100.0); // Deixa esse número entre 0 e 100 com 2 casas decimais
+          float truncatedValue = (float) Math.floor(randomValue * 100);
 		return truncatedValue;
 	}
      /**

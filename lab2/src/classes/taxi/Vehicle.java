@@ -34,38 +34,49 @@ public class Vehicle {
 		this.year = vehicleRand.getYear();
 		this.cabbieId = cabbieId;
 	}
-
-    /**
-     * Updates a specific field of the vehicle with a new value.
-     * <p>
-     * The field to be updated is specified by the {@code field} parameter, and the new value is provided
-     * by the {@code newValue} parameter. The method updates the vehicle's model, year, registration number,
-     * or cabbie ID based on the value of the {@code field} parameter.
-     * </p>
-     *
-     * @param field The field to update. Valid values are:
-     *              <ul>
-     *                  <li>"1" - model</li>
-     *                  <li>"2" - year</li>
-     *                  <li>"3" - registration number</li>
-     *                  <li>"4" - cabbie ID</li>
-     *              </ul>
-     * @param newValue The new value to set for the specified field.
-     */
+	/**
+	 * Updates a specific field of the object based on the given field identifier and new value.
+	 * <p>
+	 * This method updates different fields of the object depending on the value of the {@code field} parameter.
+	 * It uses a {@code switch} statement to determine which field to update. The valid field identifiers and their
+	 * corresponding updates are as follows:
+	 * </p>
+	 * <ul>
+	 *     <li>"1" - Updates the model field with the {@code newValue} string.</li>
+	 *     <li>"2" - Updates the year field by converting the {@code newValue} string to an integer.</li>
+	 *     <li>"3" - Updates the registration number field with the {@code newValue} string.</li>
+	 *     <li>"4" - Updates the cabbie ID field by converting the {@code newValue} string to an integer.</li>
+	 * </ul>
+	 *
+	 * @param field The identifier of the field to be updated. The valid values are:
+	 *              <ul>
+	 *                  <li>"1" - Model</li>
+	 *                  <li>"2" - Year</li>
+	 *                  <li>"3" - Registration number</li>
+	 *                  <li>"4" - Cabbie ID</li>
+	 *              </ul>
+	 * @param newValue The new value to set for the specified field. This value is used to update the field
+	 *                 identified by {@code field}. For "2" and "4", the value is expected to be an integer represented
+	 *                 as a string.
+	 */
 	public void update(String field, String newValue){
 		int newValueInt;
 		switch(field){
 			case "1":
+            	System.out.print("Campo \"modelo\"");
 				this.model = newValue;
 			break;
 			case "2":
+            	System.out.print("Campo \"ano\"");
 				newValueInt = Integer.parseInt(newValue);
 				this.year = newValueInt;
 			break;
 			case "3":
+            	System.out.print("Campo \"numero de registro\"");
 				this.registrationNumber = newValue;
 			break;
 			case "4":
+            	System.out.print("Campo \"cabbieId\"");
 				newValueInt = Integer.parseInt(newValue);
 				this.cabbieId = newValueInt;
 			break;

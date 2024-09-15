@@ -39,27 +39,32 @@ public class Passenger extends Person{
      */
     @Override
     public void register(String name, String email, String phone) {
-        super.register(name, email, phone);
+        super.name = name;
+        super.email = email;
+        super.phone = phone;
     }
     /**
-     * Updates a specific field of the passenger with a new value.
+     * Updates a specific field of the passenger based on the given field identifier.
      * <p>
-     * This method overrides the {@link Person#update(String, String)} method to update the passenger's name,
-     * email, or phone number based on the field parameter. Only valid fields are "1", "2", and "3".
+     * This method overrides the {@code update} method from the {@code Person} class. It first checks if
+     * the {@code field} parameter is one of the valid identifiers ("1", "2", or "3"). If the identifier is valid,
+     * it calls the superclass's {@code update} method to perform the actual update.
      * </p>
      *
-     * @param field The field to update. Valid values are:
+     * @param field The identifier of the field to be updated. Valid values are:
      *              <ul>
-     *                  <li>"1" - name</li>
-     *                  <li>"2" - email</li>
-     *                  <li>"3" - phone</li>
+     *                  <li>"1" - Update the name</li>
+     *                  <li>"2" - Update the email</li>
+     *                  <li>"3" - Update the phone number</li>
      *              </ul>
      * @param newValue The new value to set for the specified field.
      */
     @Override
     public void update(String field, String newValue){
-        if(field == "1" || field == "2" || field == "3")
+        System.out.println(field);
+        if(field.equals("1") || field.equals("2") || field.equals("3")){
             super.update(field, newValue);
+        }
     }
     /**
      * Returns the unique identifier for this passenger.

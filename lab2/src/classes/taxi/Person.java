@@ -9,9 +9,9 @@ package classes.taxi;
  * </p>
  */
 public abstract class Person{
-    public String name;
-    public String email;
-    public String phone;
+    protected String name;
+    protected String email;
+    protected String phone;
 
     /**
      * Registers a new person with the provided details.
@@ -29,30 +29,36 @@ public abstract class Person{
         this.phone = phone;
     }
     /**
-     * Updates a specific field of the person with a new value.
+     * Updates a specific field of the person based on the given field identifier.
      * <p>
-     * This method updates the person's name, email, or phone number based on the field parameter.
+     * This method updates the name, email, or phone number of the person based on the provided field identifier.
+     * The valid field identifiers are "1" for name, "2" for email, and "3" for phone number. The corresponding
+     * field is updated with the new value provided. If an invalid field identifier is passed, no update is performed.
      * </p>
      *
-     * @param field The field to update. Valid values are:
+     * @param field The identifier of the field to be updated. This should be one of the following:
      *              <ul>
-     *                  <li>"1" - name</li>
-     *                  <li>"2" - email</li>
-     *                  <li>"3" - phone</li>
+     *                  <li>"1" - Update the name</li>
+     *                  <li>"2" - Update the email</li>
+     *                  <li>"3" - Update the phone number</li>
      *              </ul>
-     * @param newValue The new value to set for the specified field.
+     * @param newValue The new value to set for the specified field. This value is used to update the field
+     *                 identified by {@code field}.
      */
     public void update(String field, String newValue){
         // 1 - Atualiza nome
-        if(field == "1"){
+        if(field.equals("1")){
+            System.out.print("Campo \"nome\"");
             this.name = newValue;
         }
         // 2 - Atualiza email
-        else if (field == "2") {
+        else if (field.equals("2")) {
+            System.out.print("Campo \"email\"");
             this.email = newValue;
         }
         // 3 - Atualiza telefone
-        else if (field == "3") {
+        else if (field.equals("3")) {
+            System.out.print("Campo \"telefone\"");
             this.phone = newValue;
         }
     }

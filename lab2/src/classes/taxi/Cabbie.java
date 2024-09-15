@@ -66,10 +66,11 @@ public class Cabbie extends Person{
      */
     @Override
     public void update(String field, String newValue){
-        if(field == "1" || field == "2" || field == "3"){
+        if(field.equals("1") || field.equals("2") || field.equals("3")){
             super.update(field, newValue);
-        } else if(field == "4"){
+        } else if(field.equals("4")){
             // Atualiza rating
+            System.out.print("Campo \"rating\"");
             float newValueFloat = Float.parseFloat(newValue); // String -> FLoat
             this.rating = newValueFloat;
         }

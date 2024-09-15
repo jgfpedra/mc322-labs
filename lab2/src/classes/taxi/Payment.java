@@ -45,6 +45,32 @@ public class Payment {
 		}
 	}
     /**
+     * Completes the current ride by resetting its payment and ride details.
+     * <p>
+     * This method finalizes the ride by setting the {@code paymentId} to -1, the {@code rideId} to -1,
+     * the {@code amount} to 0, and the {@code paymentMethod} to {@code null}. This effectively marks
+     * the ride as completed and clears any associated payment information.
+     * </p>
+     */
+    public void completeRide(){
+        this.paymentId = -1;
+        this.rideId = 0;
+        this.amount = 0;
+        this.paymentMethod = null;
+    }
+    /**
+     * Returns the unique identifier of the ride.
+     * <p>
+     * This method retrieves the ride ID associated with this ride instance. The ride ID is an integer
+     * that uniquely identifies a specific ride within the taxi system.
+     * </p>
+     *
+     * @return The unique identifier of the ride.
+     */
+    public int getRideId(){
+        return this.rideId;
+    }
+    /**
      * Returns a string representation of this payment.
      * <p>
      * The string representation includes the payment ID, ride ID, amount, and payment method.
