@@ -1,4 +1,4 @@
-package classes.taxi;
+package taxi;
 
 /**
  * Represents a cab driver (cabbie) in the taxi system.

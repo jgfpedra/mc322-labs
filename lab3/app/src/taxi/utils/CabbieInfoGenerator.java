@@ -1,4 +1,4 @@
-package classes.taxi.utils;
+package taxi.utils;
 import java.util.Random;
 import java.util.UUID;
 

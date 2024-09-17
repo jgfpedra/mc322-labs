@@ -1,4 +1,4 @@
-package classes.taxi;
+package taxi;
 
 public enum Location {
     AEROPORTO(5, 18, "Aeroporto"),

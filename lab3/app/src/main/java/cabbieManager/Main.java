@@ -4,18 +4,18 @@
  * Nome: Joao Guilherme Ferreira Pedra
  * RA: 248349
  */
-package main.java.lab3;
+package main.java.cabbieManager;
 
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-import classes.taxi.Cabbie;
-import classes.taxi.Passenger;
-import classes.taxi.Ride;
-import classes.taxi.Vehicle;
-import classes.taxi.utils.CabbieInfoGenerator;
-import classes.taxi.utils.PassengerInfoGenerator;
+import taxi.Cabbie;
+import taxi.Passenger;
+import taxi.Ride;
+import taxi.Vehicle;
+import taxi.utils.CabbieInfoGenerator;
+import taxi.utils.PassengerInfoGenerator;
 
 public class Main {
 

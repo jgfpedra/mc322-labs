@@ -1,4 +1,4 @@
-package classes.taxi;
+package taxi;
 
 public enum PaymentOption {
     CREDIT_CARD(6, "CREDIT CARD"),

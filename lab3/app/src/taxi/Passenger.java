@@ -1,4 +1,4 @@
-package classes.taxi;
+package taxi;
 
 /**
  * Represents a passenger in the taxi system.

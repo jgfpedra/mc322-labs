@@ -1,6 +1,6 @@
-package classes.taxi;
+package taxi;
 
-import classes.taxi.utils.VehicleInfoGenerator;
+import taxi.utils.VehicleInfoGenerator;
 
 /**
  * Represents a vehicle in the taxi system.

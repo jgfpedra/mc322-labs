@@ -1,4 +1,4 @@
-package classes.taxi;
+package taxi;
 
 import java.time.LocalDateTime;
 
