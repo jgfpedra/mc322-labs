@@ -6,7 +6,7 @@ public class RidePayment implements Payment{
     private String paymentId;
     private String rideId;
     private LocalDateTime rideStartTime;
-    private float rideDistance;
+    private double rideDistance;
     private float amount;
     private PaymentOption paymentMethod;
 
@@ -16,10 +16,19 @@ public class RidePayment implements Payment{
     }
     @Override
     public void processPayment() {
-        // TODO Auto-generated method stub
-        
+        System.out.println("A forma de pagamento escolhida foi: " + paymentMethod.getPaymentMethod());
     }
-    // TODO: Getters and Setters --> verificar se todos sao necessarios
-    
+    public String paymentId(){
+        return paymentId;
+    }
+    public String rideId(){
+        return rideId;
+    }
+    public LocalDateTime rideStartTime(){
+        return rideStartTime;
+    }
+    public double rideDistance(){
+        return rideDistance;
+    }
     // TODO: toString
 }

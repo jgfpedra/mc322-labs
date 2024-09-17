@@ -85,7 +85,7 @@ public class Ride {
      *
      * @return The pickup location.
      */
-	public String getPickupLocation() {
+	public Location getPickupLocation() {
 		return pickupLocation;
 	}
      /**
@@ -93,7 +93,7 @@ public class Ride {
      *
      * @return The drop location.
      */
-	public String getDropLocation() {
+	public Location getDropLocation() {
 		return dropLocation;
 	}
 	/**
@@ -101,9 +101,18 @@ public class Ride {
      *
      * @return The status of the ride.
      */
+	public LocalDateTime getStartime() {
+		return startime;
+	}
+	public LocalDateTime getEndTime() {
+		return endTime;
+	}
 	public String getStatus() {
 		return status;
 	}
+     public double getDistance(){
+          return distance;
+     }
 	/**
      /**
      * Returns a string representation of this ride.
