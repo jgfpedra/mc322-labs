@@ -23,7 +23,7 @@ public enum Location {
     public int getX(){
         return this.x;
     }
-    public int getY(){
+    public float getY(){
         return this.y;
     }
     public String getName(){

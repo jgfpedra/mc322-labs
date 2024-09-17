@@ -7,9 +7,9 @@ public class Ride {
 	private int passengerId;
 	private int cabbieId;
 	private int vehicleId;
-	private String pickupLocation;
-	private String dropLocation;
-     private float distance;
+	private Location pickupLocation;
+	private Location dropLocation;
+     private double distance;
 	private String status;
 	private LocalDateTime startime;
      private LocalDateTime endTime;
@@ -33,7 +33,7 @@ public class Ride {
      * @param pickupLocation The location where the ride is to be picked up.
      * @param dropLocation The location where the ride is to be dropped off.
      */
-	public void requestRide(int rideId, int passengerId, int cabbieId, int vehicleId, String pickupLocation, String dropLocation, LocalDateTime startime, LocalDateTime endTime) {
+	public void requestRide(int rideId, int passengerId, int cabbieId, int vehicleId, Location pickupLocation, Location dropLocation, LocalDateTime startime, LocalDateTime endTime) {
 		this.rideId = rideId;
 		this.passengerId = passengerId;
 		this.cabbieId = cabbieId;
@@ -51,7 +51,8 @@ public class Ride {
      * </p>
      */
 	public void updateRideStatus() {
-		this.status = "Livre";
+		this.status = "Ocupado";
+          this.distance = calculateDistance();
 	}
 	/**
      * Completes the ride and resets its details.
@@ -65,7 +66,7 @@ public class Ride {
 		this.passengerId = -1;
 		this.cabbieId = -1;
 		this.vehicleId = -1;
-		updateRideStatus();
+          this.status = "Livre";
 	}
 	/**
      * Calculates a random fare for the ride.
@@ -75,9 +76,9 @@ public class Ride {
      *
      * @return The calculated fare for the ride.
      */
-	private float calculateDistance() {
+	private double calculateDistance() {
           // TODO: calcular a distancia
-          
+          return Math.sqrt(Math.pow((this.dropLocation.getX() - this.pickupLocation.getX()), 2)+ Math.pow((this.dropLocation.getY() - this.pickupLocation.getY()), 2));
 	}
      /**
      * Returns the pickup location for the ride.
