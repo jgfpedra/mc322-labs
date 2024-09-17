@@ -1,5 +1,5 @@
 package classes.taxi;
-import java.util.LocalDateTime;
+import java.time.LocalDateTime;
 
 //TODO: resolver problemas do LocalDateTime
 public class Ride {
@@ -77,6 +77,7 @@ public class Ride {
      */
 	private float calculateDistance() {
           // TODO: calcular a distancia
+          
 	}
      /**
      * Returns the pickup location for the ride.

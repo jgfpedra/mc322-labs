@@ -19,4 +19,7 @@ public class RidePayment implements Payment{
         // TODO Auto-generated method stub
         
     }
+    // TODO: Getters and Setters --> verificar se todos sao necessarios
+    
+    // TODO: toString
 }

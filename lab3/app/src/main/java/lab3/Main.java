@@ -35,14 +35,13 @@ public class Main {
      *  --> Selecao do tip de pagamento
      *  --> Calculo do pagamento
      * Caso 6: Finalizacao da corrida
-     * 
-     * TODO: atualizar logica da escolha do ID pelo ID ao inves da posicao --> cadastros
+     * TODO: verificar a troca dos tipos de ID --> verificar se teria como fazer pela posicao de cada um no array
      */
 
     public static void main(String[] args) {
         //Auxiliares
-        int escolha = 0, paymentId = 0, pos, passengerId, cabbieId, passengerPos, cabbiePos, vehicleId = 0, rideId = 0;
-        String paymentMethod, escolhaCadastro, campoCadastro, partida, destino;
+        int escolha = 0, paymentId = 0, pos, passengerPos, cabbiePos, vehicleId = 0, rideId = 0;
+        String paymentMethod, escolhaCadastro, campoCadastro, partida, destino, passengerId, cabbieId;
         boolean validPaymentMethod = false, validCabbie, validId = false;
 
         // Objetos Auxiliares
@@ -258,6 +257,7 @@ public class Main {
                     switch(escolha){
                         case 1:
                             // Criacao de um objeto vehicle e adicao ao ArrayList vehicles
+                            pos = 0;
                             if(!cabbies.isEmpty()){
                                 System.out.println("---------------------------------------");
                                 System.out.print("Selecione o Motorista que ira dirigir o veiculo: ");
@@ -266,22 +266,22 @@ public class Main {
                                 for(Cabbie cabbieIterator : cabbies){
                                     validCabbie = true;
                                     for(Vehicle vehicleIterator : vehicles){
-                                        if(cabbieIterator.getCabbieId() == vehicleIterator.getCabbieId()){
+                                        if(cabbieIterator.getCabbieId().equals(vehicleIterator.getCabbieId())){
                                             validCabbie = false;
                                         }
                                     }
                                     if(validCabbie == true){
-                                        System.out.println("ID pessoa motorista livre: " + cabbieIterator.getCabbieId());
+                                        System.out.println(pos + " - ID pessoa motorista livre: " + cabbieIterator.getCabbieId());
                                     }
                                 }
                                 if(validCabbie != false){
                                     validCabbie = false;
                                     System.out.println("---------------------------------------");
-                                    System.out.print("Selecione uma opcao de ID: ");
-                                    cabbieId = scan.nextInt();
+                                    System.out.print("Selecione uma posicao das opcoes de ID: ");
+                                    pos = scan.nextInt();
                                     scan.nextLine(); // Consome o buffer de nova linha
                                     for(Cabbie cabbieIterator: cabbies){
-                                        if(cabbieIterator.getCabbieId() == cabbieId){
+                                        if(cabbieIterator.getCabbieId() == cabbies.get(pos).getCabbieId()){
                                             validCabbie = true;
                                         }
                                     }
