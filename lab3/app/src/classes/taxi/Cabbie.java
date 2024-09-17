@@ -8,7 +8,7 @@ package classes.taxi;
  * </p>
  */
 public class Cabbie extends Person{
-	private int cabbieId;
+	private String cabbieId;
 	private float rating;
 	private String licenseNumber;
     
@@ -26,7 +26,7 @@ public class Cabbie extends Person{
      * @param rating The rating of the cabbie.
      * @param licenseNumber The license number of the cabbie.
      */
-    public Cabbie(int cabbieId, String name, String email, String phone, float rating, String licenseNumber) {
+    public Cabbie(String cabbieId, String name, String email, String phone, float rating, String licenseNumber) {
         this.cabbieId = cabbieId;
         this.rating = rating;
         this.licenseNumber = licenseNumber;
@@ -80,7 +80,7 @@ public class Cabbie extends Person{
      *
      * @return The cabbie ID.
      */
-    public int getCabbieId() {
+    public String getCabbieId() {
         return cabbieId;
     }
     /**

@@ -35,6 +35,8 @@ public class Main {
      *  --> Selecao do tip de pagamento
      *  --> Calculo do pagamento
      * Caso 6: Finalizacao da corrida
+     * 
+     * TODO: atualizar logica da escolha do ID pelo ID ao inves da posicao --> cadastros
      */
 
     public static void main(String[] args) {

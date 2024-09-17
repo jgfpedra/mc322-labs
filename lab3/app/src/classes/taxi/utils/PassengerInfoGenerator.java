@@ -1,5 +1,6 @@
 package classes.taxi.utils;
 import java.util.Random;
+import java.util.UUID;
 
 public class PassengerInfoGenerator implements InfoGenerator{
     private String[] names = {"Tiago", "Sofia", "Felipe", "Isabela", "Rodrigo", "Carolina", "Henrique", "Fernanda", "Mateus", "Gabriela"};
@@ -8,7 +9,7 @@ public class PassengerInfoGenerator implements InfoGenerator{
     private String name;
     private String email;
     private String phone;
-    private int passengerId;
+    private String passengerId;
     
     public PassengerInfoGenerator() {
         this.generateRandomInfo();
@@ -16,7 +17,7 @@ public class PassengerInfoGenerator implements InfoGenerator{
     public void generateRandomInfo() {
         Random ran = new Random();
         int idx = ran.nextInt(10);
-        int passengerId = ran.nextInt(100);
+        String passengerId = UUID.randomUUID().toString();
         this.name = names[idx];
         this.email = emails[idx];
         this.phone = phones[idx];
@@ -32,7 +33,7 @@ public class PassengerInfoGenerator implements InfoGenerator{
     public String getPhone() {
         return this.phone;
     }
-    public int getPassengerId() {
+    public String getPassengerId() {
         return this.passengerId;
     }
 }

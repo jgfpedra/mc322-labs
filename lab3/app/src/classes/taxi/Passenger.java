@@ -9,7 +9,7 @@ package classes.taxi;
  * </p>
  */
 public class Passenger extends Person{
-	private int passengerId;
+	private String passengerId;
     /**
      * Constructs a new passenger with the specified details.
      * <p>
@@ -22,7 +22,7 @@ public class Passenger extends Person{
      * @param email The email address of the passenger.
      * @param phone The phone number of the passenger.
      */
-    public Passenger(int passengerId, String name, String email, String phone) {
+    public Passenger(String passengerId, String name, String email, String phone) {
         this.passengerId = passengerId;
         this.register(name, email, phone);
     }
@@ -71,7 +71,7 @@ public class Passenger extends Person{
      *
      * @return The user ID of the passenger.
      */
-    public int getUserId() {
+    public String getUserId() {
         return passengerId;
     }
     /**

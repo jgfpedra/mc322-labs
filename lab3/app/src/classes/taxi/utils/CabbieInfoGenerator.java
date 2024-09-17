@@ -1,5 +1,6 @@
 package classes.taxi.utils;
 import java.util.Random;
+import java.util.UUID;
 
 public class CabbieInfoGenerator implements InfoGenerator{
     private String[] names = {"Tiago", "Sofia", "Felipe", "Isabela", "Rodrigo", "Carolina", "Henrique", "Fernanda", "Mateus", "Gabriela"};
@@ -9,7 +10,7 @@ public class CabbieInfoGenerator implements InfoGenerator{
     private String name;
     private String email;
     private String phone;
-    private int cabbieId;
+    private String cabbieId;
     private float rate;
     private String licenseNumber;
     public CabbieInfoGenerator() {
@@ -17,8 +18,8 @@ public class CabbieInfoGenerator implements InfoGenerator{
     }
     public void generateRandomInfo() {
         Random ran = new Random();
+        String cabbieId = UUID.randomUUID().toString();
         int idx = ran.nextInt(10);
-        int cabbieId = 100 + ran.nextInt(100);
         float rate  = idx/2.0f;
         this.name = names[idx];
         this.email = emails[idx];
@@ -37,7 +38,7 @@ public class CabbieInfoGenerator implements InfoGenerator{
     public String getPhone() {
         return this.phone;
     }
-    public int getCabbieId() {
+    public String getCabbieId() {
         return this.cabbieId;
     }
     public float getRate() {

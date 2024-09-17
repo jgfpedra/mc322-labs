@@ -11,7 +11,7 @@ import classes.taxi.utils.VehicleInfoGenerator;
  * </p>
  */
 public class Vehicle {
-	private int vehicleId;
+	private String vehicleId;
 	private String registrationNumber;
 	private String model;
 	private int year;
@@ -87,7 +87,7 @@ public class Vehicle {
      *
      * @return The vehicle ID.
      */
-	public int getVehicleId() {
+	public String getVehicleId() {
 		return vehicleId;
 	}
 	/**
