@@ -1,4 +1,4 @@
-package taxi;
+package cabbieManager;
 
 public enum PaymentOption {
     CREDIT_CARD(6, "CREDIT CARD"),

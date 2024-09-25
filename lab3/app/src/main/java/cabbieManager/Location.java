@@ -1,4 +1,4 @@
-package taxi;
+package cabbieManager;
 
 public enum Location {
     AEROPORTO(5, 18, "Aeroporto"),

@@ -1,4 +1,4 @@
-package taxi;
+package cabbieManager;
 
 public interface Payment {
     public float calculateValue();

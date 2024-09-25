@@ -1,4 +1,5 @@
-package taxi;
+package cabbieManager;
+
 
 /**
  * Represents a person in the taxi system.

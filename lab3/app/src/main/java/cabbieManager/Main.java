@@ -4,21 +4,10 @@
  * Nome: Joao Guilherme Ferreira Pedra
  * RA: 248349
  */
-package main.java.cabbieManager;
-
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
-
-import taxi.Cabbie;
-import taxi.Passenger;
-import taxi.Ride;
-import taxi.Vehicle;
-import taxi.utils.CabbieInfoGenerator;
-import taxi.utils.PassengerInfoGenerator;
+package cabbieManager;
 
 public class Main {
-
+    
     /*
      * Caso 1: criacao de um novo passageiro
      * Caso 2: criacao de um taxista
@@ -39,6 +28,8 @@ public class Main {
      */
 
     public static void main(String[] args) {
+        System.out.println("Hello World");
+        /*/
         //Auxiliares
         int escolha = 0, paymentId = 0, pos, passengerPos, cabbiePos, vehicleId = 0, rideId = 0;
         String paymentMethod, escolhaCadastro, campoCadastro, partida, destino, passengerId, cabbieId;
@@ -564,5 +555,6 @@ public class Main {
         System.out.println("---------------------------------------");
         System.out.println();
         scan.close();
+        */
     }
 }

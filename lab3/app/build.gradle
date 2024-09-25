@@ -34,7 +34,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'lab03.gradle.App'
+    mainClass = 'cabbieManager.Main'
 }
 
 tasks.named('test') {

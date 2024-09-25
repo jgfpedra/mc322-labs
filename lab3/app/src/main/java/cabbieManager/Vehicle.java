@@ -1,6 +1,6 @@
-package taxi;
+package cabbieManager;
 
-import taxi.utils.VehicleInfoGenerator;
+import cabbieManager.utils.VehicleInfoGenerator;
 
 /**
  * Represents a vehicle in the taxi system.
