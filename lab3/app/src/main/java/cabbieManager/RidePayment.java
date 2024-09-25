@@ -10,6 +10,9 @@ public class RidePayment implements Payment{
     private float amount;
     private PaymentOption paymentMethod;
 
+    public RidePayment(String rideId, LocalDateTime rideStartTime, float amount, String paymentMethod){
+        //TODO: fazer logica
+    }
     @Override
     public float calculateValue(){
         return this.amount + (this.paymentMethod.calculatePaymentFee(amount));

@@ -28,8 +28,8 @@ public class Main {
      */
 
     public static void main(String[] args) {
-        System.out.println("Hello World");
-        /*/
+        System.out.println("teste");
+        /*
         //Auxiliares
         int escolha = 0, paymentId = 0, pos, passengerPos, cabbiePos, vehicleId = 0, rideId = 0;
         String paymentMethod, escolhaCadastro, campoCadastro, partida, destino, passengerId, cabbieId;
