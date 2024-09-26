@@ -6,57 +6,40 @@
  */
 package cabbieManager;
 
-public class Main {
-    
-    /*
-     * Caso 1: criacao de um novo passageiro
-     * Caso 2: criacao de um taxista
-     * Caso 3: criacao de um novo veiculo
-     * Caso 4: criacao de corrida
-     *  --> Pelo menos duas combinacoes de diferentes com uma forma diferente de pagamento para cada uma delas
-     *  --> caso 1 --> requisicao de corrida
-     *  --> caso 2 --> mostrar o local de saida
-     *  --> caso 3 --> mostrar o local de chegada
-     *  --> ERRO --> mostrar uma mensagem de erro quando nao for um local valido
-     *  --> caso 4 --> mostrar a distancia
-     *  --> caso 5 --> mostrar o status da corrida sendo atualizado
-     * Caso 5: criacao de pagamento:
-     *  --> Selecao do tip de pagamento
-     *  --> Calculo do pagamento
-     * Caso 6: Finalizacao da corrida
-     * TODO: verificar a troca dos tipos de ID --> verificar se teria como fazer pela posicao de cada um no array
-     */
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+import java.util.UUID;
 
+import cabbieManager.utils.CabbieInfoGenerator;
+import cabbieManager.utils.PassengerInfoGenerator;
+
+public class Main {
     public static void main(String[] args) {
         System.out.println("teste");
-        /*
         //Auxiliares
-        int escolha = 0, paymentId = 0, pos, passengerPos, cabbiePos, vehicleId = 0, rideId = 0;
-        String paymentMethod, escolhaCadastro, campoCadastro, partida, destino, passengerId, cabbieId;
+        int escolha = 0, pos, passengerPos, cabbiePos, partida, destino;
+        String paymentMethod, escolhaCadastro, campoCadastro, passengerId, cabbieId = null, rideId;
+        Location pickUpLocation = null, dropOutLocation = null;
         boolean validPaymentMethod = false, validCabbie, validId = false;
 
         // Objetos Auxiliares
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
-        Ride ride = new Ride();
 
-        //Geradores
-        
         //ArrayLists
         ArrayList<Passenger> passengers = new ArrayList<Passenger>();
         ArrayList<Cabbie> cabbies = new ArrayList<Cabbie>();
         ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
         
-        while (escolha != 7) {
+        while (escolha != 5) {
             System.out.println("------------------MENU-----------------");
             System.out.println("Escolha entre uma das opcoes");
             System.out.println("1 - Cadastrar passageiro");
             System.out.println("2 - Cadastrar taxista");
             System.out.println("3 - Cadastrar veiculo");
-            System.out.println("4 - Criacao de uma corrida");
-            System.out.println("5 - Selecao de pagamento");
-            System.out.println("6 - Finalizar corrida");
-            System.out.println("7 - Finalizar programa");
+            System.out.println("4 - Requisitar Corrida");
+            System.out.println("5 - Finalizar programa");
             System.out.println("---------------------------------------");
             System.out.print("Selecione uma opcao: ");
             escolha = scan.nextInt();
@@ -90,7 +73,7 @@ public class Main {
                                     }
                                 }
                             }
-                            Passenger passenger = new Passenger(passengerId, passRand.getName(), passRand.getEmail(), passRand.getEmail());
+                            Passenger passenger = new Passenger(passengerId, passRand.getName(), passRand.getEmail(), passRand.getPhone());
                             passengers.add(passenger);
                             System.out.println("---------------------------------------");
                             System.out.println("Pessoa passageira " + passenger.getUserId() + " (" + passenger.getName() + ") criada com sucesso");
@@ -196,10 +179,15 @@ public class Main {
                                     pos++;
                                 }
                                 System.out.println("---------------------------------------");
-                                System.out.println("Escolha da posicao do ID: ");
+                                System.out.println("Escolha a posicao do ID: ");
                                 pos = scan.nextInt();
                                 scan.nextLine(); // Consome o buffer de nova linha
                                 System.out.println();
+                                for(Vehicle vehicleIterator: vehicles){
+                                    if(vehicleIterator.getCabbieId().equals(cabbies.get(pos).getCabbieId())){
+                                        
+                                    }
+                                }
                                 if(cabbies.get(pos) != null){
                                     System.out.println("---------------------------------------");
                                     System.out.println("Campos para atualizar");
@@ -266,27 +254,35 @@ public class Main {
                                     }
                                 }
                                 if(validCabbie != false){
-                                    validCabbie = false;
-                                    System.out.println("---------------------------------------");
-                                    System.out.print("Selecione uma posicao das opcoes de ID: ");
-                                    pos = scan.nextInt();
-                                    scan.nextLine(); // Consome o buffer de nova linha
-                                    for(Cabbie cabbieIterator: cabbies){
-                                        if(cabbieIterator.getCabbieId() == cabbies.get(pos).getCabbieId()){
-                                            validCabbie = true;
+                                    try{
+                                        validCabbie = false;
+                                        System.out.println("---------------------------------------");
+                                        System.out.print("Selecione uma posicao das opcoes de ID: ");
+                                        pos = scan.nextInt();
+                                        System.out.println();
+                                        scan.nextLine(); // Consome o buffer de nova linha
+                                        for(Cabbie cabbieIterator: cabbies){
+                                            if(cabbieIterator.getCabbieId().equals(cabbies.get(pos).getCabbieId())){
+                                                validCabbie = true;
+                                            }
                                         }
-                                    }
-                                    if(validCabbie != false){
-                                        Vehicle vehicle = new Vehicle(cabbieId);
-                                        vehicles.add(vehicle);
-                                        System.out.println();
+                                        if(validCabbie != false){
+                                            Vehicle vehicle = new Vehicle(cabbieId);
+                                            vehicles.add(vehicle);
+                                            System.out.println();
+                                            System.out.println("---------------------------------------");
+                                            System.out.println("Veiculo " + vehicle.getVehicleId() + " (" + vehicle.getModel() + " " + vehicle.getYear() + ") criado com sucesso");
+                                            System.out.println("---------------------------------------");
+                                            System.out.println();
+                                        } else {
+                                            System.out.println("---------------------------------------");
+                                            System.out.println("Selecione um ID de motorista valido");
+                                            System.out.println("---------------------------------------");
+                                            System.out.println();
+                                        }
+                                    } catch (IndexOutOfBoundsException e){
                                         System.out.println("---------------------------------------");
-                                        System.out.println("Veiculo " + vehicle.getVehicleId() + " (" + vehicle.getRegistrationNumber() + ") criado com sucesso");
-                                        System.out.println("---------------------------------------");
-                                        System.out.println();
-                                    } else {
-                                        System.out.println("---------------------------------------");
-                                        System.out.println("Selecione um ID de motorista valido");
+                                        System.out.println("Digite uma opcao de posicao valida");
                                         System.out.println("---------------------------------------");
                                         System.out.println();
                                     }
@@ -373,158 +369,170 @@ public class Main {
                     }
                 break;
                 case 4:
-                    System.out.println("---------------------------------------");
-                    System.out.println("1 - Requisitar uma corrida");
-                    System.out.println("2 - Calcular valor corrida");
-                    System.out.println("---------------------------------------");
-                    System.out.print("Selecione uma opcao: ");
-                    escolha = scan.nextInt();
-                    scan.nextLine(); // Consome o buffer de nova linha
-                    System.out.println();
-                    switch(escolha){
-                        // Requisicao de uma corrida com instanciacao dos atributos do objeto ride
-                        case 1:
-                            if(ride.getStatus() == "Livre"){
-                                if(!passengers.isEmpty()){
-                                    pos = rand.nextInt(passengers.size());
-                                    passengerPos = pos;
-                                    if(!cabbies.isEmpty()){
-                                        pos = rand.nextInt(cabbies.size());
-                                        cabbiePos = pos;
-                                        if(!vehicles.isEmpty()){
-                                            for(Vehicle vehicle : vehicles){
-                                                if(vehicle.getCabbieId() == cabbies.get(cabbiePos).getCabbieId()){
-                                                    vehicleId = vehicle.getVehicleId();
-                                                }
-                                            }
-                                            System.out.println("---------------------------------------");
-                                            System.out.println("Defina o local de partida: ");
-                                            partida = scan.nextLine();
-                                            System.out.println("---------------------------------------");
-                                            System.out.println();
-                                            System.out.println("---------------------------------------");
-                                            System.out.println("Defina o local de destino: ");
-                                            destino = scan.nextLine();
-                                            System.out.println("---------------------------------------");
-                                            ride.requestRide(rideId, passengers.get(passengerPos).getUserId(), cabbies.get(cabbiePos).getCabbieId(), vehicleId, partida, destino);
-                                            System.out.println();
-                                            System.out.println("---------------------------------------");
-                                            System.out.println("Corrida chamada por pessoa passageira " + passengers.get(passengerPos).getUserId() + " de " + ride.getPickupLocation() + " para " + ride.getDropLocation());
-                                            System.out.println("Corrida atendida por pessoa motorista " + cabbies.get(cabbiePos).getCabbieId());
-                                            System.out.println("---------------------------------------");
-                                            System.out.println();
-                                        } else {
-                                            System.out.println("---------------------------------------");
-                                            System.out.println("Crie um veiculo");
-                                            System.out.println("---------------------------------------");
-                                            System.out.println();
-                                        }
-                                    } else {
-                                        System.out.println("---------------------------------------");
-                                        System.out.println("Crie um taxista");
-                                        System.out.println("---------------------------------------");
-                                        System.out.println();
+                rideId = UUID.randomUUID().toString();
+                Ride ride = new Ride(rideId);
+                    if(!passengers.isEmpty()){
+                        pos = rand.nextInt(passengers.size());
+                        passengerPos = pos;
+                        if(!cabbies.isEmpty()){
+                            pos = rand.nextInt(cabbies.size());
+                            cabbiePos = pos;
+                            if(!vehicles.isEmpty()){
+                                for(Vehicle vehicle : vehicles){
+                                    if(vehicle.getCabbieId() == cabbies.get(cabbiePos).getCabbieId()){
                                     }
+                                }
+                                System.out.println("---------------------------------------");
+                                System.out.println("Defina o local de partida: ");
+                                System.out.println("1 - Aeroporto");
+                                System.out.println("2 - Estacao de trem");
+                                System.out.println("3 - Shopping");
+                                System.out.println("4 - Escola");
+                                System.out.println("5 - Parque");
+                                System.out.println("6 - Hospital");
+                                System.out.println("7 - Biblioteca");
+                                System.out.println("8 - Estadio");
+                                System.out.println("---------------------------------------");
+                                System.out.println("Digite o numero correspondente ao local de partida: ");
+                                partida = scan.nextInt();
+                                scan.nextLine();
+                                switch(partida){
+                                    case 1:
+                                    pickUpLocation = Location.AEROPORTO;
+                                    break;
+                                    case 2:
+                                    pickUpLocation = Location.ESTACAO_DE_TREM;
+                                    break;
+                                    case 3:
+                                    pickUpLocation = Location.SHOPPING;
+                                    break;
+                                    case 4:
+                                    pickUpLocation = Location.ESCOLA;
+                                    break;
+                                    case 5:
+                                    pickUpLocation = Location.PARQUE;
+                                    break;
+                                    case 6:
+                                    pickUpLocation = Location.HOSPITAL;
+                                    break;
+                                    case 7:
+                                    pickUpLocation = Location.BIBLIOTECA;
+                                    break;
+                                    case 8:
+                                    pickUpLocation = Location.ESTADIO;
+                                    break;
+                                }
+                                System.out.println("---------------------------------------");
+                                System.out.println();
+                                System.out.println("---------------------------------------");
+                                System.out.println("Defina o local de destino: ");
+                                System.out.println("1 - Aeroporto");
+                                System.out.println("2 - Estacao de trem");
+                                System.out.println("3 - Shopping");
+                                System.out.println("4 - Escola");
+                                System.out.println("5 - Parque");
+                                System.out.println("6 - Hospital");
+                                System.out.println("7 - Biblioteca");
+                                System.out.println("8 - Estadio");
+                                System.out.println("---------------------------------------");
+                                System.out.println("Escreva o local de partida: ");
+                                destino = scan.nextInt();
+                                scan.nextLine();
+                                switch(destino){
+                                    case 1:
+                                    dropOutLocation = Location.AEROPORTO;
+                                    break;
+                                    case 2:
+                                    dropOutLocation = Location.ESTACAO_DE_TREM;
+                                    break;
+                                    case 3:
+                                    dropOutLocation = Location.SHOPPING;
+                                    break;
+                                    case 4:
+                                    dropOutLocation = Location.ESCOLA;
+                                    break;
+                                    case 5:
+                                    dropOutLocation = Location.PARQUE;
+                                    break;
+                                    case 6:
+                                    dropOutLocation = Location.HOSPITAL;
+                                    break;
+                                    case 7:
+                                    dropOutLocation = Location.BIBLIOTECA;
+                                    break;
+                                    case 8:
+                                    dropOutLocation = Location.ESTADIO;
+                                    break;
+                                }
+                                System.out.println("---------------------------------------");
+                                System.out.println();
+                                if(partida != destino){
+                                    ride.requestRide(passengers.get(passengerPos).getUserId());
+                                    ride.setPickupLocation(pickUpLocation);
+                                    ride.setDropLocation(dropOutLocation);
+                                    System.out.println();
+                                    System.out.println("---------------------------------------");
+                                    System.out.println("Corrida chamada por pessoa passageira " + passengers.get(passengerPos).getUserId() + " de " + ride.getPickupLocation() + " para " + ride.getDropLocation());
+                                    System.out.println("Status da corrida: " + ride.getStatus());
+                                    System.out.println("Distancia calculada: " + ride.calculateDistance());
+                                    System.out.println("Corrida atendida por pessoa motorista " + cabbies.get(cabbiePos).getCabbieId());
+                                    ride.updateRideStatus();
+                                    System.out.println("Status da corrida: " + ride.getStatus());
+                                    System.out.println("---------------------------------------");
+                                    System.out.println();
+                                    while(!validPaymentMethod){
+                                        try{
+                                            System.out.println("---------------------------------------");
+                                            System.out.println("Defina uma forma de pagamento: ");
+                                            System.out.println("- Cartão de Crédito");
+                                            System.out.println("- Cartão de Débito");
+                                            System.out.println("- PIX");
+                                            System.out.println("- Dinheiro");
+                                            System.out.println("- Voucher");
+                                            System.out.println("---------------------------------------");
+                                            System.out.println("Digite a opcao de pagamento: ");
+                                            paymentMethod = scan.nextLine();
+                                            System.out.println("---------------------------------------");
+                                            System.out.println();
+                                            RidePayment ridePayment = new RidePayment(rideId, ride.getStartime(), ride.calculateDistance(), paymentMethod);
+                                            validPaymentMethod = true;
+                                            ridePayment.processPayment();
+                                            System.out.println();
+                                        } catch (IllegalArgumentException e){
+                                            System.out.println(e.getMessage());
+                                        }
+                                    }
+                                    ride.completeRide();
+                                    System.out.println("---------------------------------------");
+                                    System.out.println();
                                 } else {
                                     System.out.println("---------------------------------------");
-                                    System.out.println("Crie um passageiro");
+                                    System.out.println("Voce ja esta no local que deseja.");
                                     System.out.println("---------------------------------------");
                                     System.out.println();
                                 }
                             } else {
                                 System.out.println("---------------------------------------");
-                                System.out.println("Corrida esta ocupada por outro passageiro!");
+                                System.out.println("Crie um veiculo");
                                 System.out.println("---------------------------------------");
                                 System.out.println();
-                            }
-                        break;
-                        case 2:
-                            // Mostra o valor da corrida, ja definido no caso anterior
-                            if(ride.getStatus() == "Ocupado"){
-                                System.out.println("---------------------------------------");
-                                System.out.println("Valor da corrida definido: R$ " + ride.getFare());
-                                System.out.println("---------------------------------------");
-                                System.out.println();
-                            } else {
-                                System.out.println("---------------------------------------");
-                                System.out.println("Nenhuma corrida no momento.");
-                                System.out.println("---------------------------------------");
-                                System.out.println();
-                            }
-                            break;
-                    }
-                break;
-                case 5:
-                    // Definicao de um metodo de pagamento a partir da insercao de novos atributos para o objeto pagamento
-                    if(ride.getStatus() == "Ocupado"){
-                        if(validPaymentMethod != true){
-                            while(!validPaymentMethod){
-                                scan.nextLine(); // Consome o buffer de nova linha
-                                System.out.println("---------------------------------------");
-                                System.out.println("Defina a forma de pagamento: ");
-                                paymentMethod = scan.nextLine();
-                                System.out.println();
-                                System.out.println("---------------------------------------");
-                                System.out.println("Forma de pagamento: " + paymentMethod);
-                                System.out.println("---------------------------------------");
-                                System.out.println();
-                                try{
-                                    rideId++;
-                                    validPaymentMethod = payment.definePagamento(paymentId, rideId, ride.getFare(), paymentMethod);
-                                    System.out.println("---------------------------------------");
-                                    System.out.println("Forma de pagamento aceita!");
-                                    System.out.println("---------------------------------------");
-                                    System.out.println();
-                                } catch (IllegalArgumentException e){
-                                    // Caso usuario digite outro tipo de pagamento, recebe um retorno de erro
-                                    System.out.println("---------------------------------------");
-                                    System.out.println(e.getMessage());
-                                    System.out.println("Tecle enter para sair e digitar a forma de pagamente novamente.");
-                                    System.out.println("---------------------------------------");
-                                    System.out.println();
-                                }
                             }
                         } else {
                             System.out.println("---------------------------------------");
-                            System.out.println("Forma de pagamento ja definida.");
+                            System.out.println("Crie um taxista");
                             System.out.println("---------------------------------------");
                             System.out.println();
                         }
                     } else {
                         System.out.println("---------------------------------------");
-                        System.out.println("Nenhuma corrida no momento.");
-                        System.out.println("---------------------------------------");
-                        System.out.println();
-                    }
-                break;
-                case 6:
-                    // Caso para finalizar a corrida atual
-                    if(ride.getStatus() == "Ocupado"){
-                        if(payment.getRideId() != 0){
-                            ride.completeRide();
-                            payment.completeRide();
-                            validPaymentMethod = false;
-                            rideId--;
-                            System.out.println("---------------------------------------");
-                            System.out.println("Corrida finalizada.");
-                            System.out.println("---------------------------------------");
-                            System.out.println();
-                        } else {
-                            System.out.println("---------------------------------------");
-                            System.out.println("Selecione um metodo de pagamento.");
-                            System.out.println("---------------------------------------");
-                            System.out.println();
-                        }
-                    } else {
-                        System.out.println("---------------------------------------");
-                        System.out.println("Nenhuma corrida no momento.");
+                        System.out.println("Crie um passageiro");
                         System.out.println("---------------------------------------");
                         System.out.println();
                     }
                 break;
             }
         }
-        // Relatorio com dados nos ArrayLists e objetos do sistema
+        scan.close();
         System.out.println("---------------------------------------");
         System.out.println("Relatorio final dos dados: ");
         System.out.println("---------------------------------------");
@@ -544,17 +552,5 @@ public class Main {
         System.out.println(vehicles.toString());
         System.out.println("---------------------------------------");
         System.out.println();
-        System.out.println("---------------------------------------");
-        System.out.println("Estado atual da corrida: ");
-        System.out.println(ride.toString());
-        System.out.println("---------------------------------------");
-        System.out.println();
-        System.out.println("---------------------------------------");
-        System.out.println("Metodo atual de pagamento da corrida: ");
-        System.out.println(payment.toString());
-        System.out.println("---------------------------------------");
-        System.out.println();
-        scan.close();
-        */
     }
 }

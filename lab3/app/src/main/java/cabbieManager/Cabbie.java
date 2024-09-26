@@ -12,7 +12,7 @@ public class Cabbie extends Person{
 	private float rating;
 	private String licenseNumber;
     
-	/**
+    /**
      * Constructs a new cabbie with the specified details.
      * <p>
      * This constructor initializes the cabbie's ID, rating, license number, and registers the cabbie with

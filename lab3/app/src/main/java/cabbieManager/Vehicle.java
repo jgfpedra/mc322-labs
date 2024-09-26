@@ -34,31 +34,31 @@ public class Vehicle {
 		this.year = vehicleRand.getYear();
 		this.cabbieId = cabbieId;
 	}
-	/**
-	 * Updates a specific field of the object based on the given field identifier and new value.
-	 * <p>
-	 * This method updates different fields of the object depending on the value of the {@code field} parameter.
-	 * It uses a {@code switch} statement to determine which field to update. The valid field identifiers and their
-	 * corresponding updates are as follows:
-	 * </p>
-	 * <ul>
-	 *     <li>"1" - Updates the model field with the {@code newValue} string.</li>
-	 *     <li>"2" - Updates the year field by converting the {@code newValue} string to an integer.</li>
-	 *     <li>"3" - Updates the registration number field with the {@code newValue} string.</li>
-	 *     <li>"4" - Updates the cabbie ID field by converting the {@code newValue} string to an integer.</li>
-	 * </ul>
-	 *
-	 * @param field The identifier of the field to be updated. The valid values are:
-	 *              <ul>
-	 *                  <li>"1" - Model</li>
-	 *                  <li>"2" - Year</li>
-	 *                  <li>"3" - Registration number</li>
-	 *                  <li>"4" - Cabbie ID</li>
-	 *              </ul>
-	 * @param newValue The new value to set for the specified field. This value is used to update the field
-	 *                 identified by {@code field}. For "2" and "4", the value is expected to be an integer represented
-	 *                 as a string.
-	 */
+    /**
+     * Updates a specific field of the vehicle based on the given field identifier and new value.
+     * <p>
+     * This method updates different fields of the vehicle depending on the value of the {@code field} parameter.
+     * It uses a {@code switch} statement to determine which field to update. The valid field identifiers and their
+     * corresponding updates are as follows:
+     * </p>
+     * <ul>
+     *     <li>"1" - Updates the model field with the {@code newValue} string.</li>
+     *     <li>"2" - Updates the year field by converting the {@code newValue} string to an integer.</li>
+     *     <li>"3" - Updates the registration number field with the {@code newValue} string.</li>
+     *     <li>"4" - Updates the cabbie ID field with the {@code newValue} string.</li>
+     * </ul>
+     *
+     * @param field The identifier of the field to be updated. The valid values are:
+     *              <ul>
+     *                  <li>"1" - Model</li>
+     *                  <li>"2" - Year</li>
+     *                  <li>"3" - Registration number</li>
+     *                  <li>"4" - Cabbie ID</li>
+     *              </ul>
+     * @param newValue The new value to set for the specified field. This value is used to update the field
+     *                 identified by {@code field}. For "2" and "4", the value is expected to be an integer represented
+     *                 as a string.
+     */
 	public void update(String field, String newValue){
 		int newValueInt;
 		switch(field){
@@ -87,9 +87,25 @@ public class Vehicle {
      * @return The vehicle ID.
      */
 	public String getVehicleId() {
-		return vehicleId;
+		return this.vehicleId;
 	}
-	/**
+    /**
+     * Returns the model of this vehicle.
+     *
+     * @return The model of the vehicle.
+     */
+	public String getModel() {
+		return this.model;
+	}
+    /**
+     * Returns the year of manufacture for this vehicle.
+     *
+     * @return The year of manufacture.
+     */
+	public int getYear() {
+		return this.year;
+	}
+    /**
      * Returns the registration number of this vehicle.
      *
      * @return The registration number.
@@ -97,11 +113,11 @@ public class Vehicle {
 	public String getRegistrationNumber() {
 		return registrationNumber;
 	}
-	/**
-	* Returns the unique identifier for the cabbie associated with this vehicle.
-	*
-	* @return The cabbie ID.
-	*/
+    /**
+     * Returns the unique identifier for the cabbie associated with this vehicle.
+     *
+     * @return The cabbie ID.
+     */
 	public String getCabbieId() {
 		return cabbieId;
 	}
