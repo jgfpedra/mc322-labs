@@ -1,10 +1,14 @@
 
 package cabbieManager;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.google.common.base.Objects;
 
 import utils.CabbieInfoGenerator;
 
+@XmlRootElement(name = "cabbies")
 public class Cabbie extends Person{
     private String cabbieId;
     private float rate;
@@ -89,30 +93,35 @@ public class Cabbie extends Person{
      *
      * @return the ID of the cabbie (a UUID)
      */
+    @XmlElement
     public String getCabbieId() {
         return this.cabbieId;
     }
     public void setCabbieId(String cabbieId) {
         this.cabbieId = cabbieId;
     }
+    @XmlElement
     public String getName() {
         return this.name;
     }
     public void setName(String name){
         this.name = name;
     }
+    @XmlElement
     public boolean getIsBusy(){
         return this.isBusy;
     }
     public void setIsBusy(boolean value){
         this.isBusy = value;
     }
+    @XmlElement
     public float getRate() {
         return rate;
     }
     public void setRate(float rate) {
         this.rate = rate;
     }
+    @XmlElement
     public String getLicenseNumber() {
         return licenseNumber;
     }
@@ -121,9 +130,9 @@ public class Cabbie extends Person{
     }
     /**
      * Returns a string representation of the object.
-     * 
+     *
      * The format is: "email name phone cabbieId rate licenseNumber"
-     * 
+     *
      * @return a string representation of the object
      */
     @Override

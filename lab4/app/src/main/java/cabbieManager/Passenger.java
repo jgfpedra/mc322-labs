@@ -1,9 +1,13 @@
 package cabbieManager;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.google.common.base.Objects;
 
 import utils.PassengerInfoGenerator;
 
+@XmlRootElement(name = "passenger")
 public class Passenger extends Person{
     private String passengerId;
     private String email;
@@ -14,20 +18,17 @@ public class Passenger extends Person{
     /**
      * Registers a passenger by generating random information.
      * This method assigns a random email, name, phone number, and user ID to the passenger.
-     * 
+     *
      */
     @Override
     public void register() {
-
         PassengerInfoGenerator pass = new PassengerInfoGenerator();
         this.email = pass.getEmail();
         this.name = pass.getName();
         this.phone = pass.getPhone();
         this.passengerId = pass.getPassengerId();
         System.out.println("Pessoa passageira " + this.passengerId + " (" + this.name + ") criada com sucesso");
-    
     }
-
     /**
      * Updates a field of the passenger.
      *
@@ -45,9 +46,7 @@ public class Passenger extends Person{
      */
     @Override
     public void update(String field, String newValue){
-
         boolean validField = true;
-
         switch (field) {
             case "name":
                 this.name = newValue;
@@ -69,20 +68,22 @@ public class Passenger extends Person{
             System.out.println("Campo " + field + " atualizado com sucesso!");
         }
         return;
-    
     }
+    @XmlElement
     public String getEmail() {
         return email;
     }
     public void setEmail(String email) {
         this.email = email;
     }
+    @XmlElement
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
+    @XmlElement
     public String getPhone() {
         return phone;
     }
@@ -94,6 +95,7 @@ public class Passenger extends Person{
      *
      * @return the ID of the passenger (a UUID)
      */
+    @XmlElement
     public String getPassengerId() {
         return this.passengerId;
     }
@@ -102,9 +104,9 @@ public class Passenger extends Person{
     }
     /**
      * Returns a string representation of the object.
-     * 
+     *
      * The format is: "email name phone passengerId"
-     * 
+     *
      * @return a string representation of the object
      */
     @Override
@@ -116,7 +118,6 @@ public class Passenger extends Person{
         if(o == this){
             return true;
         }
-        
         Passenger pas = (Passenger) o;
         return Objects.equal(this.passengerId, pas.getPassengerId());
     }

@@ -1,8 +1,19 @@
 package databaseManager;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import cabbieManager.Cabbie;
 import cabbieManager.Passenger;
@@ -10,11 +21,22 @@ import cabbieManager.Ride;
 import cabbieManager.RidePayment;
 import cabbieManager.Vehicle;
 
+@XmlRootElement(name = "database")
 public class Database{
+    @XmlElementWrapper(name = "cabbies")
+    @XmlElement(name = "cabbie")
     private List<Cabbie> cabbies = new ArrayList<>();
+    @XmlElementWrapper(name = "passengers")
+    @XmlElement(name = "passenger")
     private List<Passenger> passengers = new ArrayList<>();
+    @XmlElementWrapper(name = "vehicles")
+    @XmlElement(name = "vehicle")
     private List<Vehicle> vehicles = new ArrayList<>();
+    @XmlElementWrapper(name = "rides")
+    @XmlElement(name = "ride")
     private List<Ride> rides = new ArrayList<>();
+    @XmlElementWrapper(name = "ridePayments")
+    @XmlElement(name = "ridePayment")
     private List<RidePayment> paymentMethods = new ArrayList<>();
     private final File file = new File("app/data/database.xml");
     public Database(){
@@ -77,8 +99,28 @@ public class Database{
     }
     // Salvar na primeira execucao
     private void save(){
+        try{
+            JAXBContext context = JAXBContext.newInstance(Database.class);
+            Marshaller marshaller = context.createMarshaller();
+            marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+            marshaller.marshal(this, new FileWriter(file));
+        }catch (JAXBException | IOException e) {
+            e.printStackTrace();
+        }
     }
     // Load depois de sair
-    private void load(){
+    private void load() {
+        try {
+            JAXBContext context = JAXBContext.newInstance(Database.class);
+            Unmarshaller unmarshaller = context.createUnmarshaller();
+            Database loadedDatabase = (Database) unmarshaller.unmarshal(new FileReader(file));
+            this.cabbies = loadedDatabase.cabbies;
+            this.passengers = loadedDatabase.passengers;
+            this.vehicles = loadedDatabase.vehicles;
+            this.rides = loadedDatabase.rides;
+            this.paymentMethods = loadedDatabase.paymentMethods;
+        } catch (JAXBException | IOException e) {
+            e.printStackTrace();
+        }
     }
 }

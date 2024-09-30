@@ -3,13 +3,15 @@ package cabbieManager;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.google.common.base.Objects;
 
 import utils.LocalDateTimeAdapter;
 
-
+@XmlRootElement(name = "ride")
 public class Ride {
     private String rideId;
     private String passengerId;
@@ -102,6 +104,7 @@ public class Ride {
     public void completeRide() {
         System.out.println("Corrida finalizada");
     }
+    @XmlElement
     public Location getPickLocation(){
         return this.pickupLocation;
     }
@@ -112,7 +115,7 @@ public class Ride {
     public void setPickupLocation(Location pickupLocation) {
         this.pickupLocation = pickupLocation;
     }
-
+    @XmlElement
     public Location getDropLocation(){
         return this.dropLocation;
     }
@@ -128,6 +131,7 @@ public class Ride {
      *
      * @return the ID of this ride (a UUID)
      */
+    @XmlElement
     public String getRideId() {
         return this.rideId;
     }
@@ -141,7 +145,6 @@ public class Ride {
      * @return the start time of this ride (a LocalDateTime)
      */
     @XmlJavaTypeAdapter(value = LocalDateTimeAdapter.class)
-    
     public LocalDateTime getStartTime() {
         return this.startTime;
     }
@@ -150,38 +153,43 @@ public class Ride {
      *
      * @return the distance of this ride (a float)
      */
+    @XmlElement
     public float getRideDistance() {
         // TODO Auto-generated method stub
         return this.distance;
     }
+    @XmlElement
     public String getPassengerId() {
         return passengerId;
     }
     public void setPassengerId(String passengerId) {
         this.passengerId = passengerId;
     }
+    @XmlElement
     public String getCabbieId() {
         return cabbieId;
     }
     public void setCabbieId(String cabbieId) {
         this.cabbieId = cabbieId;
     }
+    @XmlElement
     public String getVehicleId() {
         return vehicleId;
     }
     public void setVehicleId(String vehicleId) {
         this.vehicleId = vehicleId;
     }
+    @XmlElement
     public String getStatus() {
         return status;
     }
     public void setStatus(String status) {
         this.status = status;
     }
+    @XmlElement
     public float getDistance() {
         return distance;
     }
-    
     public void setDistance(float distance) {
         this.distance = distance;
     }
