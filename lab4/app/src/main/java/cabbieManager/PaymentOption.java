@@ -1,5 +1,20 @@
 package cabbieManager;
 
+/**
+ * Enumeração que representa as opções de pagamento disponíveis no sistema de gerenciamento de táxis.
+ *
+ * Cada opção de pagamento possui um nome e uma taxa associada que é aplicada ao valor da transação.
+ * As opções de pagamento disponíveis incluem:
+ * - Cartão de Crédito
+ * - Dinheiro
+ * - Cartão de Débito
+ * - Voucher
+ * - Pix
+ *
+ * Métodos principais:
+ * - {@link #valueOfName(String)} : Retorna a opção de pagamento correspondente a um nome fornecido, ou null se não existir.
+ * - {@link #calculatePaymentFee(float)} : Calcula a taxa de pagamento para um valor dado.
+ */
 public enum PaymentOption {
     CREDIT_CARD("Cartão de Crédito", 1.06f),
     CASH("Dinheiro", 1.0f),

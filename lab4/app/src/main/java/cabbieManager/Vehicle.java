@@ -6,6 +6,11 @@ import com.google.common.base.Objects;
 
 import utils.VehicleInfoGenerator;
 
+/**
+ * Represents a vehicle in the cab management system.
+ * This class provides functionality for registering a vehicle,
+ * updating its attributes, and retrieving its information.
+ */
 @XmlRootElement(name = "vehicle")
 public class Vehicle {
     private String vehicleId;
@@ -81,34 +86,79 @@ public class Vehicle {
     public String getVehicleId() {
         return this.vehicleId;
     }
+    /**
+     * Sets the ID of the vehicle.
+     *
+     * @param vehicleId the new ID of the vehicle
+     */
     public void setVehicleId(String vehicleId) {
         this.vehicleId = vehicleId;
     }
+    /**
+     * Gets the registration number of the vehicle.
+     *
+     * @return the registration number of the vehicle
+     */
     @XmlElement
     public String getRegistrationNumber() {
         return registrationNumber;
     }
+    /**
+     * Sets the registration number of the vehicle.
+     *
+     * @param registrationNumber the new registration number of the vehicle
+     */
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
     }
+    /**
+     * Gets the model of the vehicle.
+     *
+     * @return the model of the vehicle
+     */
     @XmlElement
     public String getModel() {
         return model;
     }
+    /**
+     * Sets the model of the vehicle.
+     *
+     * @param model the new model of the vehicle
+     */
     public void setModel(String model) {
         this.model = model;
     }
+    /**
+     * Gets the manufacturing year of the vehicle.
+     *
+     * @return the year of the vehicle
+     */
     @XmlElement
     public int getYear() {
         return year;
     }
+    /**
+     * Sets the manufacturing year of the vehicle.
+     *
+     * @param year the new year of the vehicle
+     */
     public void setYear(int year) {
         this.year = year;
     }
+    /**
+     * Gets the ID of the cabbie associated with this vehicle.
+     *
+     * @return the ID of the cabbie
+     */
     @XmlElement
     public String getCabbieId() {
         return cabbieId;
     }
+    /**
+     * Sets the ID of the cabbie associated with this vehicle.
+     *
+     * @param cabbieId the new ID of the cabbie
+     */
     public void setCabbieId(String cabbieId) {
         this.cabbieId = cabbieId;
     }
@@ -121,6 +171,12 @@ public class Vehicle {
     public String toString() {
         return this.vehicleId + " " + this.model + " " + this.year;
     }
+    /**
+     * Compares this Vehicle to another object for equality.
+     *
+     * @param o the object to compare to
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public boolean equals(Object o){
         if(o == this){

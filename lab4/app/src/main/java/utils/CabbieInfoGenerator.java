@@ -1,5 +1,6 @@
 package utils;
-import java.util.*;
+import java.util.Random;
+import java.util.UUID;
 
 
 public class CabbieInfoGenerator implements InfoGenerator{
@@ -24,7 +25,7 @@ public class CabbieInfoGenerator implements InfoGenerator{
      * Generates random information for the cabbie. This method assigns
      * random values to the fields name, email, phone, cabbieId, rate and
      * licenseNumber.
-     * 
+     *
      */
     public void generateRandomInfo() {
 

@@ -11,6 +11,25 @@ import com.google.common.base.Objects;
 
 import utils.LocalDateTimeAdapter;
 
+/**
+ * Classe que representa uma corrida no sistema de gerenciamento de táxis.
+ *
+ * Esta classe contém informações sobre a corrida, incluindo os detalhes do passageiro,
+ * motorista, veículo, localizações de pickup e drop, distância, status da corrida e
+ * horários de início e fim.
+ *
+ * Atributos:
+ * - rideId: ID único da corrida.
+ * - passengerId: ID do passageiro que solicitou a corrida.
+ * - cabbieId: ID do motorista que aceitou a corrida.
+ * - vehicleId: ID do veículo utilizado na corrida.
+ * - pickupLocation: Localização de saida.
+ * - dropLocation: Localização de chegada.
+ * - distance: Distância da corrida.
+ * - status: Status atual da corrida.
+ * - startTime: Horário de início da corrida.
+ * - endTime: Horário de fim da corrida.
+ */
 @XmlRootElement(name = "ride")
 public class Ride {
     private String rideId;
@@ -99,10 +118,20 @@ public class Ride {
             System.out.println("Status da corrida: " + this.status);
         }
     }
+    /**
+    * Finaliza a corrida.
+    *
+    * O horário de fim é definido como o horário atual e uma mensagem é impressa.
+    */
     public void completeRide() {
         System.out.println("Corrida finalizada");
         this.endTime = LocalDateTime.now();
     }
+    /**
+     * Obtém a localização de pickup desta corrida.
+     *
+     * @return a localização de pickup (um objeto Location)
+     */
     @XmlElement
     public Location getPickLocation(){
         return this.pickupLocation;
@@ -114,6 +143,11 @@ public class Ride {
     public void setPickupLocation(Location pickupLocation) {
         this.pickupLocation = pickupLocation;
     }
+    /**
+     * Obtém a localização de drop desta corrida.
+     *
+     * @return a localização de drop (um objeto Location)
+     */
     @XmlElement
     public Location getDropLocation(){
         return this.dropLocation;
@@ -134,7 +168,11 @@ public class Ride {
     public String getRideId() {
         return this.rideId;
     }
-
+    /**
+     * Define o ID desta corrida.
+     *
+     * @param rideId O novo ID da corrida.
+     */
     public void setRideId(String rideId){
         this.rideId = rideId;
     }
@@ -165,41 +203,99 @@ public class Ride {
     public float getRideDistance() {
         return this.distance;
     }
+    /**
+     * Obtém o ID do passageiro desta corrida.
+     *
+     * @return o ID do passageiro (uma String)
+     */
     @XmlElement
     public String getPassengerId() {
         return passengerId;
     }
+    /**
+     * Define o ID do passageiro desta corrida.
+     *
+     * @param passengerId O novo ID do passageiro.
+     */
     public void setPassengerId(String passengerId) {
         this.passengerId = passengerId;
     }
+    /**
+     * Obtém o ID do motorista desta corrida.
+     *
+     * @return o ID do motorista (uma String)
+     */
     @XmlElement
     public String getCabbieId() {
         return cabbieId;
     }
+    /**
+     * Define o ID do motorista desta corrida.
+     *
+     * @param cabbieId O novo ID do motorista.
+     */
     public void setCabbieId(String cabbieId) {
         this.cabbieId = cabbieId;
     }
+
+    /**
+     * Obtém o ID do veículo utilizado nesta corrida.
+     *
+     * @return o ID do veículo (uma String)
+     */
     @XmlElement
     public String getVehicleId() {
         return vehicleId;
     }
+    /**
+     * Define o ID do veículo utilizado nesta corrida.
+     *
+     * @param vehicleId O novo ID do veículo.
+     */
     public void setVehicleId(String vehicleId) {
         this.vehicleId = vehicleId;
     }
+
+    /**
+     * Obtém o status atual desta corrida.
+     *
+     * @return o status da corrida (uma String)
+     */
     @XmlElement
     public String getStatus() {
         return status;
     }
+    /**
+     * Define o status desta corrida.
+     *
+     * @param status O novo status da corrida.
+     */
     public void setStatus(String status) {
         this.status = status;
     }
+    /**
+     * Obtém a distância total da corrida.
+     *
+     * @return a distância da corrida (um float)
+     */
     @XmlElement
     public float getDistance() {
         return distance;
     }
+    /**
+     * Define a distância desta corrida.
+     *
+     * @param distance A nova distância da corrida.
+     */
     public void setDistance(float distance) {
         this.distance = distance;
     }
+    /**
+     * Compara esta corrida com outra.
+     *
+     * @param o O objeto a ser comparado com esta corrida.
+     * @return true se as corridas tiverem o mesmo ID, false caso contrário.
+     */
     @Override
     public boolean equals(Object o){
         if(o == this){
@@ -208,6 +304,11 @@ public class Ride {
         Ride pas = (Ride) o;
         return Objects.equal(this.rideId, pas.getRideId());
     }
+    /**
+     * Retorna uma representação em String desta corrida.
+     *
+     * @return uma string representando a corrida, incluindo o ID.
+     */
     @Override
     public String toString() {
         return "Ride: " + this.rideId;

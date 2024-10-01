@@ -9,6 +9,29 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import utils.LocalDateTimeAdapter;
 
+/**
+ * Classe que representa um pagamento de corrida.
+ *
+ * Esta classe implementa a interface {@link Payment} e gerencia as informações
+ * relacionadas ao pagamento de uma corrida, incluindo o cálculo do valor total
+ * com base na distância percorrida e na forma de pagamento escolhida.
+ *
+ * <p>A classe contém:</p>
+ * <ul>
+ *     <li>Um ID único para o pagamento.</li>
+ *     <li>O ID da corrida associada ao pagamento.</li>
+ *     <li>O horário de início da corrida.</li>
+ *     <li>A distância percorrida durante a corrida.</li>
+ *     <li>O valor total a ser pago.</li>
+ *     <li>A forma de pagamento utilizada.</li>
+ * </ul>
+ *
+ * <p>Os métodos principais incluem:</p>
+ * <ul>
+ *     <li>{@link #calculateValue()} - Calcula o valor total do pagamento com base na distância e na forma de pagamento.</li>
+ *     <li>{@link #processPayment()} - Processa o pagamento e imprime o valor da corrida.</li>
+ * </ul>
+ */
 @XmlRootElement(name = "ridePayment")
 public class RidePayment implements Payment{
     private String paymentId;
@@ -75,45 +98,105 @@ public class RidePayment implements Payment{
     public void processPayment() {
         System.out.println("Valor da corrida definido: " + this.amount);
     }
+    /**
+     * Obtém o ID do pagamento.
+     *
+     * @return o ID do pagamento (uma String)
+     */
     @XmlElement
     public String getPaymentId() {
         return paymentId;
     }
+    /**
+     * Define o ID do pagamento.
+     *
+     * @param paymentId O novo ID do pagamento.
+     */
     public void setPaymentId(String paymentId) {
         this.paymentId = paymentId;
     }
+    /**
+     * Obtém o ID da corrida associada ao pagamento.
+     *
+     * @return o ID da corrida (uma String)
+     */
     @XmlElement
     public String getRideId() {
         return rideId;
     }
+    /**
+     * Define o ID da corrida associada ao pagamento.
+     *
+     * @param rideId O novo ID da corrida.
+     */
     public void setRideId(String rideId) {
         this.rideId = rideId;
     }
+    /**
+     * Obtém o horário de início da corrida.
+     *
+     * @return o horário de início da corrida (um LocalDateTime)
+     */
     @XmlJavaTypeAdapter(value = LocalDateTimeAdapter.class)
     public LocalDateTime getRideStartTime() {
         return rideStartTime;
     }
+    /**
+     * Define o horário de início da corrida.
+     *
+     * @param rideStartTime O novo horário de início da corrida.
+     */
     public void setRideStartTime(LocalDateTime rideStartTime) {
         this.rideStartTime = rideStartTime;
     }
+    /**
+     * Obtém a distância da corrida.
+     *
+     * @return a distância da corrida (um float)
+     */
     @XmlElement
     public float getRideDistance() {
         return rideDistance;
     }
+    /**
+     * Define a distância da corrida.
+     *
+     * @param rideDistance A nova distância da corrida.
+     */
     public void setRideDistance(float rideDistance) {
         this.rideDistance = rideDistance;
     }
+    /**
+     * Obtém o valor total a ser pago pela corrida.
+     *
+     * @return o valor total (um float)
+     */
     @XmlElement
     public float getAmount() {
         return amount;
     }
+    /**
+     * Define o valor total a ser pago pela corrida.
+     *
+     * @param amount O novo valor a ser pago.
+     */
     public void setAmount(float amount) {
         this.amount = amount;
     }
+    /**
+     * Obtém a forma de pagamento utilizada.
+     *
+     * @return a forma de pagamento (um objeto PaymentOption)
+     */
     @XmlElement
     public PaymentOption getPaymentMethod() {
         return paymentMethod;
     }
+    /**
+     * Define a forma de pagamento utilizada.
+     *
+     * @param paymentMethod A nova forma de pagamento.
+     */
     public void setPaymentMethod(PaymentOption paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
