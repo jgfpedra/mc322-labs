@@ -17,14 +17,12 @@ public class Ride {
     private String passengerId;
     private String cabbieId;
     private String vehicleId;
-    // Adcionar campos do Trabalho3
     private Location pickupLocation;
     private Location dropLocation;
     private float distance;
     private String status;
     private LocalDateTime startTime;
-    //private LocalDateTime endTime; - falta
-    //Adicionar os métodos da classe Ride
+    private LocalDateTime endTime;
     public Ride(){
     }
     public Ride(String passengerId) {
@@ -32,13 +30,13 @@ public class Ride {
     }
     /**
      * Requests a ride by a passenger.
-     * 
+     *
      * @param pickupLocation  the location where the passenger wants to be picked up
      * @param dropLocation    the location where the passenger wants to be dropped off
-     * 
+     *
      * The ride status is set to "REQUESTED".
      * The startTime is set to the current time.
-     * 
+     *
      * A message is printed to the console with the information of the ride.
      */
     public void requestRide(String pickupLocation, String dropLocation) {
@@ -52,11 +50,11 @@ public class Ride {
     }
     /**
      * Returns a Location given a location name.
-     * 
+     *
      * @param locationName  the name of the location
-     * 
+     *
      * If the location is not found, a default value of AEROPORTO is returned.
-     * 
+     *
      * @return a Location object
      */
     private Location returnLocation(String locationName) {
@@ -103,6 +101,7 @@ public class Ride {
     }
     public void completeRide() {
         System.out.println("Corrida finalizada");
+        this.endTime = LocalDateTime.now();
     }
     @XmlElement
     public Location getPickLocation(){
@@ -149,13 +148,21 @@ public class Ride {
         return this.startTime;
     }
     /**
+     * Gets the end time of this ride.
+     *
+     * @return the end time of this ride (a LocalDateTime)
+     */
+    @XmlJavaTypeAdapter(value = LocalDateTimeAdapter.class)
+    public LocalDateTime getEndTime() {
+        return this.endTime;
+    }
+    /**
      * Gets the distance of this ride.
      *
      * @return the distance of this ride (a float)
      */
     @XmlElement
     public float getRideDistance() {
-        // TODO Auto-generated method stub
         return this.distance;
     }
     @XmlElement

@@ -15,19 +15,15 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CabbieManagerTest {
-
     private Ride ride;
-
     @Test
     public void testCalculateDistance_SameLocations() {
         // Arrange
         ride = new Ride("testPassengerId");
         ride.setPickupLocation(Location.AEROPORTO);
         ride.setDropLocation(Location.AEROPORTO);
-
         // Act
         float distance = ride.calculateDistance();
-
         // Assert
         assertEquals(0, distance, 0);
     }
