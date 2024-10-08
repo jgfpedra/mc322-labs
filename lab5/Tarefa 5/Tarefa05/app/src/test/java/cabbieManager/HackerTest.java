@@ -7,6 +7,8 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 import databaseManager.Database;
+import hacker.InvalidRideDistanceException;
+import hacker.UnsupportedObjectTypeException;
 
 public class HackerTest {
 
@@ -49,16 +51,11 @@ public class HackerTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             testRide.requestRide("Aeroporto", "Museu"); // Invalid phone number with non-numeric characters
         });
-
         assertEquals("Invalid location name: Museu", exception.getMessage());
-
     }
-
-    
-
     /**
      * Tests if the constructor RidePayment throws a NullPointerException when the start time of the ride to be paid is null.
-     * 
+     *
      * The constructor RidePayment should throw a NullPointerException when the start time of the ride to be paid is null.
      * This test case tests this by calling the constructor with a null start time and asserting that a NullPointerException is thrown.
      * The expected error message is "Start time of the ride to be paid cannot be null".
@@ -75,7 +72,7 @@ public class HackerTest {
 
     /**
      * Tests if the method insert from the class Database throws an UnsupportedObjectTypeException when trying to insert an object of an unsupported type.
-     * 
+     *
      * The method insert should throw an UnsupportedObjectTypeException when trying to insert an object of an unsupported type.
      * This test case tests this by calling the method insert with an object of an unsupported type and asserting that an UnsupportedObjectTypeException is thrown.
      * The expected error message is "Trying to insert unsupported object type for database insertion".
@@ -95,7 +92,7 @@ public class HackerTest {
 
     /**
      * Tests if the constructor RidePayment throws an InvalidRideDistanceException when the ride distance is equal to zero.
-     * 
+     *
      * The constructor RidePayment should throw an InvalidRideDistanceException when the ride distance is equal to zero.
      * This test case tests this by calling the constructor with a ride distance of zero and asserting that an InvalidRideDistanceException is thrown.
      * The expected error message is "Ride distance must be greater than zero".
@@ -105,6 +102,7 @@ public class HackerTest {
     
         Exception exception = assertThrows(InvalidRideDistanceException.class, () -> {
             RidePayment rp = new RidePayment("rideId", LocalDateTime.of(2022, 1, 1, 10, 0), 0.0f, "Dinheiro");
+            rp.getAmount();
         });
 
         assertEquals("Ride distance must be greater than zero", exception.getMessage());
