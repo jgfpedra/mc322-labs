@@ -13,11 +13,40 @@ import exceptions.UnsupportedObjectTypeException;
 public class HackerTest {
 
     //IMPLEMENTE ABAIXO OS TESTES UNITÁRIOS ADICIONAIS PARA OS 3 TRATAMENTOS DE ERRO IDENTIFICADOS
-    
+    @Test
+    public void testUpdateCabbie_throwsIllegalArgumentException_InvalidPhoneArgument() {
+        Cabbie cabbieTest = new Cabbie();
+        cabbieTest.register();
+        
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            cabbieTest.update("phone", "999999999a");
+        });
+        assertEquals("Input contains non-numeric characters: 999999999a", exception.getMessage());
+    }
 
+    @Test
+    public void testUpdateCabbie_throwsIllegalArgumentException_InvalidPhoneArgument() {
+        Cabbie cabbieTest = new Cabbie();
+        cabbieTest.register();
+        
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            cabbieTest.update("phone", "999999999a");
+        });
+        assertEquals("Input contains non-numeric characters: 999999999a", exception.getMessage());
+    }
+
+    @Test
+    public void testUpdateCabbie_throwsIllegalArgumentException_InvalidPhoneArgument() {
+        Cabbie cabbieTest = new Cabbie();
+        cabbieTest.register();
+        
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            cabbieTest.update("phone", "999999999a");
+        });
+        assertEquals("Input contains non-numeric characters: 999999999a", exception.getMessage());
+    }
     //-----------------------------------------------------------------------------------------------------
     // CONJUNTO DE TESTES JÁ FEITO PARA A TAREFA (NÃO PODE SER ALTERADO)
-
     /**
      * Tests if the method update throws an IllegalArgumentException when the phone number is not valid.
      *

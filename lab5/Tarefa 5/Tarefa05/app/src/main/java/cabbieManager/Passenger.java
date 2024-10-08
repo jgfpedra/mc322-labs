@@ -70,7 +70,7 @@ public class Passenger extends Person{
                 break;
             default:
                 System.out.println("Campo inválido");
-                validField = false;       
+                validField = false;
         }
 
         if (validField) {

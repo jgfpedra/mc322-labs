@@ -94,18 +94,15 @@ public class Database{
         }
         this.save();
     }
-
-
+    //TODO: criar erro para essa classe
     private <T> void update(T newItem, List<T> data){
         for(int i=0;i<data.size();i++){
             Object item = data.get(i);
-
             if(item.equals(newItem)){
                 data.set(i, newItem);
             }
         }
     }
-
     public void update(Object object){
         if(object instanceof Cabbie){
             this.update((Cabbie)object, this.cabbies);
@@ -120,9 +117,8 @@ public class Database{
         }else{
             return;
         }
-        this.save();       
+        this.save();
     }
-
     private void save(){
         try{
             JAXBContext context = JAXBContext.newInstance(Database.class);
@@ -135,7 +131,6 @@ public class Database{
             e.printStackTrace();
         }
     }
-
     private void load(){
         if(file.exists()){
             try{

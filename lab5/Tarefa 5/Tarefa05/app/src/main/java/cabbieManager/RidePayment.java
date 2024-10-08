@@ -59,14 +59,9 @@ public class RidePayment implements Payment{
     private PaymentOption selectPaymentMethod(String paymentMethod) {
         return PaymentOption.valueOfName(paymentMethod);
     }
-
-
-
-
-
     /**
      * Calculates the total amount of the ride payment.
-     * 
+     *
      * <p>
      * The amount is calculated based on the ride distance and the payment method selected by the user.
      * The algorithm used is as follows:

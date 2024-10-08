@@ -50,17 +50,14 @@ public class Ride {
      */
 
     public void requestRide(String pickupLocation, String dropLocation) {
-
         this.rideId = UUID.randomUUID().toString();
+        //TODO: verificar mesmo local de partida e destino
         this.pickupLocation = this.returnLocation(pickupLocation);
         this.dropLocation= this.returnLocation(dropLocation);
         this.startTime = LocalDateTime.now();
-
         System.out.println("Corrida chamada por pessoa passageira " + this.passengerId + " de " + pickupLocation + " para " + dropLocation);
         this.updateRideStatus("CHAMADA", null, null);
-
         this.distance = this.calculateDistance();
-
     }
 
 
@@ -87,15 +84,10 @@ public class Ride {
      * @return the calculated distance.
      */
     public float calculateDistance() {
-        
         int x_pickup = pickupLocation.getX();
         int y_pickup = pickupLocation.getY();
-
         int x_drop = dropLocation.getX();
         int y_drop = dropLocation.getY();
-
-        
-
         float distance = (float) Math.sqrt(Math.pow(x_drop - x_pickup, 2) + Math.pow(y_drop - y_pickup, 2));
         distance = Math.round(distance * 100) / 100.0f;
         System.out.println(("Distância calculada: " + distance));
