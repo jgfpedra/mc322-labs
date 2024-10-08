@@ -1,7 +1,5 @@
 package cabbieManager;
 
-import java.io.File;
-
 import databaseManager.Database;
 
 public class Main {
@@ -49,7 +47,7 @@ public class Main {
         cab.update("isBusy", "true");
         ride.updateRideStatus("ACEITA", cab.getCabbieId(), v.getVehicleId());
         ride.updateRideStatus("EM_PROGRESSO", null, null);
- 
+
         db.update(cab);
         db.insert(ride);
 

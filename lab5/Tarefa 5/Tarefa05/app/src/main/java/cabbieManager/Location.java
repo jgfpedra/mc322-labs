@@ -33,15 +33,17 @@ public enum Location {
      * @return the Location enum value of the given name
      */
     public static Location valueOfName(String name) {
-        for (Location location : Location.values()) {
-            if (location.name.equals(name)) {
-                return location;
+        try{
+            for (Location location : Location.values()) {
+                if (location.name.equals(name)) {
+                    return location;
+                }
             }
+        } catch(IllegalArgumentException e){
+            System.err.println("Invalid location name: " + e.getMessage());
         }
-
+        return null;
     }
-
-
     /**
      * Returns the x-coordinate of the location.
      * @return the x-coordinate of the location
@@ -66,6 +68,4 @@ public enum Location {
     public String getName() {
         return this.name;
     }
-
-
 }

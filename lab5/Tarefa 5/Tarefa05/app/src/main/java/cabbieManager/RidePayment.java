@@ -1,14 +1,12 @@
 package cabbieManager;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import utils.LocalDateTimeAdapter;
-
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import exceptions.*;
 
 @XmlRootElement(name="PaymentMethod")
 public class RidePayment implements Payment{

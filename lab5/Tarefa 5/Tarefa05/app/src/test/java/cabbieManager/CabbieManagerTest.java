@@ -3,11 +3,6 @@
  */
 package cabbieManager;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
-
-import databaseManager.Database;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.StringWriter;
@@ -15,10 +10,9 @@ import java.time.LocalDateTime;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.crypto.Data;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 public class CabbieManagerTest {
 

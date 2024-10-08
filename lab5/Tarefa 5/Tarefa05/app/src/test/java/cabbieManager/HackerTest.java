@@ -1,21 +1,12 @@
 package cabbieManager;
 
-
-
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.function.Executable;
-
-import cabbieManager.Cabbie;
-import cabbieManager.Ride;
-import databaseManager.*;
-import exceptions.*;
-
 import org.junit.jupiter.api.Test;
+
+import databaseManager.Database;
 
 public class HackerTest {
 
@@ -24,14 +15,12 @@ public class HackerTest {
 
     //-----------------------------------------------------------------------------------------------------
     // CONJUNTO DE TESTES JÁ FEITO PARA A TAREFA (NÃO PODE SER ALTERADO)
-    
-    
 
     /**
      * Tests if the method update throws an IllegalArgumentException when the phone number is not valid.
-     * 
+     *
      * The method update should throw an IllegalArgumentException when the phone number is not valid.
-     * 
+     *
      * This test case tests this by calling the method update with an invalid phone number and asserting that an IllegalArgumentException is thrown.
      * The expected error message is "Input contains non-numeric characters: 999999999a"
      */
@@ -40,11 +29,9 @@ public class HackerTest {
         Cabbie cabbieTest = new Cabbie();
         cabbieTest.register();
         
-
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            cabbieTest.update("phone", "999999999a"); 
+            cabbieTest.update("phone", "999999999a");
         });
-
         assertEquals("Input contains non-numeric characters: 999999999a", exception.getMessage());
     }
 
@@ -80,6 +67,7 @@ public class HackerTest {
     public void testRidPayment_throwsNullPointforStartTime() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             RidePayment rpTest = new RidePayment("rideId", null, 5.0f, "Dinheiro"); // Invalid phone number with non-numeric characters
+            rpTest.getAmount();
         });
 
         assertEquals("Start time of the ride to be paid cannot be null", exception.getMessage());
@@ -123,10 +111,4 @@ public class HackerTest {
     
     
     }
-
-
-
-
-
-
 }
