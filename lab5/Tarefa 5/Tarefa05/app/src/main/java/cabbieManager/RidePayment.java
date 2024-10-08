@@ -49,6 +49,9 @@ public class RidePayment implements Payment{
         if(rideDistance <= 0){
             throw new InvalidRideDistanceException();
         }
+        if (paymentMethod != "Cartão de crédito" || paymentMethod != "Cartão de débito" || paymentMethod != "Pix" || paymentMethod != "Voucher") {
+            throw new IllegalArgumentException("Payment method not accepted");
+        }
         this.amount = this.calculateValue();
     }
     /**

@@ -15,8 +15,10 @@ public class HackerTest {
     //IMPLEMENTE ABAIXO OS TESTES UNITÁRIOS ADICIONAIS PARA OS 3 TRATAMENTOS DE ERRO IDENTIFICADOS
     @Test //Teste de Tipo de pagamento invalido
     public void testRidePaymantOption_throwsIllegalArgumentException_InvalidPaymantOption() {
-        RidePayment payTest = new RidePayment();
-        payTest.getPaymentMethod();
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            RidePayment payTest = new RidePayment("rideId", LocalDateTime.of(2022, 1, 1, 10, 0), 5.0f, "Cheque");
+        });
+        assertEquals("Payment method not accepted", exception.getMessage());
         
         
     }
