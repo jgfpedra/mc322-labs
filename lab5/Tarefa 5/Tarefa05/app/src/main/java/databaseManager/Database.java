@@ -22,6 +22,7 @@ import cabbieManager.Passenger;
 import cabbieManager.Ride;
 import cabbieManager.RidePayment;
 import cabbieManager.Vehicle;
+import exceptions.UnsupportedObjectTypeException;
 
 @XmlRootElement(name="database")
 public class Database{
@@ -72,12 +73,14 @@ public class Database{
     public List<RidePayment> getPayments(){
         return this.payments;
     }
-
-
-
-
-
-    public void insert(Object object){
+    public void insert(Object object) throws UnsupportedObjectTypeException{
+        if(!(object instanceof Cabbie) &&
+        !(object instanceof Passenger) &&
+        !(object instanceof Vehicle) &&
+        !(object instanceof Ride) &&
+        !(object instanceof RidePayment)){
+            throw new UnsupportedObjectTypeException();
+        }
         if(object instanceof Cabbie){
             this.cabbies.add((Cabbie)object);
         }else if(object instanceof Passenger){
@@ -89,7 +92,6 @@ public class Database{
         }else if(object instanceof RidePayment){
             this.payments.add((RidePayment) object);
         }
-
         this.save();
     }
 

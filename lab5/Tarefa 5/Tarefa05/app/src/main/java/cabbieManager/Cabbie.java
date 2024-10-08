@@ -1,10 +1,10 @@
 
 package cabbieManager;
 
-import com.google.common.base.Objects;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.google.common.base.Objects;
 
 import utils.CabbieInfoGenerator;
 
@@ -61,9 +61,7 @@ public class Cabbie extends Person{
      */
     @Override
     public void update(String field, String newValue){
-
         boolean validField = true;
-
         switch (field) {
             case "name":
                 this.name = newValue;
@@ -91,15 +89,11 @@ public class Cabbie extends Person{
                 System.out.println("Campo inválido");
                 break;
         }
-
         if (validField) {
             System.out.println("Campo " + field + " foi atualizado com sucesso!");
         }
-
         return;
     }
-    
-    
     /**
      * Gets the ID of the cabbie.
      * 
@@ -109,25 +103,20 @@ public class Cabbie extends Person{
     public String getCabbieId() {
         return this.cabbieId;
     }
-    
     public void setCabbieId(String cabbieId) {
         this.cabbieId = cabbieId;
     }
-
     @XmlElement(name = "name")
     public String getName() {
         return this.name;
     }
-
     public void setName(String name){
         this.name = name;
     }
-
     @XmlElement(name = "isBusy")
     public boolean getIsBusy(){
         return this.isBusy;
     }
-
     public void setIsBusy(boolean value){
         this.isBusy = value;
     }
@@ -135,30 +124,28 @@ public class Cabbie extends Person{
     public float getRate() {
         return rate;
     }
-
     /**
      * Sets the phone number of the cabbie.
      * 
      * @param phone the phone number
      * 
      * The phone number must contain only numeric characters.
-
      */
     public void setPhone(String phone) {
+        for(int i = 0; i < phone.length(); i++){
+            if(!Character.isDigit(phone.charAt(i))){
+                throw new IllegalArgumentException("Input contains non-numeric characters: " + phone);
+            }
+        }
         this.phone = phone;
     }
-
-
     public void setRate(float rate) {
         this.rate = rate;
     }
-
     @XmlElement(name = "licenseNumber")
     public String getLicenseNumber() {
         return licenseNumber;
     }
-
-
     public void setLicenseNumber(String licenseNumber) {
         this.licenseNumber = licenseNumber;
     }
@@ -185,5 +172,4 @@ public class Cabbie extends Person{
         Cabbie pas = (Cabbie) o;
         return Objects.equal(this.cabbieId, pas.getCabbieId());
     }
-
 }

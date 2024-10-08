@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 import databaseManager.Database;
-import hacker.InvalidRideDistanceException;
-import hacker.UnsupportedObjectTypeException;
+import exceptions.InvalidRideDistanceException;
+import exceptions.UnsupportedObjectTypeException;
 
 public class HackerTest {
 
@@ -36,7 +36,6 @@ public class HackerTest {
         });
         assertEquals("Input contains non-numeric characters: 999999999a", exception.getMessage());
     }
-
     /**
      * Tests if the method requestRide throws an IllegalArgumentException when the drop location is not one of the valid locations.
      * 
@@ -64,7 +63,6 @@ public class HackerTest {
     public void testRidPayment_throwsNullPointforStartTime() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             RidePayment rpTest = new RidePayment("rideId", null, 5.0f, "Dinheiro"); // Invalid phone number with non-numeric characters
-            rpTest.getAmount();
         });
 
         assertEquals("Start time of the ride to be paid cannot be null", exception.getMessage());
@@ -84,12 +82,8 @@ public class HackerTest {
         Exception exception = assertThrows(UnsupportedObjectTypeException.class, () -> {
             db.insert(loc);
         });
-
         assertEquals("Trying to insert unsupported object type for database insertion", exception.getMessage());
-
-
     }
-
     /**
      * Tests if the constructor RidePayment throws an InvalidRideDistanceException when the ride distance is equal to zero.
      *
@@ -99,14 +93,9 @@ public class HackerTest {
      */
     @Test
     public void testRidePayment_throwsInalidRideDistanceEqualsZero() {
-    
         Exception exception = assertThrows(InvalidRideDistanceException.class, () -> {
             RidePayment rp = new RidePayment("rideId", LocalDateTime.of(2022, 1, 1, 10, 0), 0.0f, "Dinheiro");
-            rp.getAmount();
         });
-
         assertEquals("Ride distance must be greater than zero", exception.getMessage());
-    
-    
     }
 }

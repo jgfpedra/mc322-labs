@@ -6,6 +6,7 @@ import java.util.UUID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import exceptions.InvalidRideDistanceException;
 import utils.LocalDateTimeAdapter;
 
 @XmlRootElement(name="PaymentMethod")
@@ -36,26 +37,20 @@ public class RidePayment implements Payment{
      * 
      */
     public RidePayment(String rideId, LocalDateTime rideStartTime, float rideDistance ,String paymentMethod) {
-
         this.paymentId = UUID.randomUUID().toString();
         this.rideId = rideId;
         this.rideStartTime = rideStartTime;
         this.rideDistance = rideDistance;
         this.paymentMethod = this.selectPaymentMethod(paymentMethod);
         System.out.println("Forma de pagamento selecionada: " + paymentMethod);
-
         if (this.rideStartTime == null) {
             throw new NullPointerException("Start time of the ride to be paid cannot be null");
         }
-
-
+        if(rideDistance <= 0){
+            throw new InvalidRideDistanceException();
+        }
         this.amount = this.calculateValue();
-
-
-
     }
-
-
     /**
      * Selects a PaymentOption from a given string.
      * @param paymentMethod the name of the payment method
