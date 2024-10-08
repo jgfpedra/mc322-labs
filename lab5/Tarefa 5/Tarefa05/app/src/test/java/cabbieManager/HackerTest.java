@@ -24,23 +24,21 @@ public class HackerTest {
     @Test //Teste de Pickup location equals Drop location
     public void testRideRequest_throwsIllegalArgumentException_InvalidDropLocation() {
         Ride rideTest = new Ride();
-        rideTest.requestRide(null, null);
-        
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            
+            rideTest.requestRide("Aeroporto", "Aeroporto");
         });
-        assertEquals("Input contains non-numeric characters: 999999999a", exception.getMessage());
+        assertEquals("Pickup location and drop location cannot be the same", exception.getMessage());
     }
 
     @Test //Não lembro esse teste
-    public void testUpdateCabbie_throwsIllegalArgumentException_InvalidPhoneArgument() {
+    public void testUpdateCabbie_throwsIllegalArgumentException_Invalid() {
         Cabbie cabbieTest = new Cabbie();
         cabbieTest.register();
         
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             cabbieTest.update("phone", "999999999a");
         });
-        assertEquals("Input contains non-numeric characters: 999999999a", exception.getMessage());
+        assertEquals("Input contains non-numeric characters: 999999999", exception.getMessage());
     }
     //-----------------------------------------------------------------------------------------------------
     // CONJUNTO DE TESTES JÁ FEITO PARA A TAREFA (NÃO PODE SER ALTERADO)

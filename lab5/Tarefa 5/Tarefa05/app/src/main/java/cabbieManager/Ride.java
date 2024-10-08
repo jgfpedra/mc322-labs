@@ -52,6 +52,9 @@ public class Ride {
     public void requestRide(String pickupLocation, String dropLocation) {
         this.rideId = UUID.randomUUID().toString();
         //TODO: verificar mesmo local de partida e destino
+        if (pickupLocation.equals(dropLocation)) {
+            throw new IllegalArgumentException("Pickup location and drop location cannot be the same");
+        }
         this.pickupLocation = this.returnLocation(pickupLocation);
         this.dropLocation= this.returnLocation(dropLocation);
         if (pickupLocation.equals(dropLocation)) {
