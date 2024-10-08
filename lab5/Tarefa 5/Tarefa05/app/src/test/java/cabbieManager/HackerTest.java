@@ -13,29 +13,26 @@ import exceptions.UnsupportedObjectTypeException;
 public class HackerTest {
 
     //IMPLEMENTE ABAIXO OS TESTES UNITÁRIOS ADICIONAIS PARA OS 3 TRATAMENTOS DE ERRO IDENTIFICADOS
-    @Test
-    public void testUpdateCabbie_throwsIllegalArgumentException_InvalidPhoneArgument() {
-        Cabbie cabbieTest = new Cabbie();
-        cabbieTest.register();
+    @Test //Teste de Tipo de pagamento invalido
+    public void testRidePaymantOption_throwsIllegalArgumentException_InvalidPaymantOption() {
+        RidePayment payTest = new RidePayment();
+        payTest.getPaymentMethod();
+        
+        
+    }
+
+    @Test //Teste de Pickup location equals Drop location
+    public void testRideRequest_throwsIllegalArgumentException_InvalidDropLocation() {
+        Ride rideTest = new Ride();
+        rideTest.requestRide(null, null);
         
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            cabbieTest.update("phone", "999999999a");
+            
         });
         assertEquals("Input contains non-numeric characters: 999999999a", exception.getMessage());
     }
 
-    @Test
-    public void testUpdateCabbie_throwsIllegalArgumentException_InvalidPhoneArgument() {
-        Cabbie cabbieTest = new Cabbie();
-        cabbieTest.register();
-        
-        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            cabbieTest.update("phone", "999999999a");
-        });
-        assertEquals("Input contains non-numeric characters: 999999999a", exception.getMessage());
-    }
-
-    @Test
+    @Test //Não lembro esse teste
     public void testUpdateCabbie_throwsIllegalArgumentException_InvalidPhoneArgument() {
         Cabbie cabbieTest = new Cabbie();
         cabbieTest.register();

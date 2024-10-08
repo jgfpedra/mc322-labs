@@ -54,6 +54,9 @@ public class Ride {
         //TODO: verificar mesmo local de partida e destino
         this.pickupLocation = this.returnLocation(pickupLocation);
         this.dropLocation= this.returnLocation(dropLocation);
+        if (pickupLocation.equals(dropLocation)) {
+            
+        }
         this.startTime = LocalDateTime.now();
         System.out.println("Corrida chamada por pessoa passageira " + this.passengerId + " de " + pickupLocation + " para " + dropLocation);
         this.updateRideStatus("CHAMADA", null, null);
