@@ -14,18 +14,19 @@ public enum PaymentOption {
         this.fee = fee;
     }
     /**
-     * Returns the PaymentOption corresponding to the given name, or null if none is found.
-     * @param name The name of the payment option to find.
-     * @return The PaymentOption with the given name, or null if none is found.
+     * Returns the {@link PaymentOption} corresponding to the specified name.
+     *
+     * @param name the name of the payment option to retrieve
+     * @return the {@link PaymentOption} associated with the given name
+     * @throws IllegalArgumentException if no {@link PaymentOption} with the specified name exists
      */
-    //TODO: verificar forma de pagamento
     public static PaymentOption valueOfName(String name) {
         for (PaymentOption paymentOption : PaymentOption.values()) {
             if (paymentOption.name.equals(name)) {
                 return paymentOption;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Payment method not accepted");
     }
     /**
      * Calculates the payment fee for a given value.

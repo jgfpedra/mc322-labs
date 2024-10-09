@@ -14,13 +14,11 @@ import utils.LocalDateTimeAdapter;
 
 @XmlRootElement(name = "ride")
 public class Ride {
-    
     private String rideId;
     private String passengerId;
     private String cabbieId;
     private String vehicleId;
     private String status;
-
     // Adcionar campos do Trabalho3
     private Location pickupLocation;
     private Location dropLocation;
@@ -33,15 +31,15 @@ public class Ride {
         this.passengerId = passengerId;
     }
     /**
-     * Requests a ride by a passenger.
+     * Requests a ride from the specified pickup location to the drop location.
      *
-     * @param pickupLocation  the location where the passenger wants to be picked up
-     * @param dropLocation    the location where the passenger wants to be dropped off
+     * <p>This method generates a unique ride ID, checks if the pickup and drop locations are the same,
+     * and initializes the ride's start time and distance. It also updates the ride status and logs
+     * the ride request details.</p>
      *
-     * The ride status is set to "REQUESTED".
-     * The startTime is set to the current time.
-     *
-     * A message is printed to the console with the information of the ride.
+     * @param pickupLocation the location where the ride should start
+     * @param dropLocation the location where the ride should end
+     * @throws IllegalArgumentException if the pickup location and drop location are the same
      */
     public void requestRide(String pickupLocation, String dropLocation) {
         this.rideId = UUID.randomUUID().toString();
@@ -69,9 +67,9 @@ public class Ride {
     }
     /**
      * Calculates the distance between the pickup and drop locations.
-     * 
+     *
      * The distance is calculated as the Euclidean distance between the two points.
-     * 
+     *
      * @return the calculated distance.
      */
     public float calculateDistance() {

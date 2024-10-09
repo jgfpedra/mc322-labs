@@ -25,12 +25,16 @@ public enum Location {
         this.y = y;
         this.name = name;
     }
-
     /**
-     * Returns the Location enum value of the given name.
+     * Returns the {@link Location} corresponding to the specified name.
      *
-     * @param name the name of the location
-     * @return the Location enum value of the given name
+     * <p>This method iterates through the available {@link Location} values
+     * and returns the one that matches the given name. If no match is found,
+     * an {@link IllegalArgumentException} is thrown.</p>
+     *
+     * @param name the name of the location to retrieve
+     * @return the {@link Location} associated with the given name
+     * @throws IllegalArgumentException if no {@link Location} with the specified name exists
      */
     public static Location valueOfName(String name) {
         for (Location location : Location.values()) {

@@ -37,20 +37,14 @@ public class Vehicle {
     }
 
     /**
-     * Updates a field of the Vehicle.
-     * 
-     * @param field The field to be updated.
-     * @param newValue The new value for the field.
-     * 
-     * The valid fields are:
-     * <ul>
-     * <li>vehicleId</li>
-     * <li>registrationNumber</li>
-     * <li>model</li>
-     * <li>year</li>
-     * </ul>
-     * 
-     * If the field is not valid, a message is printed and the field is not updated.
+     * Updates a specified field of the vehicle with a new value.
+     *
+     * <p>This method updates the vehicle's attributes based on the provided field name.
+     * If the field is not valid, it throws an IllegalArgumentException.</p>
+     *
+     * @param field the name of the vehicle attribute to update (e.g., "vehicleId", "registrationNumber", "model", "year")
+     * @param newValue the new value to set for the specified field
+     * @throws IllegalArgumentException if the specified field is not valid
      */
     public void updateVehicle(String field, String newValue) {
         boolean validField = true;
@@ -73,15 +67,12 @@ public class Vehicle {
         }
         if (validField) {
             System.out.println("Campo " + field + " alterado com sucesso");
-        } else {
-            throw new IllegalArgumentException("Field " + field + " is not valid");
         }
-        return;
+        throw new IllegalArgumentException("Field " + field + " is not valid");
     }
-
     /**
      * Gets the ID of the Vehicle.
-     * 
+     *
      * @return the ID of the vehicle (a UUID)
      */
     @XmlElement(name = "vehicleId")

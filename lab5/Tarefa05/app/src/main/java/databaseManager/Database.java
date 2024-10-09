@@ -31,19 +31,14 @@ public class Database{
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<Ride> rides = new ArrayList<>();
     private List<RidePayment> payments = new ArrayList<>();
-    
     private final File file = new File("Tarefa05/app/data/database.xml");
-
-
     public Database(){
     }
-
     public Database(boolean load){
         if(load){
             this.load();
         }
     }
-    
     @XmlElementWrapper(name="passengers")
     @XmlElement(name="passenger")
     public List<Passenger> getPassengers(){
@@ -73,14 +68,18 @@ public class Database{
     public List<RidePayment> getPayments(){
         return this.payments;
     }
+    /**
+     * Inserts an object into the appropriate collection based on its type.
+     *
+     * <p>This method checks the type of the provided object and adds it to the corresponding
+     * collection (cabbies, passengers, vehicles, rides, or ride payments). If the object type
+     * is not supported, it throws an {@link UnsupportedObjectTypeException}.</p>
+     *
+     * @param object the object to insert, which can be an instance of {@link Cabbie}, {@link Passenger}, 
+     *               {@link Vehicle}, {@link Ride}, or {@link RidePayment}
+     * @throws UnsupportedObjectTypeException if the object type is not supported
+     */
     public void insert(Object object) throws UnsupportedObjectTypeException{
-        if(!(object instanceof Cabbie) &&
-        !(object instanceof Passenger) &&
-        !(object instanceof Vehicle) &&
-        !(object instanceof Ride) &&
-        !(object instanceof RidePayment)){
-            throw new UnsupportedObjectTypeException();
-        }
         if(object instanceof Cabbie){
             this.cabbies.add((Cabbie)object);
         }else if(object instanceof Passenger){
@@ -91,6 +90,8 @@ public class Database{
             this.rides.add((Ride) object);
         }else if(object instanceof RidePayment){
             this.payments.add((RidePayment) object);
+        } else {
+            throw new UnsupportedObjectTypeException();
         }
         this.save();
     }
@@ -135,11 +136,9 @@ public class Database{
             try{
                 JAXBContext context = JAXBContext.newInstance(Database.class);
                 Unmarshaller unmarshaller = context.createUnmarshaller();
-
                 InputStream inputStream = new FileInputStream(this.file);
                 Database db = (Database) unmarshaller.unmarshal(inputStream);
                 inputStream.close();
-                
                 this.cabbies = db.getCabbies();
                 this.passengers = db.getPassengers();
                 this.rides = db.getRides();

@@ -28,7 +28,7 @@ public class HackerTest {
      * @throws IllegalArgumentException if the payment option is invalid.
      */
     @Test
-    public void testRidePaymantOption_throwsIllegalArgumentException_InvalidPaymantOption() {
+    public void testRidePaymantOption_throwsIllegalArgumentException_InvalidPaymentOption() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             RidePayment payTest = new RidePayment("rideId", LocalDateTime.of(2022, 1, 1, 10, 0), 5.0f, "Cheque");
         });
@@ -69,7 +69,7 @@ public class HackerTest {
      * with invalid parameters.
      */
     @Test
-    public void testeClasses_IllegalArgumentException() {
+    public void testeClasses_throwsIllegalArgumentException_InvalidUpdateArgument() {
         Cabbie cabbieTest = new Cabbie();
         Passenger passengerTest = new Passenger();
         Vehicle vehicleTest = new Vehicle();
@@ -80,13 +80,11 @@ public class HackerTest {
             cabbieTest.update("RG", "33333333333");
         });
         assertEquals("Field RG is not valid", cabbieException.getMessage()); // Replace "..." with the expected message
-    
         // Assert that updating passenger throws an exception
         Exception passengerException = assertThrows(IllegalArgumentException.class, () -> {
             passengerTest.update("CPF", "33333333333");
         });
         assertEquals("Field CPF is not valid", passengerException.getMessage()); // Replace "..." with the expected message
-    
         // Assert that updating vehicle throws an exception
         Exception vehicleException = assertThrows(IllegalArgumentException.class, () -> {
             vehicleTest.updateVehicle("ID_Passageiro", UUID.randomUUID().toString());
@@ -107,7 +105,6 @@ public class HackerTest {
     public void testUpdateCabbie_throwsIllegalArgumentException_InvalidPhoneArgument() {
         Cabbie cabbieTest = new Cabbie();
         cabbieTest.register();
-        
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             cabbieTest.update("phone", "999999999a");
         });
@@ -167,7 +164,7 @@ public class HackerTest {
      * The expected error message is "Ride distance must be greater than zero".
      */
     @Test
-    public void testRidePayment_throwsInalidRideDistanceEqualsZero() {
+    public void testRidePayment_throwsInvalidRideDistanceEqualsZero() {
         Exception exception = assertThrows(InvalidRideDistanceException.class, () -> {
             RidePayment rp = new RidePayment("rideId", LocalDateTime.of(2022, 1, 1, 10, 0), 0.0f, "Dinheiro");
         });

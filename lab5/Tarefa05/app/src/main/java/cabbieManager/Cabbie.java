@@ -39,22 +39,14 @@ public class Cabbie extends Person{
         System.out.println("Pessoa motorista " + this.cabbieId + " (" + this.name + ") criada com sucesso");
     }
     /**
-     * Updates a field of the cabbie.
+     * Updates a specified field of the cabbie with a new value.
      *
-     * @param field The field to be updated.
-     * @param newValue The new value for the field.
+     * <p>This method updates the cabbie's attributes based on the provided field name.
+     * If the field is not valid, it throws an IllegalArgumentException.</p>
      *
-     * The valid fields are:
-     * <ul>
-     * <li>name</li>
-     * <li>email</li>
-     * <li>phone</li>
-     * <li>cabbieId</li>
-     * <li>rate</li>
-     * <li>licenseNumber</li>
-     * </ul>
-     *
-     * If the field is not valid, a message is printed and the field is not updated.
+     * @param field the name of the attribute to update (e.g., "name", "email", "phone", "cabbieId", "rate", "licenseNumber", "isBusy")
+     * @param newValue the new value to set for the specified field
+     * @throws IllegalArgumentException if the specified field is not valid
      */
     @Override
     public void update(String field, String newValue){
@@ -87,10 +79,8 @@ public class Cabbie extends Person{
         }
         if (validField) {
             System.out.println("Campo " + field + " foi atualizado com sucesso!");
-        } else {
-            throw new IllegalArgumentException("Field " + field + " is not valid");
         }
-        return;
+        throw new IllegalArgumentException("Field " + field + " is not valid");
     }
     /**
      * Gets the ID of the cabbie.
@@ -123,11 +113,13 @@ public class Cabbie extends Person{
         return rate;
     }
     /**
-     * Sets the phone number of the cabbie.
+     * Sets the phone number of cabbie after validating that it contains only numeric characters.
      *
-     * @param phone the phone number
+     * <p>This method checks each character of the provided phone number and throws an
+     * IllegalArgumentException if any non-numeric character is found.</p>
      *
-     * The phone number must contain only numeric characters.
+     * @param phone the phone number to set
+     * @throws IllegalArgumentException if the phone number contains non-numeric characters
      */
     public void setPhone(String phone) {
         for(int i = 0; i < phone.length(); i++){

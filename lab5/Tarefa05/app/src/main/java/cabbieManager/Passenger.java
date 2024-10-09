@@ -32,22 +32,15 @@ public class Passenger extends Person{
         System.out.println("Pessoa passageira " + this.passengerId + " (" + this.name + ") criada com sucesso");
     
     }
-
     /**
-     * Updates a field of the passenger.
-     * 
-     * @param field The field to be updated.
-     * @param newValue The new value for the field.
-     * 
-     * The valid fields are:
-     * <ul>
-     * <li>name</li>
-     * <li>email</li>
-     * <li>phone</li>
-     * <li>passengerId</li>
-     * </ul>
-     * 
-     * If the field is not valid, a message is printed and the field is not updated.
+     * Updates a specified field of the passenger with a new value.
+     *
+     * <p>This method updates the passenger's attributes based on the provided field name.
+     * If the field is not valid, it prints an error message and throws an IllegalArgumentException.</p>
+     *
+     * @param field the name of the attribute to update (e.g., "name", "email", "phone", "passengerId")
+     * @param newValue the new value to set for the specified field
+     * @throws IllegalArgumentException if the specified field is not valid
      */
     @Override
     public void update(String field, String newValue){
@@ -73,10 +66,8 @@ public class Passenger extends Person{
         }
         if (validField) {
             System.out.println("Campo " + field + " atualizado com sucesso!");
-        } else {
-            throw new IllegalArgumentException("Field " + field + " is not valid");
         }
-        return;
+        throw new IllegalArgumentException("Field " + field + " is not valid");
     }
 
     @XmlElement(name = "email")
