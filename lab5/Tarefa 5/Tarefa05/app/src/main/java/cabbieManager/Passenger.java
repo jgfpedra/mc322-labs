@@ -24,7 +24,6 @@ public class Passenger extends Person{
      */
     @Override
     public void register() {
-
         PassengerInfoGenerator pass = new PassengerInfoGenerator();
         this.email = pass.getEmail();
         this.name = pass.getName();
@@ -72,13 +71,12 @@ public class Passenger extends Person{
                 System.out.println("Campo inválido");
                 validField = false;
         }
-
         if (validField) {
             System.out.println("Campo " + field + " atualizado com sucesso!");
+        } else {
+            throw new IllegalArgumentException("Field " + field + " is not valid");
         }
-
         return;
-    
     }
 
     @XmlElement(name = "email")

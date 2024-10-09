@@ -1,8 +1,9 @@
 package cabbieManager;
-import com.google.common.base.Objects;
-
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import com.google.common.base.Objects;
+
 import utils.VehicleInfoGenerator;
 
 @XmlRootElement(name="vehicle")
@@ -52,9 +53,7 @@ public class Vehicle {
      * If the field is not valid, a message is printed and the field is not updated.
      */
     public void updateVehicle(String field, String newValue) {
-
         boolean validField = true;
-
         switch (field) {
             case "vehicleId":
                 this.vehicleId = newValue;
@@ -70,15 +69,13 @@ public class Vehicle {
                 break;
             default:
                 validField = false;
-                System.out.println("Campo inválido, tente novametne");
                 break;
         }
-
         if (validField) {
             System.out.println("Campo " + field + " alterado com sucesso");
+        } else {
+            throw new IllegalArgumentException("Field " + field + " is not valid");
         }
-
-
         return;
     }
 

@@ -28,7 +28,6 @@ public class Cabbie extends Person{
      */
     @Override
     public void register() {
-
         CabbieInfoGenerator cab = new CabbieInfoGenerator();
         this.name = cab.getName();
         this.email = cab.getEmail();
@@ -38,15 +37,13 @@ public class Cabbie extends Person{
         this.licenseNumber = cab.getLicenseNumber();
         this.isBusy = false;
         System.out.println("Pessoa motorista " + this.cabbieId + " (" + this.name + ") criada com sucesso");
-    
     }
-
     /**
      * Updates a field of the cabbie.
-     * 
+     *
      * @param field The field to be updated.
      * @param newValue The new value for the field.
-     * 
+     *
      * The valid fields are:
      * <ul>
      * <li>name</li>
@@ -56,7 +53,7 @@ public class Cabbie extends Person{
      * <li>rate</li>
      * <li>licenseNumber</li>
      * </ul>
-     * 
+     *
      * If the field is not valid, a message is printed and the field is not updated.
      */
     @Override
@@ -86,17 +83,18 @@ public class Cabbie extends Person{
                 break;
             default:
                 validField = false;
-                System.out.println("Campo inválido");
                 break;
         }
         if (validField) {
             System.out.println("Campo " + field + " foi atualizado com sucesso!");
+        } else {
+            throw new IllegalArgumentException("Field " + field + " is not valid");
         }
         return;
     }
     /**
      * Gets the ID of the cabbie.
-     * 
+     *
      * @return the ID of the cabbie (a UUID)
      */
     @XmlElement(name = "cabbieId")
@@ -126,9 +124,9 @@ public class Cabbie extends Person{
     }
     /**
      * Sets the phone number of the cabbie.
-     * 
+     *
      * @param phone the phone number
-     * 
+     *
      * The phone number must contain only numeric characters.
      */
     public void setPhone(String phone) {

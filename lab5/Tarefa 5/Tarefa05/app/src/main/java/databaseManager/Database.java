@@ -94,7 +94,6 @@ public class Database{
         }
         this.save();
     }
-    //TODO: criar erro para essa classe
     private <T> void update(T newItem, List<T> data){
         for(int i=0;i<data.size();i++){
             Object item = data.get(i);
