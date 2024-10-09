@@ -1,3 +1,9 @@
+/*
+ * Nome: Gabriel Henrique Pereira Lopes da Silva
+ * RA: 200342
+ * Nome: Joao Guilherme Ferreira Pedra
+ * RA: 248349
+ */
 package cabbieManager;
 
 import databaseManager.Database;
