@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<database>
+    <cabbies>
+        <cabbie>
+            <cabbieId>46a23a43-7e4a-4ab6-9c35-d7f02b63de28</cabbieId>
+            <isBusy>false</isBusy>
+            <licenseNumber>456AbCdE</licenseNumber>
+            <name>Martina</name>
+            <rate>4.0</rate>
+        </cabbie>
+    </cabbies>
+    <passengers>
+        <passenger>
+            <email>felipe.oliveira@email.com</email>
+            <name>Estevão</name>
+            <passengerId>7415e369-36af-4a69-b4e3-e7aa749f3b9e</passengerId>
+            <phone>+55 85 93456-7890</phone>
+        </passenger>
+        <passenger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="businessPassenger">
+            <email>fernanda.lima@email.com</email>
+            <name>Fernanda</name>
+            <passengerId>854d8f55-18fc-4a68-a326-fd4efdccf9a5</passengerId>
+            <phone>+55 67 98901-2345</phone>
+            <businessEmail>lisa.white@globalventures.com</businessEmail>
+        </passenger>
+        <passenger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vipPassenger">
+            <email>gabriela.souza@email.com</email>
+            <name>Gabriela</name>
+            <passengerId>f41f0505-f4f2-4f5b-86a9-80de993c9ee8</passengerId>
+            <phone>+55 12 90123-4567</phone>
+            <vipExpiration>2024-07-04T07:45</vipExpiration>
+        </passenger>
+    </passengers>
+    <payments>
+        <payment>
+            <amount>25.792</amount>
+            <paymentId>e5b560a8-ffc3-4497-a2da-a56edf3c456e</paymentId>
+            <paymentMethod>CREDIT_CARD</paymentMethod>
+            <rideDistance>11.31</rideDistance>
+            <rideStartTime>2024-10-12T17:25:05.589077310</rideStartTime>
+        </payment>
+        <payment>
+            <amount>64.84</amount>
+            <paymentId>b04429e2-694e-4c90-9b28-390d21ae57c0</paymentId>
+            <paymentMethod>PIX</paymentMethod>
+            <rideDistance>15.3</rideDistance>
+            <rideStartTime>2024-10-12T17:25:05.731277984</rideStartTime>
+        </payment>
+        <payment>
+            <amount>64.84</amount>
+            <paymentId>4fa3cb7a-0e4e-440f-9825-29658ea06c39</paymentId>
+            <paymentMethod>PIX</paymentMethod>
+            <rideDistance>15.3</rideDistance>
+            <rideStartTime>2024-10-12T17:25:05.731277984</rideStartTime>
+        </payment>
+    </payments>
+    <rides>
+        <ride>
+            <cabbieId>46a23a43-7e4a-4ab6-9c35-d7f02b63de28</cabbieId>
+            <distance>11.31</distance>
+            <dropLocation>ESTACAO_DE_TREM</dropLocation>
+            <passenger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="businessPassenger">
+                <email>fernanda.lima@email.com</email>
+                <name>Fernanda</name>
+                <passengerId>854d8f55-18fc-4a68-a326-fd4efdccf9a5</passengerId>
+                <phone>+55 67 98901-2345</phone>
+                <businessEmail>lisa.white@globalventures.com</businessEmail>
+            </passenger>
+            <rideId>a2bdb66d-f431-4bf1-856c-1cefaabf3e30</rideId>
+            <startTime>2024-10-12T17:25:05.589077310</startTime>
+            <status>EM_PROGRESSO</status>
+            <vehicleId>3fd1943c-08d2-495b-b386-fc24c65857ba</vehicleId>
+        </ride>
+        <ride>
+            <cabbieId>46a23a43-7e4a-4ab6-9c35-d7f02b63de28</cabbieId>
+            <distance>11.31</distance>
+            <dropLocation>ESTACAO_DE_TREM</dropLocation>
+            <passenger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="businessPassenger">
+                <email>fernanda.lima@email.com</email>
+                <name>Fernanda</name>
+                <passengerId>854d8f55-18fc-4a68-a326-fd4efdccf9a5</passengerId>
+                <phone>+55 67 98901-2345</phone>
+                <businessEmail>lisa.white@globalventures.com</businessEmail>
+            </passenger>
+            <rideId>a2bdb66d-f431-4bf1-856c-1cefaabf3e30</rideId>
+            <startTime>2024-10-12T17:25:05.589077310</startTime>
+            <status>EM_PROGRESSO</status>
+            <vehicleId>3fd1943c-08d2-495b-b386-fc24c65857ba</vehicleId>
+        </ride>
+        <ride>
+            <cabbieId>46a23a43-7e4a-4ab6-9c35-d7f02b63de28</cabbieId>
+            <distance>15.3</distance>
+            <dropLocation>BIBLIOTECA</dropLocation>
+            <passenger>
+                <email>felipe.oliveira@email.com</email>
+                <name>Estevão</name>
+                <passengerId>7415e369-36af-4a69-b4e3-e7aa749f3b9e</passengerId>
+                <phone>+55 85 93456-7890</phone>
+            </passenger>
+            <rideId>0aab9bb6-fa60-4f71-bac4-8623b3d46bd9</rideId>
+            <status>EM_PROGRESSO</status>
+            <vehicleId>3fd1943c-08d2-495b-b386-fc24c65857ba</vehicleId>
+        </ride>
+        <ride>
+            <cabbieId>46a23a43-7e4a-4ab6-9c35-d7f02b63de28</cabbieId>
+            <distance>15.3</distance>
+            <dropLocation>BIBLIOTECA</dropLocation>
+            <passenger>
+                <email>felipe.oliveira@email.com</email>
+                <name>Estevão</name>
+                <passengerId>7415e369-36af-4a69-b4e3-e7aa749f3b9e</passengerId>
+                <phone>+55 85 93456-7890</phone>
+            </passenger>
+            <rideId>5678f15c-b888-41be-bf05-24907f89c1b5</rideId>
+            <startTime>2024-10-12T17:25:06.074400415</startTime>
+            <status>EM_PROGRESSO</status>
+            <vehicleId>3fd1943c-08d2-495b-b386-fc24c65857ba</vehicleId>
+        </ride>
+    </rides>
+    <vehicles>
+        <vehicle>
+            <cabbieId>46a23a43-7e4a-4ab6-9c35-d7f02b63de28</cabbieId>
+            <model>Mazda</model>
+            <registrationNumber>ABD123</registrationNumber>
+            <vehicleId>3fd1943c-08d2-495b-b386-fc24c65857ba</vehicleId>
+            <year>2015</year>
+        </vehicle>
+    </vehicles>
+</database>

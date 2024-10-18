@@ -15,24 +15,27 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class CabbieManagerTest {
-
-    private Ride ride;
-
+    private Passenger pass = new Passenger();
+    private Ride ride = new Ride(this.pass);
     @Test
     public void testCalculateDistance_SameLocations() {
         // Arrange
-        ride = new Ride("testPassengerId");
+        pass.register();
+        ride = new Ride(pass);
         ride.setPickupLocation(Location.AEROPORTO);
         ride.setDropLocation(Location.AEROPORTO);
+
         // Act
         float distance = ride.calculateDistance();
+
         // Assert
         assertEquals(0, distance, 0);
     }
+
     @Test
     public void testCalculateDistance_DifferentLocations1() {
         // Arrange
-        ride = new Ride("testPassengerId");
+        ride = new Ride(pass);
         ride.setPickupLocation(Location.AEROPORTO);
         ride.setDropLocation(Location.ESTADIO);
         // Act
@@ -43,7 +46,7 @@ public class CabbieManagerTest {
     @Test
     public void testCalculateDistance_DifferentLocations2() {
         // Arrange
-        ride = new Ride("testPassengerId");
+        ride = new Ride(pass);
         ride.setPickupLocation(Location.HOSPITAL);
         ride.setDropLocation(Location.ESTACAO_DE_TREM);
         // Act
@@ -53,17 +56,17 @@ public class CabbieManagerTest {
     }
     @Test
     public void testDiurnalRideWithinRange() {
-        RidePayment ridePayment = new RidePayment("rideId", LocalDateTime.of(2022, 1, 1, 10, 0), 5.0f, "Dinheiro");
+        RidePayment ridePayment = new RidePayment(ride.getRideId(), LocalDateTime.of(2022, 1, 1, 10, 0), 5.0f, "Dinheiro");
         Assertions.assertEquals(15.00f, ridePayment.calculateValue(), 0);
     }
     @Test
     public void testDiurnalRideWithinRange2() {
-        RidePayment ridePayment = new RidePayment("rideId", LocalDateTime.of(2022, 1, 1, 10, 0), 18.0f, "Cartão de Débito");
+        RidePayment ridePayment = new RidePayment(ride.getRideId(), LocalDateTime.of(2022, 1, 1, 10, 0), 18.0f, "Cartão de Débito");
         Assertions.assertEquals(78f, ridePayment.calculateValue(), 0);
     }
     @Test
     public void testNocturnalRideWithinRange() {
-        RidePayment ridePayment = new RidePayment("rideId", LocalDateTime.of(2022, 1, 1, 20, 0), 5.0f, "Dinheiro");
+        RidePayment ridePayment = new RidePayment(ride.getRideId(), LocalDateTime.of(2022, 1, 1, 20, 0), 5.0f, "Dinheiro");
         Assertions.assertEquals(18.50f, ridePayment.calculateValue(), 0);
     }
     @Test
@@ -99,4 +102,73 @@ public class CabbieManagerTest {
             marshaller.marshal(vehicle, sw);
         });
     }
+    @Test
+    public void testCreateBusinessPassenger() {
+        // Arrange
+        BusinessPassenger businessPassenger = new BusinessPassenger();
+        // Act
+        businessPassenger.register();
+        // Assert
+        assertNotNull(businessPassenger);
+    }
+
+    @Test
+    public void testCreateVIPPassenger() {
+        // Arrange
+        VIPPassenger vipPassenger = new VIPPassenger();
+
+        // Act
+        vipPassenger.register();
+
+        // Assert
+        assertNotNull(vipPassenger);
+    }
+    @Test
+    public void testRideAggregationWithPassenger() {
+        // Arrange
+        Passenger passenger = new Passenger();
+        passenger.register();
+        Ride ride = new Ride(passenger);
+
+        // Act
+        Passenger associatedPassenger = ride.getPassenger();
+
+        // Assert
+        assertNotNull(associatedPassenger);
+        assertEquals(passenger, associatedPassenger);
+    }
+
+    @Test
+    public void testRideCompositionWithVehicle() {
+        // Arrange
+        Vehicle vehicle = new Vehicle();
+        vehicle.registerVehicle();
+        Ride ride = new Ride(pass);
+        ride.setVehicle(vehicle);
+
+        // Act
+        Vehicle associatedVehicle = ride.getVehicle();
+
+        // Assert
+        assertNotNull(associatedVehicle);
+        assertEquals(vehicle, associatedVehicle);
+    }
+
+    @Test
+    public void testRideCompositionWithCabbie() {
+        // Arrange
+        Cabbie cabbie = new Cabbie();
+        cabbie.register();
+        Ride ride = new Ride(pass);
+        ride.setCabbie(cabbie);
+
+        // Act
+        Cabbie associatedCabbie = ride.getCabbie();
+
+        // Assert
+        assertNotNull(associatedCabbie);
+        assertEquals(cabbie, associatedCabbie);
+    }
+
+
 }

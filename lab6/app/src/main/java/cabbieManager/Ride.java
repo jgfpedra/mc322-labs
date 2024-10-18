@@ -4,18 +4,20 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.google.common.base.Objects;
 
-import utils.LocalDateTimeAdapter;s
+import utils.LocalDateTimeAdapter;
+
 
 @XmlRootElement(name = "ride")
 public class Ride {
     private String rideId;
-    private String passengerId;
-    private String cabbieId;
-    private String vehicleId;
+    private Passenger passenger;
+    private Cabbie cabbie;
+    private Vehicle vehicle;
     private String status;
     // Adcionar campos do Trabalho3
     private Location pickupLocation;
@@ -25,39 +27,36 @@ public class Ride {
     //Adicionar os métodos da classe Ride
     public Ride(){
     }
-    public Ride(String passengerId) {
-        this.passengerId = passengerId;
+    public Ride(Passenger passenger) {
+        this.passenger = passenger;
     }
     /**
-     * Requests a ride from the specified pickup location to the drop location.
+     * Requests a ride by a passenger.
      *
-     * <p>This method generates a unique ride ID, checks if the pickup and drop locations are the same,
-     * and initializes the ride's start time and distance. It also updates the ride status and logs
-     * the ride request details.</p>
+     * @param pickupLocation  the location where the passenger wants to be picked up
+     * @param dropLocation    the location where the passenger wants to be dropped off
      *
-     * @param pickupLocation the location where the ride should start
-     * @param dropLocation the location where the ride should end
-     * @throws IllegalArgumentException if the pickup location and drop location are the same
+     * The ride status is set to "REQUESTED".
+     * The startTime is set to the current time.
+     *
+     * A message is printed to the console with the information of the ride.
      */
     public void requestRide(String pickupLocation, String dropLocation) {
         this.rideId = UUID.randomUUID().toString();
-        if (pickupLocation.equals(dropLocation)) {
-            throw new IllegalArgumentException("Pickup location and drop location cannot be the same");
-        }
         this.pickupLocation = this.returnLocation(pickupLocation);
         this.dropLocation= this.returnLocation(dropLocation);
         this.startTime = LocalDateTime.now();
-        System.out.println("Corrida chamada por pessoa passageira " + this.passengerId + " de " + pickupLocation + " para " + dropLocation);
+        System.out.println("Corrida chamada por pessoa passageira " + this.passenger.getPassengerId() + " de " + pickupLocation + " para " + dropLocation);
         this.updateRideStatus("CHAMADA", null, null);
         this.distance = this.calculateDistance();
     }
     /**
      * Returns a Location given a location name.
-     * 
+     *
      * @param locationName  the name of the location
-     * 
+     *
      * If the location is not found, a default value of AEROPORTO is returned.
-     * 
+     *
      * @return a Location object
      */
     private Location returnLocation(String locationName) {
@@ -71,6 +70,7 @@ public class Ride {
      * @return the calculated distance.
      */
     public float calculateDistance() {
+        
         int x_pickup = pickupLocation.getX();
         int y_pickup = pickupLocation.getY();
         int x_drop = dropLocation.getX();
@@ -82,22 +82,22 @@ public class Ride {
     }
     /**
      * Atualiza o status da corrida.
-     * 
+     *
      * Se o status for "ACEPTED", armazena o ID do motorista e do veiculo que
      * aceitou a corrida.
-     * 
+     *
      * @param status  o novo status da corrida
      * @param cabbieId o ID do motorista que aceitou a corrida, se status for
      *                "ACCEPTED"
      * @param vehicleId o ID do veiculo que aceitou a corrida, se status for
      *                  "ACCEPTED"
      */
-    public void updateRideStatus(String status, String cabbieId, String vehicleId) {
+    public void updateRideStatus(String status, Cabbie cabbie, Vehicle vehicle) {
         this.status = status;
         if (status.equals("ACEITA")) {
-            this.cabbieId = cabbieId;
-            this.vehicleId = vehicleId;
-            System.out.println(("Corrida aceita por pessoa motorista " + this.cabbieId));
+            this.cabbie = cabbie;
+            this.vehicle = vehicle;
+            System.out.println(("Corrida aceita por pessoa motorista " + this.cabbie.getCabbieId()));
         } else {
             System.out.println("Status da corrida: " + this.status);
         }
@@ -116,7 +116,6 @@ public class Ride {
     public void setPickupLocation(Location pickupLocation) {
         this.pickupLocation = pickupLocation;
     }
-
     @XmlElement(name = "dropLocation")
     public Location getDropLocation(){
         return this.dropLocation;
@@ -160,33 +159,37 @@ public class Ride {
         return this.distance;
     }
     @XmlElement(name = "passengerId")
-    public String getPassengerId() {
-        return passengerId;
+    public Passenger getPassenger() {
+        return passenger;
     }
-    public void setPassengerId(String passengerId) {
-        this.passengerId = passengerId;
+    public void setPassenger(Passenger passenger) {
+        this.passenger = passenger;
     }
-    @XmlElement(name = "cabbieId")
-    public String getCabbieId() {
-        return cabbieId;
+    @XmlElement(name = "cabbie")
+    public Cabbie getCabbie() {
+        return cabbie;
     }
-    public void setCabbieId(String cabbieId) {
-        this.cabbieId = cabbieId;
+    public void setCabbie(Cabbie cabbie) {
+        this.cabbie = cabbie;
     }
     @XmlElement(name = "vehicleId")
-    public String getVehicleId() {
-        return vehicleId;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
-    public void setVehicleId(String vehicleId) {
-        this.vehicleId = vehicleId;
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
+
     @XmlElement(name = "Status")
     public String getStatus() {
         return status;
     }
+
     public void setStatus(String status) {
         this.status = status;
     }
+
     @XmlElement(name = "distance")
     public float getDistance() {
         return distance;
@@ -195,6 +198,8 @@ public class Ride {
     public void setDistance(float distance) {
         this.distance = distance;
     }
+
+
     @Override
     public boolean equals(Object o){
         if(o == this){
@@ -204,6 +209,7 @@ public class Ride {
         Ride pas = (Ride) o;
         return Objects.equal(this.rideId, pas.getRideId());
     }
+    
     @Override
     public String toString() {
         return "Ride: " + this.rideId;
