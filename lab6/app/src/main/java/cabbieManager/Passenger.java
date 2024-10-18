@@ -10,15 +10,12 @@ import utils.PassengerInfoGenerator;
 @XmlRootElement(name="passenger")
 public class Passenger extends Person{
     private String passengerId;
-    private String email;
-    private String name;
-    private String phone;
     public Passenger() {
     }
     /**
      * Registers a passenger by generating random information.
      * This method assigns a random email, name, phone number, and user ID to the passenger.
-     * 
+     *
      */
     @Override
     public void register() {
@@ -68,7 +65,7 @@ public class Passenger extends Person{
         if (validField) {
             System.out.println("Campo " + field + " atualizado com sucesso!");
         }
-        return;
+        throw new IllegalArgumentException("Field " + field + " is not valid");
     }
     @XmlElement(name = "email")
     public String getEmail() {
@@ -103,25 +100,22 @@ public class Passenger extends Person{
     public void setPassengerId(String passengerId){
         this.passengerId = passengerId;
     }
-
     /**
      * Returns a string representation of the object.
-     * 
+     *
      * The format is: "email name phone passengerId"
-     * 
+     *
      * @return a string representation of the object
      */
     @Override
     public String toString() {
         return "Passenger: " + this.email + this.name + this.phone + this.passengerId;
     }
-
     @Override
     public boolean equals(Object o){
         if(o == this){
             return true;
         }
-        
         Passenger pas = (Passenger) o;
         return Objects.equal(this.passengerId, pas.getPassengerId());
     }

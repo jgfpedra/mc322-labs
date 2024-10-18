@@ -31,60 +31,46 @@ public class Database{
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<Ride> rides = new ArrayList<>();
     private List<RidePayment> payments = new ArrayList<>();
-    
-    private final File file = new File("Tarefa05/app/data/database.xml");
-
-
+    private final File file = new File("lab6/app/data/database.xml");
     public Database(){
     }
-
     public Database(boolean load){
         if(load){
             this.load();
         }
     }
-    
     @XmlElementWrapper(name="passengers")
     @XmlElement(name="passenger")
     public List<Passenger> getPassengers(){
         return this.passengers;
     }
-
     @XmlElementWrapper(name="cabbies")
     @XmlElement(name="cabbie")
     public List<Cabbie> getCabbies(){
         return this.cabbies;
     }
-
     @XmlElementWrapper(name="rides")
     @XmlElement(name="ride")
     public List<Ride> getRides(){
         return this.rides;
     }
-
     @XmlElementWrapper(name="vehicles")
     @XmlElement(name="vehicle")
     public List<Vehicle> getVehicles(){
         return this.vehicles;
     }
-
     @XmlElementWrapper(name="payments")
     @XmlElement(name="payment")
     public List<RidePayment> getPayments(){
         return this.payments;
     }
-
-
-
-
     /**
      * Inserts an object into the database.
-     * 
+     *
      * @param object the object to be inserted. The object must be of type Cabbie, Passenger, Vehicle, Ride, or RidePayment.
-     * 
+     *
      * @throws UnsupportedObjectTypeException if the object is not of a supported type.
      */
-
     public void insert(Object object){
         if(object instanceof Cabbie){
             this.cabbies.add((Cabbie)object);

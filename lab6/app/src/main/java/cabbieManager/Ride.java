@@ -1,6 +1,7 @@
 package cabbieManager;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlElement;
@@ -11,19 +12,20 @@ import com.google.common.base.Objects;
 
 import utils.LocalDateTimeAdapter;
 
-
 @XmlRootElement(name = "ride")
 public class Ride {
     private String rideId;
     private Passenger passenger;
     private Cabbie cabbie;
     private Vehicle vehicle;
-    private String status;
     // Adcionar campos do Trabalho3
     private Location pickupLocation;
     private Location dropLocation;
-    private LocalDateTime startTime;
     private float distance;
+    private String status;
+    private LocalDateTime startTime;
+    //TODO: implementar algo que use esse endTime
+    private LocalDateTime endTime;
     //Adicionar os métodos da classe Ride
     public Ride(){
     }
@@ -43,9 +45,13 @@ public class Ride {
      */
     public void requestRide(String pickupLocation, String dropLocation) {
         this.rideId = UUID.randomUUID().toString();
+        if (pickupLocation.equals(dropLocation)) {
+            throw new IllegalArgumentException("Pickup location and drop location cannot be the same");
+        }
         this.pickupLocation = this.returnLocation(pickupLocation);
         this.dropLocation= this.returnLocation(dropLocation);
         this.startTime = LocalDateTime.now();
+        this.endTime = LocalDateTime.now().plus(30, ChronoUnit.MINUTES);
         System.out.println("Corrida chamada por pessoa passageira " + this.passenger.getPassengerId() + " de " + pickupLocation + " para " + dropLocation);
         this.updateRideStatus("CHAMADA", null, null);
         this.distance = this.calculateDistance();
@@ -70,7 +76,6 @@ public class Ride {
      * @return the calculated distance.
      */
     public float calculateDistance() {
-        
         int x_pickup = pickupLocation.getX();
         int y_pickup = pickupLocation.getY();
         int x_drop = dropLocation.getX();
@@ -149,6 +154,16 @@ public class Ride {
     public LocalDateTime getStartTime() {
         return this.startTime;
     }
+        /**
+     * Gets the end time of this ride.
+     *
+     * @return the end time of this ride (a LocalDateTime)
+     */
+    @XmlJavaTypeAdapter(value = LocalDateTimeAdapter.class)
+    @XmlElement(name = "endTime")
+    public LocalDateTime getEndTime() {
+        return this.endTime;
+    }
     /**
      * Gets the distance of this ride.
      *
@@ -176,40 +191,31 @@ public class Ride {
     public Vehicle getVehicle() {
         return vehicle;
     }
-
     public void setVehicle(Vehicle vehicle) {
         this.vehicle = vehicle;
     }
-
     @XmlElement(name = "Status")
     public String getStatus() {
         return status;
     }
-
     public void setStatus(String status) {
         this.status = status;
     }
-
     @XmlElement(name = "distance")
     public float getDistance() {
         return distance;
     }
-    
     public void setDistance(float distance) {
         this.distance = distance;
     }
-
-
     @Override
     public boolean equals(Object o){
         if(o == this){
             return true;
         }
-        
         Ride pas = (Ride) o;
         return Objects.equal(this.rideId, pas.getRideId());
     }
-    
     @Override
     public String toString() {
         return "Ride: " + this.rideId;

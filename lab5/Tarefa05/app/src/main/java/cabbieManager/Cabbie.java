@@ -139,8 +139,6 @@ public class Cabbie extends Person{
     public void setLicenseNumber(String licenseNumber) {
         this.licenseNumber = licenseNumber;
     }
-
-
     /**
      * Returns a string representation of the object.
      * 

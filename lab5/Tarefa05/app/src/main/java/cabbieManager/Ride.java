@@ -4,11 +4,10 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import com.google.common.base.Objects;
-
-import utils.LocalDateTimeAdapter;s
 
 @XmlRootElement(name = "ride")
 public class Ride {
@@ -191,7 +190,6 @@ public class Ride {
     public float getDistance() {
         return distance;
     }
-    
     public void setDistance(float distance) {
         this.distance = distance;
     }

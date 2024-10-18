@@ -6,34 +6,31 @@ import java.util.UUID;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import exceptions.InvalidRideDistanceException;
 import utils.LocalDateTimeAdapter;
 
 @XmlRootElement(name="PaymentMethod")
 public class RidePayment implements Payment{
-    
     private String paymentId;
     private String rideId;
     private LocalDateTime rideStartTime;
     private float rideDistance;
     private float amount;
     private PaymentOption paymentMethod;
-
     public RidePayment(){
-        
     }
-
     /**
      * Constructs a new {@code RidePayment} instance.
      * <p>
      * This constructor initializes a new payment for a ride, generating a unique payment ID and 
      * calculating the amount based on the distance of the ride and the payment method.
      * </p>
-     * 
+     *
      * @param rideId         The unique identifier for the ride.
      * @param rideStartTime  The start time of the ride. Must not be {@code null}.
      * @param rideDistance   The distance traveled during the ride, in kilometers.
      * @param paymentMethod  The payment method selected by the user (e.g., "credit", "cash").
-     * 
+     *
      */
     public RidePayment(String rideId, LocalDateTime rideStartTime, float rideDistance ,String paymentMethod) {
         this.paymentId = UUID.randomUUID().toString();
@@ -44,6 +41,9 @@ public class RidePayment implements Payment{
         System.out.println("Forma de pagamento selecionada: " + paymentMethod);
         if (this.rideStartTime == null) {
             throw new NullPointerException("Start time of the ride to be paid cannot be null");
+        }
+        if(rideDistance <= 0){
+            throw new InvalidRideDistanceException();
         }
         this.amount = this.calculateValue();
     }
@@ -57,7 +57,7 @@ public class RidePayment implements Payment{
     }
     /**
      * Calculates the total amount of the ride payment.
-     * 
+     *
      * <p>
      * The amount is calculated based on the ride distance and the payment method selected by the user.
      * The algorithm used is as follows:
@@ -67,7 +67,7 @@ public class RidePayment implements Payment{
      * <li>Calculate the total amount by adding the initial price and the price per km multiplied by the ride distance.</li>
      * <li>Apply the payment method fee to the total amount.</li>
      * </ol>
-     * 
+     *
      * @return the calculated amount
      */
     public float calculateValue() {
