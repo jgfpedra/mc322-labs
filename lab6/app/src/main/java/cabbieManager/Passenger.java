@@ -30,8 +30,9 @@ public class Passenger extends Person{
             System.out.println("Pessoa passageira(conta empresarial) " + this.passengerId + " (" + this.name + ") criada com sucesso");
         } else if(this instanceof VIPPassenger){
             System.out.println("Pessoa passageira(conta vip) " + this.passengerId + " (" + this.name + ") criada com sucesso");
+        } else {
+            System.out.println("Pessoa passageira " + this.passengerId + " (" + this.name + ") criada com sucesso");
         }
-        System.out.println("Pessoa passageira " + this.passengerId + " (" + this.name + ") criada com sucesso");
     }
     /**
      * Updates a field of the passenger.

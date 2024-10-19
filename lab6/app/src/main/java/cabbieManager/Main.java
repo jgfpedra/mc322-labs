@@ -12,8 +12,6 @@ import databaseManager.Database;
 public class Main {
     public static void main(String[] args) throws Exception {
         //Aqui você deve realizar a simulação do funcionamento do sistema.
-        //TODO: fazer teste do endTime
-        //TODO: fazer teste setando VIP com data menor que o do startRideTime
         //----------------------------------------------------------------
         Database db = new Database();
         // Create Instances

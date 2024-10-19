@@ -24,7 +24,6 @@ public class Ride {
     private float distance;
     private String status;
     private LocalDateTime startTime;
-    //TODO: implementar algo que use esse endTime
     private LocalDateTime endTime;
     //Adicionar os métodos da classe Ride
     public Ride(){

@@ -2,7 +2,7 @@
 <database>
     <cabbies>
         <cabbie>
-            <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
+            <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
             <isBusy>false</isBusy>
             <licenseNumber>A7bC8dEf</licenseNumber>
             <name>Martina</name>
@@ -11,35 +11,35 @@
     </cabbies>
     <passengers>
         <passenger>
-            <email>mateus.pereira@email.com</email>
+            <email>gabriela.souza@email.com</email>
             <name>Estevão</name>
-            <passengerId>3f23b2a2-1595-4233-8c7f-e2b846d0c39c</passengerId>
-            <phone>+55 84 99012-3456</phone>
+            <passengerId>a758a538-f297-4be6-9b86-5544cff0e7eb</passengerId>
+            <phone>+55 12 90123-4567</phone>
         </passenger>
         <passenger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="businessPassenger">
-            <email>mateus.pereira@email.com</email>
-            <name>Mateus</name>
-            <passengerId>b788bace-4155-43ba-b019-5061eb323c8c</passengerId>
-            <phone>+55 84 99012-3456</phone>
+            <email>tiago.silva@email.com</email>
+            <name>Tiago</name>
+            <passengerId>f8f26fbb-0778-45fc-a875-cf6f54e24193</passengerId>
+            <phone>+55 13 91234-5678</phone>
             <discount>0.35</discount>
         </passenger>
         <passenger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vipPassenger">
-            <email>tiago.silva@email.com</email>
-            <name>Tiago</name>
-            <passengerId>221ab530-dec1-4a82-aecc-daf7d19f196c</passengerId>
-            <phone>+55 13 91234-5678</phone>
+            <email>mateus.pereira@email.com</email>
+            <name>Mateus</name>
+            <passengerId>4216ffa3-6b0f-43fc-bcdd-49b5ac750c6d</passengerId>
+            <phone>+55 84 99012-3456</phone>
             <discount>0.45</discount>
-            <vipExpiration>2024-10-20T07:14:27.432388060</vipExpiration>
+            <vipExpiration>2024-10-20T16:50:50.425781993</vipExpiration>
         </passenger>
     </passengers>
     <payments>
         <payment>
             <amount>25.79</amount>
-            <paymentId>7a0688a1-8e49-4230-875f-7b4cff8b8679</paymentId>
+            <paymentId>6bd80769-5e92-484f-86ad-67e125744f5e</paymentId>
             <paymentMethod>CREDIT_CARD</paymentMethod>
             <ride>
                 <cabbie>
-                    <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
+                    <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
                     <isBusy>false</isBusy>
                     <licenseNumber>A7bC8dEf</licenseNumber>
                     <name>Martina</name>
@@ -48,33 +48,33 @@
                 <distance>11.31</distance>
                 <dropLocation>ESTACAO_DE_TREM</dropLocation>
                 <passengerId xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="businessPassenger">
-                    <email>mateus.pereira@email.com</email>
-                    <name>Mateus</name>
-                    <passengerId>b788bace-4155-43ba-b019-5061eb323c8c</passengerId>
-                    <phone>+55 84 99012-3456</phone>
+                    <email>tiago.silva@email.com</email>
+                    <name>Tiago</name>
+                    <passengerId>f8f26fbb-0778-45fc-a875-cf6f54e24193</passengerId>
+                    <phone>+55 13 91234-5678</phone>
                     <discount>0.35</discount>
                 </passengerId>
                 <rideDistance>11.31</rideDistance>
-                <rideId>947cc17f-7394-4470-bffc-9f608e25b1e5</rideId>
+                <rideId>a0bc384f-b3de-4b53-bf4e-f89cd27fcdc0</rideId>
                 <Status>EM_PROGRESSO</Status>
                 <vehicleId>
-                    <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
-                    <model>Mazda</model>
+                    <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
+                    <model>Nissan</model>
                     <registrationNumber>ABD123</registrationNumber>
-                    <vehicleId>8d8ba66b-f10c-46ab-8d90-f504ce6baca2</vehicleId>
-                    <year>2014</year>
+                    <vehicleId>c3c965a9-720a-4e7b-ad61-861d607781ac</vehicleId>
+                    <year>2007</year>
                 </vehicleId>
             </ride>
             <rideDistance>11.31</rideDistance>
-            <rideStartTime>2024-10-19T07:14:27.263621271</rideStartTime>
+            <rideStartTime>2024-10-19T16:50:50.210408661</rideStartTime>
         </payment>
         <payment>
             <amount>64.84</amount>
-            <paymentId>4a29f7d3-636e-4e13-b772-2f5ae24c91d3</paymentId>
+            <paymentId>c2659d6b-9af8-4eeb-b087-45f86c8e4ce6</paymentId>
             <paymentMethod>PIX</paymentMethod>
             <ride>
                 <cabbie>
-                    <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
+                    <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
                     <isBusy>false</isBusy>
                     <licenseNumber>A7bC8dEf</licenseNumber>
                     <name>Martina</name>
@@ -83,32 +83,32 @@
                 <distance>15.3</distance>
                 <dropLocation>BIBLIOTECA</dropLocation>
                 <passengerId>
-                    <email>mateus.pereira@email.com</email>
+                    <email>gabriela.souza@email.com</email>
                     <name>Estevão</name>
-                    <passengerId>3f23b2a2-1595-4233-8c7f-e2b846d0c39c</passengerId>
-                    <phone>+55 84 99012-3456</phone>
+                    <passengerId>a758a538-f297-4be6-9b86-5544cff0e7eb</passengerId>
+                    <phone>+55 12 90123-4567</phone>
                 </passengerId>
                 <rideDistance>15.3</rideDistance>
-                <rideId>02a6bad5-6724-423d-b21d-c347d11c1bfa</rideId>
+                <rideId>c179abef-9560-4c93-a611-cd019b390ff0</rideId>
                 <Status>EM_PROGRESSO</Status>
                 <vehicleId>
-                    <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
-                    <model>Mazda</model>
+                    <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
+                    <model>Nissan</model>
                     <registrationNumber>ABD123</registrationNumber>
-                    <vehicleId>8d8ba66b-f10c-46ab-8d90-f504ce6baca2</vehicleId>
-                    <year>2014</year>
+                    <vehicleId>c3c965a9-720a-4e7b-ad61-861d607781ac</vehicleId>
+                    <year>2007</year>
                 </vehicleId>
             </ride>
             <rideDistance>15.3</rideDistance>
-            <rideStartTime>2024-10-19T07:14:27.312719540</rideStartTime>
+            <rideStartTime>2024-10-19T16:50:50.266229431</rideStartTime>
         </payment>
         <payment>
             <amount>35.66</amount>
-            <paymentId>871c3624-3fce-4d9c-8dd1-2d3a7e24ab41</paymentId>
+            <paymentId>476c3737-c781-4051-81e9-d03221d3be98</paymentId>
             <paymentMethod>PIX</paymentMethod>
             <ride>
                 <cabbie>
-                    <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
+                    <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
                     <isBusy>false</isBusy>
                     <licenseNumber>A7bC8dEf</licenseNumber>
                     <name>Martina</name>
@@ -116,36 +116,36 @@
                 </cabbie>
                 <distance>15.3</distance>
                 <dropLocation>BIBLIOTECA</dropLocation>
-                <endTime>2024-10-19T07:44:27.432440151</endTime>
+                <endTime>2024-10-19T17:20:50.425895417</endTime>
                 <passengerId xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vipPassenger">
-                    <email>tiago.silva@email.com</email>
-                    <name>Tiago</name>
-                    <passengerId>221ab530-dec1-4a82-aecc-daf7d19f196c</passengerId>
-                    <phone>+55 13 91234-5678</phone>
+                    <email>mateus.pereira@email.com</email>
+                    <name>Mateus</name>
+                    <passengerId>4216ffa3-6b0f-43fc-bcdd-49b5ac750c6d</passengerId>
+                    <phone>+55 84 99012-3456</phone>
                     <discount>0.45</discount>
-                    <vipExpiration>2024-10-20T07:14:27.432388060</vipExpiration>
+                    <vipExpiration>2024-10-20T16:50:50.425781993</vipExpiration>
                 </passengerId>
                 <pickupLocation>PARQUE</pickupLocation>
                 <rideDistance>15.3</rideDistance>
-                <rideId>02b57e7b-2850-4a44-a95a-36f889c85c7c</rideId>
-                <startTime>2024-10-19T07:14:27.432433235</startTime>
+                <rideId>9ad40c38-3256-4815-bfb3-74227d538315</rideId>
+                <startTime>2024-10-19T16:50:50.425882628</startTime>
                 <Status>EM_PROGRESSO</Status>
                 <vehicleId>
-                    <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
-                    <model>Mazda</model>
+                    <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
+                    <model>Nissan</model>
                     <registrationNumber>ABD123</registrationNumber>
-                    <vehicleId>8d8ba66b-f10c-46ab-8d90-f504ce6baca2</vehicleId>
-                    <year>2014</year>
+                    <vehicleId>c3c965a9-720a-4e7b-ad61-861d607781ac</vehicleId>
+                    <year>2007</year>
                 </vehicleId>
             </ride>
             <rideDistance>15.3</rideDistance>
-            <rideStartTime>2024-10-19T07:14:27.432433235</rideStartTime>
+            <rideStartTime>2024-10-19T16:50:50.425882628</rideStartTime>
         </payment>
     </payments>
     <rides>
         <ride>
             <cabbie>
-                <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
+                <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
                 <isBusy>false</isBusy>
                 <licenseNumber>A7bC8dEf</licenseNumber>
                 <name>Martina</name>
@@ -153,30 +153,30 @@
             </cabbie>
             <distance>11.31</distance>
             <dropLocation>ESTACAO_DE_TREM</dropLocation>
-            <endTime>2024-10-19T07:44:27.263662011</endTime>
+            <endTime>2024-10-19T17:20:50.210453899</endTime>
             <passengerId xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="businessPassenger">
-                <email>mateus.pereira@email.com</email>
-                <name>Mateus</name>
-                <passengerId>b788bace-4155-43ba-b019-5061eb323c8c</passengerId>
-                <phone>+55 84 99012-3456</phone>
+                <email>tiago.silva@email.com</email>
+                <name>Tiago</name>
+                <passengerId>f8f26fbb-0778-45fc-a875-cf6f54e24193</passengerId>
+                <phone>+55 13 91234-5678</phone>
                 <discount>0.35</discount>
             </passengerId>
             <pickupLocation>SHOPPING</pickupLocation>
             <rideDistance>11.31</rideDistance>
-            <rideId>947cc17f-7394-4470-bffc-9f608e25b1e5</rideId>
-            <startTime>2024-10-19T07:14:27.263621271</startTime>
+            <rideId>a0bc384f-b3de-4b53-bf4e-f89cd27fcdc0</rideId>
+            <startTime>2024-10-19T16:50:50.210408661</startTime>
             <Status>EM_PROGRESSO</Status>
             <vehicleId>
-                <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
-                <model>Mazda</model>
+                <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
+                <model>Nissan</model>
                 <registrationNumber>ABD123</registrationNumber>
-                <vehicleId>8d8ba66b-f10c-46ab-8d90-f504ce6baca2</vehicleId>
-                <year>2014</year>
+                <vehicleId>c3c965a9-720a-4e7b-ad61-861d607781ac</vehicleId>
+                <year>2007</year>
             </vehicleId>
         </ride>
         <ride>
             <cabbie>
-                <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
+                <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
                 <isBusy>false</isBusy>
                 <licenseNumber>A7bC8dEf</licenseNumber>
                 <name>Martina</name>
@@ -184,30 +184,30 @@
             </cabbie>
             <distance>11.31</distance>
             <dropLocation>ESTACAO_DE_TREM</dropLocation>
-            <endTime>2024-10-19T07:44:27.263662011</endTime>
+            <endTime>2024-10-19T17:20:50.210453899</endTime>
             <passengerId xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="businessPassenger">
-                <email>mateus.pereira@email.com</email>
-                <name>Mateus</name>
-                <passengerId>b788bace-4155-43ba-b019-5061eb323c8c</passengerId>
-                <phone>+55 84 99012-3456</phone>
+                <email>tiago.silva@email.com</email>
+                <name>Tiago</name>
+                <passengerId>f8f26fbb-0778-45fc-a875-cf6f54e24193</passengerId>
+                <phone>+55 13 91234-5678</phone>
                 <discount>0.35</discount>
             </passengerId>
             <pickupLocation>SHOPPING</pickupLocation>
             <rideDistance>11.31</rideDistance>
-            <rideId>947cc17f-7394-4470-bffc-9f608e25b1e5</rideId>
-            <startTime>2024-10-19T07:14:27.263621271</startTime>
+            <rideId>a0bc384f-b3de-4b53-bf4e-f89cd27fcdc0</rideId>
+            <startTime>2024-10-19T16:50:50.210408661</startTime>
             <Status>EM_PROGRESSO</Status>
             <vehicleId>
-                <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
-                <model>Mazda</model>
+                <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
+                <model>Nissan</model>
                 <registrationNumber>ABD123</registrationNumber>
-                <vehicleId>8d8ba66b-f10c-46ab-8d90-f504ce6baca2</vehicleId>
-                <year>2014</year>
+                <vehicleId>c3c965a9-720a-4e7b-ad61-861d607781ac</vehicleId>
+                <year>2007</year>
             </vehicleId>
         </ride>
         <ride>
             <cabbie>
-                <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
+                <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
                 <isBusy>false</isBusy>
                 <licenseNumber>A7bC8dEf</licenseNumber>
                 <name>Martina</name>
@@ -216,25 +216,25 @@
             <distance>15.3</distance>
             <dropLocation>BIBLIOTECA</dropLocation>
             <passengerId>
-                <email>mateus.pereira@email.com</email>
+                <email>gabriela.souza@email.com</email>
                 <name>Estevão</name>
-                <passengerId>3f23b2a2-1595-4233-8c7f-e2b846d0c39c</passengerId>
-                <phone>+55 84 99012-3456</phone>
+                <passengerId>a758a538-f297-4be6-9b86-5544cff0e7eb</passengerId>
+                <phone>+55 12 90123-4567</phone>
             </passengerId>
             <rideDistance>15.3</rideDistance>
-            <rideId>02a6bad5-6724-423d-b21d-c347d11c1bfa</rideId>
+            <rideId>c179abef-9560-4c93-a611-cd019b390ff0</rideId>
             <Status>EM_PROGRESSO</Status>
             <vehicleId>
-                <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
-                <model>Mazda</model>
+                <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
+                <model>Nissan</model>
                 <registrationNumber>ABD123</registrationNumber>
-                <vehicleId>8d8ba66b-f10c-46ab-8d90-f504ce6baca2</vehicleId>
-                <year>2014</year>
+                <vehicleId>c3c965a9-720a-4e7b-ad61-861d607781ac</vehicleId>
+                <year>2007</year>
             </vehicleId>
         </ride>
         <ride>
             <cabbie>
-                <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
+                <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
                 <isBusy>false</isBusy>
                 <licenseNumber>A7bC8dEf</licenseNumber>
                 <name>Martina</name>
@@ -242,36 +242,36 @@
             </cabbie>
             <distance>15.3</distance>
             <dropLocation>BIBLIOTECA</dropLocation>
-            <endTime>2024-10-19T07:44:27.432440151</endTime>
+            <endTime>2024-10-19T17:20:50.425895417</endTime>
             <passengerId xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="vipPassenger">
-                <email>tiago.silva@email.com</email>
-                <name>Tiago</name>
-                <passengerId>221ab530-dec1-4a82-aecc-daf7d19f196c</passengerId>
-                <phone>+55 13 91234-5678</phone>
+                <email>mateus.pereira@email.com</email>
+                <name>Mateus</name>
+                <passengerId>4216ffa3-6b0f-43fc-bcdd-49b5ac750c6d</passengerId>
+                <phone>+55 84 99012-3456</phone>
                 <discount>0.45</discount>
-                <vipExpiration>2024-10-20T07:14:27.432388060</vipExpiration>
+                <vipExpiration>2024-10-20T16:50:50.425781993</vipExpiration>
             </passengerId>
             <pickupLocation>PARQUE</pickupLocation>
             <rideDistance>15.3</rideDistance>
-            <rideId>02b57e7b-2850-4a44-a95a-36f889c85c7c</rideId>
-            <startTime>2024-10-19T07:14:27.432433235</startTime>
+            <rideId>9ad40c38-3256-4815-bfb3-74227d538315</rideId>
+            <startTime>2024-10-19T16:50:50.425882628</startTime>
             <Status>EM_PROGRESSO</Status>
             <vehicleId>
-                <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
-                <model>Mazda</model>
+                <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
+                <model>Nissan</model>
                 <registrationNumber>ABD123</registrationNumber>
-                <vehicleId>8d8ba66b-f10c-46ab-8d90-f504ce6baca2</vehicleId>
-                <year>2014</year>
+                <vehicleId>c3c965a9-720a-4e7b-ad61-861d607781ac</vehicleId>
+                <year>2007</year>
             </vehicleId>
         </ride>
     </rides>
     <vehicles>
         <vehicle>
-            <cabbieId>a38368b6-41aa-4c41-95fe-814294106305</cabbieId>
-            <model>Mazda</model>
+            <cabbieId>9c808d5f-8c77-4443-bdbf-0c012b3f2af1</cabbieId>
+            <model>Nissan</model>
             <registrationNumber>ABD123</registrationNumber>
-            <vehicleId>8d8ba66b-f10c-46ab-8d90-f504ce6baca2</vehicleId>
-            <year>2014</year>
+            <vehicleId>c3c965a9-720a-4e7b-ad61-861d607781ac</vehicleId>
+            <year>2007</year>
         </vehicle>
     </vehicles>
 </database>
