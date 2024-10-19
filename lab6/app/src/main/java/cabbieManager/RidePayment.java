@@ -3,6 +3,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.UUID;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
@@ -12,7 +13,7 @@ import utils.LocalDateTimeAdapter;
 @XmlRootElement(name="PaymentMethod")
 public class RidePayment implements Payment{
     private String paymentId;
-    private String rideId;
+    private Ride ride;
     private LocalDateTime rideStartTime;
     private float rideDistance;
     private float amount;
@@ -32,9 +33,9 @@ public class RidePayment implements Payment{
      * @param paymentMethod  The payment method selected by the user (e.g., "credit", "cash").
      *
      */
-    public RidePayment(String rideId, LocalDateTime rideStartTime, float rideDistance ,String paymentMethod) {
+    public RidePayment(Ride ride, LocalDateTime rideStartTime, float rideDistance ,String paymentMethod) {
         this.paymentId = UUID.randomUUID().toString();
-        this.rideId = rideId;
+        this.ride = ride;
         this.rideStartTime = rideStartTime;
         this.rideDistance = rideDistance;
         this.paymentMethod = this.selectPaymentMethod(paymentMethod);
@@ -89,6 +90,18 @@ public class RidePayment implements Payment{
         float precoPorKm = isHorarioNoturno() ? PRECO_POR_KM_NOTURNO[faixa] : PRECO_POR_KM_DIURNO[faixa];
         // calculates the total amount considering the payment method fee
         float _amount = this.paymentMethod.calculatePaymentFee(precoInicial + (this.rideDistance * precoPorKm));
+        // calculate the total amount with discount reflecting the type of passenger
+        if (ride.getPassenger() instanceof BusinessPassenger) {
+            System.out.println("Desconto aplicado: 35.0%");
+            _amount = _amount * (1 - ((BusinessPassenger) ride.getPassenger()).getDiscount());
+        } else if (ride.getPassenger() instanceof VIPPassenger) {
+            if(((VIPPassenger) ride.getPassenger()).getVipExpiration().isAfter(this.ride.getStartTime())){
+                System.out.println("Desconto aplicado: " + (100 * ((VIPPassenger) ride.getPassenger()).getDiscount()) + "%");
+                _amount = _amount * (1 - ((VIPPassenger) ride.getPassenger()).getDiscount());
+            } else {
+                throw new IllegalArgumentException("VIP Expiration Date is over");
+            }
+        }
         this.amount = Math.round(_amount * 100) / 100.0f;
         return this.amount;
     }
@@ -101,18 +114,21 @@ public class RidePayment implements Payment{
     public void processPayment() {
         System.out.println("Valor da corrida definido: " + this.amount);
     }
+    @XmlElement(name = "paymentId")
     public String getPaymentId() {
         return paymentId;
     }
     public void setPaymentId(String paymentId) {
         this.paymentId = paymentId;
     }
-    public String getRideId() {
-        return rideId;
+    @XmlElement(name = "ride")
+    public Ride getRide() {
+        return ride;
     }
-    public void setRideId(String rideId) {
-        this.rideId = rideId;
+    public void setRide(Ride ride) {
+        this.ride = ride;
     }
+    @XmlElement(name = "rideStartTime")
     @XmlJavaTypeAdapter(value = LocalDateTimeAdapter.class)
     public LocalDateTime getRideStartTime() {
         return rideStartTime;
@@ -120,18 +136,21 @@ public class RidePayment implements Payment{
     public void setRideStartTime(LocalDateTime rideStartTime) {
         this.rideStartTime = rideStartTime;
     }
+    @XmlElement(name = "rideDistance")
     public float getRideDistance() {
         return rideDistance;
     }
     public void setRideDistance(float rideDistance) {
         this.rideDistance = rideDistance;
     }
+    @XmlElement(name = "amount")
     public float getAmount() {
         return amount;
     }
     public void setAmount(float amount) {
         this.amount = amount;
     }
+    @XmlElement(name = "paymentMethod")
     public PaymentOption getPaymentMethod() {
         return paymentMethod;
     }

@@ -2,12 +2,14 @@ package cabbieManager;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlSeeAlso;
 
 import com.google.common.base.Objects;
 
 import utils.PassengerInfoGenerator;
 
 @XmlRootElement(name="passenger")
+@XmlSeeAlso({BusinessPassenger.class, VIPPassenger.class}) // Include all subclasses
 public class Passenger extends Person{
     private String passengerId;
     public Passenger() {
@@ -24,6 +26,11 @@ public class Passenger extends Person{
         this.name = pass.getName();
         this.phone = pass.getPhone();
         this.passengerId = pass.getPassengerId();
+        if(this instanceof BusinessPassenger){
+            System.out.println("Pessoa passageira(conta empresarial) " + this.passengerId + " (" + this.name + ") criada com sucesso");
+        } else if(this instanceof VIPPassenger){
+            System.out.println("Pessoa passageira(conta vip) " + this.passengerId + " (" + this.name + ") criada com sucesso");
+        }
         System.out.println("Pessoa passageira " + this.passengerId + " (" + this.name + ") criada com sucesso");
     }
     /**
@@ -64,8 +71,9 @@ public class Passenger extends Person{
         }
         if (validField) {
             System.out.println("Campo " + field + " atualizado com sucesso!");
+        } else {
+            throw new IllegalArgumentException("Field " + field + " is not valid");
         }
-        throw new IllegalArgumentException("Field " + field + " is not valid");
     }
     @XmlElement(name = "email")
     public String getEmail() {

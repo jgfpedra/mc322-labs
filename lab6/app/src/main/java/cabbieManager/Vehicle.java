@@ -68,8 +68,9 @@ public class Vehicle {
         }
         if (validField) {
             System.out.println("Campo " + field + " alterado com sucesso");
+        } else {
+            throw new IllegalArgumentException("Field " + field + " is not valid");
         }
-        throw new IllegalArgumentException("Field " + field + " is not valid");
     }
     /**
      * Gets the ID of the Vehicle.

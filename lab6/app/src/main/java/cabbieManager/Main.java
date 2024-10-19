@@ -5,24 +5,33 @@
  * RA: 248349
  */
 package cabbieManager;
+import java.time.LocalDateTime;
+
 import databaseManager.Database;
+
 public class Main {
     public static void main(String[] args) throws Exception {
         //Aqui você deve realizar a simulação do funcionamento do sistema.
+        //TODO: fazer teste do endTime
+        //TODO: fazer teste setando VIP com data menor que o do startRideTime
         //----------------------------------------------------------------
-        // File file = new File("Tarefa05 - Feita\\Tarefa05\\app\\data\\database.xml");
         Database db = new Database();
         // Create Instances
         Cabbie cab = new Cabbie();
         cab.register();
         Passenger p = new Passenger();
         p.register();
+        BusinessPassenger bp1 = new BusinessPassenger();
+        bp1.register();
+        VIPPassenger vp1 = new VIPPassenger();
+        vp1.register();
         Vehicle v = new Vehicle(cab.getCabbieId());
         v.registerVehicle();
-        System.out.println("AQRUI:" + v);
         // Save Instances into the XML database
         db.insert(cab);
         db.insert(p);
+        db.insert(bp1);
+        db.insert(vp1);
         db.insert(v);
         // Update Instances
         cab.update("name", "Martina");
@@ -33,7 +42,8 @@ public class Main {
         db.update(p);
         db.update(v);
         // Create Ride
-        Ride ride = new Ride(db.getPassengers().get(0));
+        // Pick the object of class BusinessPassengers
+        Ride ride = new Ride(db.getPassengers().get(1));
         ride.requestRide("Shopping", "Estação de Trem");
         db.insert(ride);
         // Accept Ride
@@ -43,7 +53,7 @@ public class Main {
         db.update(cab);
         db.insert(ride);
         //Payment
-        RidePayment payment = new RidePayment(ride.getRideId(), ride.getStartTime(), ride.getRideDistance(), "Cartão de Crédito");
+        RidePayment payment = new RidePayment(ride, ride.getStartTime(), ride.getRideDistance(), "Cartão de Crédito");
         payment.processPayment();
         db.insert(payment);
         //Finish Ride
@@ -62,7 +72,7 @@ public class Main {
         db.update(cab);
         db.update(ride_2);
         //Payment
-        RidePayment payment2 = new RidePayment(ride_2.getRideId(), ride_2.getStartTime(), ride_2.getRideDistance(), "Pix");
+        RidePayment payment2 = new RidePayment(ride_2, ride_2.getStartTime(), ride_2.getRideDistance(), "Pix");
         payment2.processPayment();
         db.insert(payment2);
         //Finish Ride
@@ -82,7 +92,10 @@ public class Main {
         System.out.println("-----------------------------------\n");
         System.out.println("Realizando nova corrida:");
         // Create Ride
-        Ride ride_3 = new Ride(db.getPassengers().get(0));
+        // Pick the object instance of VIPPassenger
+        VIPPassenger vipPassenger = (VIPPassenger) db.getPassengers().get(2);
+        vipPassenger.setVipExpiration(LocalDateTime.now().plusDays(1));
+        Ride ride_3 = new Ride(vipPassenger);
         ride_3.requestRide("Parque", "Biblioteca");
         db.insert(ride_3);
         // Accept Ride
@@ -92,8 +105,8 @@ public class Main {
         db.update(cab);
         db.update(ride_3);
         //Payment
-        RidePayment payment3 = new RidePayment(ride_2.getRideId(), ride_2.getStartTime(), ride_2.getRideDistance(), "Pix");
-        payment2.processPayment();
+        RidePayment payment3 = new RidePayment(ride_3, ride_3.getStartTime(), ride_3.getRideDistance(), "Pix");
+        payment3.processPayment();
         db.insert(payment3);
         //Finish Ride
         ride.completeRide();

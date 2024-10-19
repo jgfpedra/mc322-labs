@@ -34,7 +34,7 @@ public class HackerTest {
     public void testRidPayment_throwsNullPointforStartTime() {
         Exception exception = assertThrows(NullPointerException.class, () -> {
             @SuppressWarnings("unused")
-            RidePayment rpTest = new RidePayment(testRide.getRideId(), null, 5.0f, "Dinheiro"); // Invalid phone number with non-numeric characters
+            RidePayment rpTest = new RidePayment(testRide, null, 5.0f, "Dinheiro"); // Invalid phone number with non-numeric characters
         });
         assertEquals("Start time of the ride to be paid cannot be null", exception.getMessage());
     }
@@ -51,7 +51,7 @@ public class HackerTest {
     public void testRidePayment_throwsInalidRideDistanceEqualsZero() {
         Exception exception = assertThrows(InvalidRideDistanceException.class, () -> {
             @SuppressWarnings("unused")
-            RidePayment rp = new RidePayment(testRide.getRideId(), LocalDateTime.of(2022, 1, 1, 10, 0), 0.0f, "Dinheiro");
+            RidePayment rp = new RidePayment(testRide, LocalDateTime.of(2022, 1, 1, 10, 0), 0.0f, "Dinheiro");
         });
         assertEquals("Ride distance must be greater than zero", exception.getMessage());
     }

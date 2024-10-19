@@ -1,22 +1,17 @@
 package cabbieManager;
 
-public class BusinessPassenger extends Person implements BenefitsControll{
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "businessPassenger")
+public class BusinessPassenger extends Passenger implements BenefitsControll{
     private String businessEmail;
     @Override
+    @XmlElement(name = "discount")
     public float getDiscount() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getDiscount'");
+        return 0.35f;
     }
-    @Override
-    public void register() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'register'");
-    }
-    @Override
-    public void update(String field, String newValue) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'update'");
-    }
+    @XmlElement(name = "businessEmail")
     public String getBusinessEmail(){
         return businessEmail;
     }

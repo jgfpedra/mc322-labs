@@ -17,10 +17,12 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import cabbieManager.BusinessPassenger;
 import cabbieManager.Cabbie;
 import cabbieManager.Passenger;
 import cabbieManager.Ride;
 import cabbieManager.RidePayment;
+import cabbieManager.VIPPassenger;
 import cabbieManager.Vehicle;
 import exceptions.UnsupportedObjectTypeException;
 
@@ -31,7 +33,7 @@ public class Database{
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<Ride> rides = new ArrayList<>();
     private List<RidePayment> payments = new ArrayList<>();
-    private final File file = new File("lab6/app/data/database.xml");
+    private final File file = new File("app/data/database.xml");
     public Database(){
     }
     public Database(boolean load){
@@ -74,6 +76,10 @@ public class Database{
     public void insert(Object object){
         if(object instanceof Cabbie){
             this.cabbies.add((Cabbie)object);
+        }else if(object instanceof BusinessPassenger){
+            this.passengers.add((BusinessPassenger) object);
+        }else if(object instanceof VIPPassenger){
+            this.passengers.add((VIPPassenger) object);
         }else if(object instanceof Passenger){
             this.passengers.add((Passenger) object);
         }else if(object instanceof Vehicle){

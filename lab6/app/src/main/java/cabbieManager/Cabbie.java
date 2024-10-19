@@ -54,9 +54,7 @@ public class Cabbie extends Person{
      */
     @Override
     public void update(String field, String newValue){
-
         boolean validField = true;
-
         switch (field) {
             case "name":
                 this.name = newValue;
@@ -85,8 +83,9 @@ public class Cabbie extends Person{
         }
         if (validField) {
             System.out.println("Campo " + field + " foi atualizado com sucesso!");
+        } else {
+            throw new IllegalArgumentException("Field " + field + " is not valid");
         }
-        throw new IllegalArgumentException("Field " + field + " is not valid");
     }
     /**
      * Gets the ID of the cabbie.
